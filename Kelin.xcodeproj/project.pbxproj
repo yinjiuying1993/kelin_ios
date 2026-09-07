@@ -20,6 +20,10 @@
 		A1000000000000000000000B /* DesignTokensTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000015 /* DesignTokensTests.swift */; };
 		A1000000000000000000000C /* AppConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000016 /* AppConfigTests.swift */; };
 		A1000000000000000000000D /* StateAndErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000017 /* StateAndErrorTests.swift */; };
+		A1000000000000000000000E /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000018 /* AppEnvironment.swift */; };
+		A1000000000000000000000F /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000019 /* AppRouter.swift */; };
+		A10000000000000000000010 /* DateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000001A /* DateProvider.swift */; };
+		A10000000000000000000011 /* AppRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000001B /* AppRouterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +54,10 @@
 		B10000000000000000000015 /* DesignTokensTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTokensTests.swift; sourceTree = "<group>"; };
 		B10000000000000000000016 /* AppConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigTests.swift; sourceTree = "<group>"; };
 		B10000000000000000000017 /* StateAndErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateAndErrorTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000018 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		B10000000000000000000019 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		B1000000000000000000001A /* DateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProvider.swift; sourceTree = "<group>"; };
+		B1000000000000000000001B /* AppRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +103,9 @@
 			children = (
 				B10000000000000000000001 /* KelinApp.swift */,
 				B10000000000000000000002 /* RootView.swift */,
+				B10000000000000000000018 /* AppEnvironment.swift */,
+				B10000000000000000000019 /* AppRouter.swift */,
+				B1000000000000000000001A /* DateProvider.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -106,6 +117,7 @@
 				B10000000000000000000015 /* DesignTokensTests.swift */,
 				B10000000000000000000016 /* AppConfigTests.swift */,
 				B10000000000000000000017 /* StateAndErrorTests.swift */,
+				B1000000000000000000001B /* AppRouterTests.swift */,
 			);
 			path = KelinTests;
 			sourceTree = "<group>";
@@ -256,6 +268,9 @@
 				A10000000000000000000007 /* ErrorCopy.swift in Sources */,
 				A10000000000000000000009 /* AppConfig.swift in Sources */,
 				A1000000000000000000000A /* KelinStatusCard.swift in Sources */,
+				A1000000000000000000000E /* AppEnvironment.swift in Sources */,
+				A1000000000000000000000F /* AppRouter.swift in Sources */,
+				A10000000000000000000010 /* DateProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +282,7 @@
 				A1000000000000000000000B /* DesignTokensTests.swift in Sources */,
 				A1000000000000000000000C /* AppConfigTests.swift in Sources */,
 				A1000000000000000000000D /* StateAndErrorTests.swift in Sources */,
+				A10000000000000000000011 /* AppRouterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
