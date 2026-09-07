@@ -10,6 +10,16 @@
 		A10000000000000000000001 /* KelinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000001 /* KelinApp.swift */; };
 		A10000000000000000000002 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000002 /* RootView.swift */; };
 		A10000000000000000000003 /* KelinAppShellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000003 /* KelinAppShellTests.swift */; };
+		A10000000000000000000004 /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000006 /* DesignTokens.swift */; };
+		A10000000000000000000005 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000007 /* AppError.swift */; };
+		A10000000000000000000006 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000008 /* Loadable.swift */; };
+		A10000000000000000000007 /* ErrorCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000009 /* ErrorCopy.swift */; };
+		A10000000000000000000008 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000010 /* Localizable.xcstrings */; };
+		A10000000000000000000009 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000011 /* AppConfig.swift */; };
+		A1000000000000000000000A /* KelinStatusCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000014 /* KelinStatusCard.swift */; };
+		A1000000000000000000000B /* DesignTokensTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000015 /* DesignTokensTests.swift */; };
+		A1000000000000000000000C /* AppConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000016 /* AppConfigTests.swift */; };
+		A1000000000000000000000D /* StateAndErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000017 /* StateAndErrorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +38,18 @@
 		B10000000000000000000003 /* KelinAppShellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelinAppShellTests.swift; sourceTree = "<group>"; };
 		B10000000000000000000004 /* Kelin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kelin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B10000000000000000000005 /* KelinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KelinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B10000000000000000000006 /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTokens.swift; sourceTree = "<group>"; };
+		B10000000000000000000007 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		B10000000000000000000008 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
+		B10000000000000000000009 /* ErrorCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCopy.swift; sourceTree = "<group>"; };
+		B10000000000000000000010 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		B10000000000000000000011 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		B10000000000000000000012 /* Debug.xcconfig.example */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig.example; sourceTree = "<group>"; };
+		B10000000000000000000013 /* Release.xcconfig.example */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig.example; sourceTree = "<group>"; };
+		B10000000000000000000014 /* KelinStatusCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelinStatusCard.swift; sourceTree = "<group>"; };
+		B10000000000000000000015 /* DesignTokensTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTokensTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000016 /* AppConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000017 /* StateAndErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateAndErrorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +83,9 @@
 			isa = PBXGroup;
 			children = (
 				G10000000000000000000003 /* App */,
+				G10000000000000000000006 /* Core */,
+				G10000000000000000000007 /* Config */,
+				G10000000000000000000008 /* Components */,
 			);
 			path = Kelin;
 			sourceTree = "<group>";
@@ -78,6 +103,9 @@
 			isa = PBXGroup;
 			children = (
 				B10000000000000000000003 /* KelinAppShellTests.swift */,
+				B10000000000000000000015 /* DesignTokensTests.swift */,
+				B10000000000000000000016 /* AppConfigTests.swift */,
+				B10000000000000000000017 /* StateAndErrorTests.swift */,
 			);
 			path = KelinTests;
 			sourceTree = "<group>";
@@ -89,6 +117,36 @@
 				B10000000000000000000005 /* KelinTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000006 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000006 /* DesignTokens.swift */,
+				B10000000000000000000007 /* AppError.swift */,
+				B10000000000000000000008 /* Loadable.swift */,
+				B10000000000000000000009 /* ErrorCopy.swift */,
+				B10000000000000000000010 /* Localizable.xcstrings */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000007 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000011 /* AppConfig.swift */,
+				B10000000000000000000012 /* Debug.xcconfig.example */,
+				B10000000000000000000013 /* Release.xcconfig.example */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000008 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000014 /* KelinStatusCard.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,6 +230,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10000000000000000000008 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +250,12 @@
 			files = (
 				A10000000000000000000001 /* KelinApp.swift in Sources */,
 				A10000000000000000000002 /* RootView.swift in Sources */,
+				A10000000000000000000004 /* DesignTokens.swift in Sources */,
+				A10000000000000000000005 /* AppError.swift in Sources */,
+				A10000000000000000000006 /* Loadable.swift in Sources */,
+				A10000000000000000000007 /* ErrorCopy.swift in Sources */,
+				A10000000000000000000009 /* AppConfig.swift in Sources */,
+				A1000000000000000000000A /* KelinStatusCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +264,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A10000000000000000000003 /* KelinAppShellTests.swift in Sources */,
+				A1000000000000000000000B /* DesignTokensTests.swift in Sources */,
+				A1000000000000000000000C /* AppConfigTests.swift in Sources */,
+				A1000000000000000000000D /* StateAndErrorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,7 +401,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "刻灵";
+				INFOPLIST_KEY_API_BASE_URL = "$(API_BASE_URL)";
+				INFOPLIST_KEY_APP_ENV = "$(APP_ENV)";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_SUPABASE_ANON_KEY = "$(SUPABASE_ANON_KEY)";
+				INFOPLIST_KEY_SUPABASE_URL = "$(SUPABASE_URL)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -365,7 +437,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "刻灵";
+				INFOPLIST_KEY_API_BASE_URL = "$(API_BASE_URL)";
+				INFOPLIST_KEY_APP_ENV = "$(APP_ENV)";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_SUPABASE_ANON_KEY = "$(SUPABASE_ANON_KEY)";
+				INFOPLIST_KEY_SUPABASE_URL = "$(SUPABASE_URL)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
