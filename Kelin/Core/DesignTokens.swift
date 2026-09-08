@@ -40,7 +40,20 @@ enum KelinSize {
     static let secondaryButtonHeight: CGFloat = 44
     static let inputMinimumHeight: CGFloat = 48
     static let settingsRowHeight: CGFloat = 52
+    static let filterChipHeight: CGFloat = 32
     static let roomActionDockHeight: CGFloat = 72
+}
+
+enum KelinIconSize {
+    static let standard: CGFloat = 20
+    static let navigation: CGFloat = 22
+    static let emptyState: CGFloat = 36
+}
+
+enum KelinLayout {
+    /// 393 pt 基准画布上的标准内容宽度。
+    static let referenceCanvasWidth: CGFloat = 393
+    static let standardContentWidth: CGFloat = 353
 }
 
 enum KelinTypography {

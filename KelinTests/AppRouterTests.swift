@@ -55,8 +55,11 @@ final class AppRouterTests: XCTestCase {
     }
 
     func testRootViewCanBeConstructedWithInjectedDependencies() {
-        _ = RootView(router: AppRouter())
-            .environment(AppEnvironment.preview)
+        _ = RootView(
+            router: AppRouter(),
+            appState: AppState(auth: MockAuthService())
+        )
+        .environment(AppEnvironment.preview)
     }
 
     #if DEBUG

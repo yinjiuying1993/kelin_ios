@@ -18,25 +18,15 @@ struct KelinStatusCard: View {
                 failureContent(copy: copy)
             }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(KelinSpacing.standard)
-        .background(KelinColor.surfacePrimary.opacity(0.96))
-        .clipShape(RoundedRectangle(cornerRadius: KelinRadius.standard))
-        .overlay {
-            RoundedRectangle(cornerRadius: KelinRadius.standard)
-                .stroke(KelinColor.borderSubtle, lineWidth: 1)
-        }
+        .kelinStandardCard()
     }
 
     private func loadingContent(title: String) -> some View {
         HStack(spacing: KelinSpacing.compact) {
-            ProgressView()
-                .tint(KelinColor.accent)
+            KelinLoadingDots()
 
             Text(title)
-                .font(KelinTypography.body.font)
-                .foregroundStyle(KelinColor.textPrimary)
-                .lineSpacing(KelinTypography.body.lineSpacing)
+                .kelinTypography(KelinTypography.body)
         }
         .frame(minHeight: KelinSize.minimumTouchTarget)
         .accessibilityElement(children: .combine)
@@ -47,30 +37,23 @@ struct KelinStatusCard: View {
     private func failureContent(copy: ErrorCopy) -> some View {
         Label {
             Text(copy.title)
-                .font(KelinTypography.cardTitle.font)
-                .lineSpacing(KelinTypography.cardTitle.lineSpacing)
+                .kelinTypography(KelinTypography.cardTitle)
         } icon: {
             Image(systemName: "exclamationmark.circle")
+                .font(.system(size: KelinIconSize.standard))
                 .foregroundStyle(KelinColor.danger)
         }
         .foregroundStyle(KelinColor.textPrimary)
 
         Text(copy.message)
-            .font(KelinTypography.body.font)
-            .foregroundStyle(KelinColor.textSecondary)
-            .lineSpacing(KelinTypography.body.lineSpacing)
+            .kelinTypography(KelinTypography.body, color: KelinColor.textSecondary)
 
         if
             let recoveryActionTitle = copy.recoveryActionTitle,
             let recoveryAction
         {
             Button(recoveryActionTitle, action: recoveryAction)
-                .font(KelinTypography.body.font.weight(.semibold))
-                .foregroundStyle(KelinColor.textPrimary)
-                .frame(minHeight: KelinSize.minimumTouchTarget)
-                .padding(.horizontal, KelinSpacing.standard)
-                .background(KelinColor.accent)
-                .clipShape(RoundedRectangle(cornerRadius: KelinRadius.small))
+                .buttonStyle(.kelinPrimary)
         }
     }
 }

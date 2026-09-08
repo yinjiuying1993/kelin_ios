@@ -2,28 +2,49 @@ import SwiftUI
 
 struct RootView: View {
     @Bindable var router: AppRouter
+    @Bindable var appState: AppState
 
     var body: some View {
+        Group {
+            switch appState.phase {
+            case .ready:
+                readyContent
+            case .recoverableError:
+                LaunchGateView(phase: appState.phase) {
+                    appState.retryFromError()
+                }
+            default:
+                LaunchGateView(phase: appState.phase) {
+                    appState.retryFromError()
+                }
+            }
+        }
+    }
+
+    private var readyContent: some View {
         NavigationStack(path: $router.path) {
             VStack(spacing: KelinSpacing.section) {
                 Text("刻灵")
-                    .font(KelinTypography.largeTitle.font)
-                    .foregroundStyle(KelinColor.textPrimary)
+                    .kelinTypography(KelinTypography.largeTitle)
                     .accessibilityAddTraits(.isHeader)
+
+                Text(String(localized: "相处，会在身上留下痕迹。"))
+                    .kelinTypography(KelinTypography.secondary, color: KelinColor.textSecondary)
+                    .multilineTextAlignment(.center)
 
                 Button {
                     router.push(.chat)
                 } label: {
                     Text(String(localized: "进入对话"))
                 }
-                .kelinPrimaryAction()
+                .buttonStyle(.kelinPrimary)
 
                 Button {
                     router.present(.renameSpirit)
                 } label: {
                     Text(String(localized: "打开改名"))
                 }
-                .kelinPrimaryAction()
+                .buttonStyle(.kelinSecondary)
 
                 #if DEBUG
                 Button {
@@ -31,12 +52,11 @@ struct RootView: View {
                 } label: {
                     Text(String(localized: "调试"))
                 }
-                .kelinPrimaryAction()
+                .buttonStyle(.kelinSecondary)
                 #endif
             }
             .padding(KelinSpacing.pageHorizontal)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(KelinColor.backgroundBase.ignoresSafeArea())
+            .kelinScreenBackground()
             .navigationDestination(for: Route.self) { route in
                 RoutePlaceholderView(route: route)
             }
@@ -52,10 +72,8 @@ private struct RoutePlaceholderView: View {
 
     var body: some View {
         Text(String(localized: "路由占位"))
-            .font(KelinTypography.pageTitle.font)
-            .foregroundStyle(KelinColor.textPrimary)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(KelinColor.backgroundBase.ignoresSafeArea())
+            .kelinTypography(KelinTypography.pageTitle)
+            .kelinScreenBackground()
             .navigationTitle(route.placeholderTitle)
             .navigationBarTitleDisplayMode(.inline)
     }
@@ -68,21 +86,19 @@ private struct SheetPlaceholderView: View {
     var body: some View {
         VStack(spacing: KelinSpacing.section) {
             Text(String(localized: "弹层占位"))
-                .font(KelinTypography.pageTitle.font)
-                .foregroundStyle(KelinColor.textPrimary)
+                .kelinTypography(KelinTypography.pageTitle)
 
             Button {
                 router.dismissSheet()
             } label: {
                 Text(String(localized: "关闭"))
             }
-            .kelinPrimaryAction()
+            .buttonStyle(.kelinPrimary)
         }
         .padding(KelinSpacing.pageHorizontal)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(KelinColor.backgroundBase.ignoresSafeArea())
-        .accessibilityElement(children: .contain)
-        .accessibilityLabel(sheet.placeholderTitle)
+        .kelinScreenBackground()
+        .presentationDetents([.medium, .large])
+        .presentationDragIndicator(.visible)
     }
 }
 
@@ -98,7 +114,7 @@ private extension Route {
         case .pact:
             String(localized: "共学")
         case .social:
-            String(localized: "足迹")
+            String(localized: "社交")
         case .report:
             String(localized: "鉴定")
         case .settings:
@@ -114,27 +130,25 @@ private extension Route {
 private extension SheetRoute {
     var placeholderTitle: String {
         switch self {
+        case .letter:
+            String(localized: "来信")
+        case .memoryDetail:
+            String(localized: "记忆详情")
+        case .editMemory:
+            String(localized: "编辑记忆")
         case .renameSpirit:
             String(localized: "改名")
-        default:
-            String(localized: "弹层占位")
+        case .addFriend:
+            String(localized: "添加好友")
+        case .friendDetail:
+            String(localized: "好友详情")
+        case .permission:
+            String(localized: "权限说明")
         }
     }
 }
 
-private extension View {
-    func kelinPrimaryAction() -> some View {
-        buttonStyle(.plain)
-            .font(KelinTypography.body.font.weight(.semibold))
-            .foregroundStyle(KelinColor.textPrimary)
-            .frame(maxWidth: .infinity, minHeight: KelinSize.minimumTouchTarget)
-            .contentShape(Rectangle())
-            .background(KelinColor.accent)
-            .clipShape(RoundedRectangle(cornerRadius: KelinRadius.small))
-    }
-}
-
 #Preview("根视图") {
-    RootView(router: AppRouter())
+    RootView(router: AppRouter(), appState: AppState(auth: MockAuthService()))
         .environment(AppEnvironment.preview)
 }

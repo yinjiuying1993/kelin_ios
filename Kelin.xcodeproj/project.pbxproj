@@ -24,6 +24,17 @@
 		A1000000000000000000000F /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000019 /* AppRouter.swift */; };
 		A10000000000000000000010 /* DateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000001A /* DateProvider.swift */; };
 		A10000000000000000000011 /* AppRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000001B /* AppRouterTests.swift */; };
+		A10000000000000000000012 /* AuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000001C /* AuthSession.swift */; };
+		A10000000000000000000013 /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000001D /* AuthServiceProtocol.swift */; };
+		A10000000000000000000014 /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000001E /* MockAuthService.swift */; };
+		A10000000000000000000015 /* AppPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000001F /* AppPhase.swift */; };
+		A10000000000000000000016 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000020 /* AppState.swift */; };
+		A10000000000000000000017 /* LaunchGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000021 /* LaunchGateView.swift */; };
+		A10000000000000000000018 /* AppStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000022 /* AppStateTests.swift */; };
+		A10000000000000000000019 /* MockAuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000023 /* MockAuthServiceTests.swift */; };
+		A1000000000000000000001A /* KelinLoadingDots.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000024 /* KelinLoadingDots.swift */; };
+		A1000000000000000000001B /* KelinButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000025 /* KelinButtonStyles.swift */; };
+		A1000000000000000000001C /* KelinViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000026 /* KelinViewModifiers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +69,17 @@
 		B10000000000000000000019 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		B1000000000000000000001A /* DateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProvider.swift; sourceTree = "<group>"; };
 		B1000000000000000000001B /* AppRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterTests.swift; sourceTree = "<group>"; };
+		B1000000000000000000001C /* AuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSession.swift; sourceTree = "<group>"; };
+		B1000000000000000000001D /* AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceProtocol.swift; sourceTree = "<group>"; };
+		B1000000000000000000001E /* MockAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
+		B1000000000000000000001F /* AppPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPhase.swift; sourceTree = "<group>"; };
+		B10000000000000000000020 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		B10000000000000000000021 /* LaunchGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchGateView.swift; sourceTree = "<group>"; };
+		B10000000000000000000022 /* AppStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000023 /* MockAuthServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthServiceTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000024 /* KelinLoadingDots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelinLoadingDots.swift; sourceTree = "<group>"; };
+		B10000000000000000000025 /* KelinButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelinButtonStyles.swift; sourceTree = "<group>"; };
+		B10000000000000000000026 /* KelinViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelinViewModifiers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				G10000000000000000000003 /* App */,
+				G10000000000000000000009 /* Services */,
+				G1000000000000000000000B /* Features */,
 				G10000000000000000000006 /* Core */,
 				G10000000000000000000007 /* Config */,
 				G10000000000000000000008 /* Components */,
@@ -106,6 +130,8 @@
 				B10000000000000000000018 /* AppEnvironment.swift */,
 				B10000000000000000000019 /* AppRouter.swift */,
 				B1000000000000000000001A /* DateProvider.swift */,
+				B1000000000000000000001F /* AppPhase.swift */,
+				B10000000000000000000020 /* AppState.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -118,6 +144,8 @@
 				B10000000000000000000016 /* AppConfigTests.swift */,
 				B10000000000000000000017 /* StateAndErrorTests.swift */,
 				B1000000000000000000001B /* AppRouterTests.swift */,
+				B10000000000000000000022 /* AppStateTests.swift */,
+				B10000000000000000000023 /* MockAuthServiceTests.swift */,
 			);
 			path = KelinTests;
 			sourceTree = "<group>";
@@ -157,8 +185,45 @@
 			isa = PBXGroup;
 			children = (
 				B10000000000000000000014 /* KelinStatusCard.swift */,
+				B10000000000000000000024 /* KelinLoadingDots.swift */,
+				B10000000000000000000025 /* KelinButtonStyles.swift */,
+				B10000000000000000000026 /* KelinViewModifiers.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000009 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				G1000000000000000000000A /* Auth */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		G1000000000000000000000A /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				B1000000000000000000001C /* AuthSession.swift */,
+				B1000000000000000000001D /* AuthServiceProtocol.swift */,
+				B1000000000000000000001E /* MockAuthService.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		G1000000000000000000000B /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				G1000000000000000000000C /* Launch */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		G1000000000000000000000C /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000021 /* LaunchGateView.swift */,
+			);
+			path = Launch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,9 +333,18 @@
 				A10000000000000000000007 /* ErrorCopy.swift in Sources */,
 				A10000000000000000000009 /* AppConfig.swift in Sources */,
 				A1000000000000000000000A /* KelinStatusCard.swift in Sources */,
+				A1000000000000000000001A /* KelinLoadingDots.swift in Sources */,
+				A1000000000000000000001B /* KelinButtonStyles.swift in Sources */,
+				A1000000000000000000001C /* KelinViewModifiers.swift in Sources */,
 				A1000000000000000000000E /* AppEnvironment.swift in Sources */,
 				A1000000000000000000000F /* AppRouter.swift in Sources */,
 				A10000000000000000000010 /* DateProvider.swift in Sources */,
+				A10000000000000000000012 /* AuthSession.swift in Sources */,
+				A10000000000000000000013 /* AuthServiceProtocol.swift in Sources */,
+				A10000000000000000000014 /* MockAuthService.swift in Sources */,
+				A10000000000000000000015 /* AppPhase.swift in Sources */,
+				A10000000000000000000016 /* AppState.swift in Sources */,
+				A10000000000000000000017 /* LaunchGateView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +357,8 @@
 				A1000000000000000000000C /* AppConfigTests.swift in Sources */,
 				A1000000000000000000000D /* StateAndErrorTests.swift in Sources */,
 				A10000000000000000000011 /* AppRouterTests.swift in Sources */,
+				A10000000000000000000018 /* AppStateTests.swift in Sources */,
+				A10000000000000000000019 /* MockAuthServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,7 +32,12 @@ final class DesignTokensTests: XCTestCase {
         XCTAssertEqual(KelinSize.minimumTouchTarget, 44)
         XCTAssertEqual(KelinSize.primaryButtonHeight, 52)
         XCTAssertEqual(KelinSize.inputMinimumHeight, 48)
+        XCTAssertEqual(KelinSize.filterChipHeight, 32)
         XCTAssertEqual(KelinSize.roomActionDockHeight, 72)
+        XCTAssertEqual(KelinIconSize.standard, 20)
+        XCTAssertEqual(KelinIconSize.navigation, 22)
+        XCTAssertEqual(KelinIconSize.emptyState, 36)
+        XCTAssertEqual(KelinLayout.standardContentWidth, 353)
     }
 
     func testTypographyMetricsMatchVisualSpecification() {

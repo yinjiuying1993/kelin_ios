@@ -4,7 +4,10 @@ import XCTest
 final class KelinAppShellTests: XCTestCase {
     @MainActor
     func testRootViewCanBeConstructed() {
-        _ = RootView(router: AppRouter())
-            .environment(AppEnvironment.preview)
+        _ = RootView(
+            router: AppRouter(),
+            appState: AppState(auth: MockAuthService())
+        )
+        .environment(AppEnvironment.preview)
     }
 }
