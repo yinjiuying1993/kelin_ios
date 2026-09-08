@@ -68,6 +68,11 @@
 		A1000000000000000000003B /* MockHatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000045 /* MockHatchService.swift */; };
 		A1000000000000000000003C /* P05CreateSpiritFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000046 /* P05CreateSpiritFixtures.swift */; };
 		A1000000000000000000003D /* SpiritContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000047 /* SpiritContractTests.swift */; };
+		A1000000000000000000003E /* BootstrapSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000048 /* BootstrapSnapshot.swift */; };
+		A1000000000000000000003F /* BootstrapDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000049 /* BootstrapDTO.swift */; };
+		A10000000000000000000040 /* BootstrapMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000004A /* BootstrapMapper.swift */; };
+		A10000000000000000000041 /* P06BootstrapFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000004B /* P06BootstrapFixtures.swift */; };
+		A10000000000000000000042 /* BootstrapContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000004C /* BootstrapContractTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +151,11 @@
 		B10000000000000000000045 /* MockHatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHatchService.swift; sourceTree = "<group>"; };
 		B10000000000000000000046 /* P05CreateSpiritFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P05CreateSpiritFixtures.swift; sourceTree = "<group>"; };
 		B10000000000000000000047 /* SpiritContractTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiritContractTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000048 /* BootstrapSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapSnapshot.swift; sourceTree = "<group>"; };
+		B10000000000000000000049 /* BootstrapDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapDTO.swift; sourceTree = "<group>"; };
+		B1000000000000000000004A /* BootstrapMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapMapper.swift; sourceTree = "<group>"; };
+		B1000000000000000000004B /* P06BootstrapFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P06BootstrapFixtures.swift; sourceTree = "<group>"; };
+		B1000000000000000000004C /* BootstrapContractTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapContractTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +232,8 @@
 				B10000000000000000000040 /* APIClientTests.swift */,
 				B10000000000000000000046 /* P05CreateSpiritFixtures.swift */,
 				B10000000000000000000047 /* SpiritContractTests.swift */,
+				B1000000000000000000004B /* P06BootstrapFixtures.swift */,
+				B1000000000000000000004C /* BootstrapContractTests.swift */,
 			);
 			path = KelinTests;
 			sourceTree = "<group>";
@@ -293,6 +305,7 @@
 			children = (
 				B10000000000000000000039 /* APIEnvelope.swift */,
 				B10000000000000000000041 /* Spirit.swift */,
+				B10000000000000000000048 /* BootstrapSnapshot.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -324,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				B10000000000000000000042 /* CreateSpiritDTO.swift */,
+				B10000000000000000000049 /* BootstrapDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -332,6 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				B10000000000000000000043 /* SpiritMapper.swift */,
+				B1000000000000000000004A /* BootstrapMapper.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -517,6 +532,9 @@
 				A10000000000000000000039 /* SpiritMapper.swift in Sources */,
 				A1000000000000000000003A /* HatchServiceProtocol.swift in Sources */,
 				A1000000000000000000003B /* MockHatchService.swift in Sources */,
+				A1000000000000000000003E /* BootstrapSnapshot.swift in Sources */,
+				A1000000000000000000003F /* BootstrapDTO.swift in Sources */,
+				A10000000000000000000040 /* BootstrapMapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,6 +557,8 @@
 				A10000000000000000000036 /* APIClientTests.swift in Sources */,
 				A1000000000000000000003C /* P05CreateSpiritFixtures.swift in Sources */,
 				A1000000000000000000003D /* SpiritContractTests.swift in Sources */,
+				A10000000000000000000041 /* P06BootstrapFixtures.swift in Sources */,
+				A10000000000000000000042 /* BootstrapContractTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

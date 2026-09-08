@@ -71,6 +71,7 @@ struct SpiritDTO: Decodable, Sendable, Equatable {
     let createdAt: Date
     let updatedAt: Date
     let hatchedAt: Date?
+    let preferences: PreferencesDTO?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -97,6 +98,7 @@ struct SpiritDTO: Decodable, Sendable, Equatable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case hatchedAt = "hatched_at"
+        case preferences
     }
 }
 
