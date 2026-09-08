@@ -61,6 +61,13 @@
 		A10000000000000000000034 /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000003E /* MockAPIClient.swift */; };
 		A10000000000000000000035 /* StubURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000003F /* StubURLProtocol.swift */; };
 		A10000000000000000000036 /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000040 /* APIClientTests.swift */; };
+		A10000000000000000000037 /* Spirit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000041 /* Spirit.swift */; };
+		A10000000000000000000038 /* CreateSpiritDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000042 /* CreateSpiritDTO.swift */; };
+		A10000000000000000000039 /* SpiritMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000043 /* SpiritMapper.swift */; };
+		A1000000000000000000003A /* HatchServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000044 /* HatchServiceProtocol.swift */; };
+		A1000000000000000000003B /* MockHatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000045 /* MockHatchService.swift */; };
+		A1000000000000000000003C /* P05CreateSpiritFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000046 /* P05CreateSpiritFixtures.swift */; };
+		A1000000000000000000003D /* SpiritContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000047 /* SpiritContractTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +139,13 @@
 		B1000000000000000000003E /* MockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIClient.swift; sourceTree = "<group>"; };
 		B1000000000000000000003F /* StubURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubURLProtocol.swift; sourceTree = "<group>"; };
 		B10000000000000000000040 /* APIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000041 /* Spirit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spirit.swift; sourceTree = "<group>"; };
+		B10000000000000000000042 /* CreateSpiritDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSpiritDTO.swift; sourceTree = "<group>"; };
+		B10000000000000000000043 /* SpiritMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiritMapper.swift; sourceTree = "<group>"; };
+		B10000000000000000000044 /* HatchServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HatchServiceProtocol.swift; sourceTree = "<group>"; };
+		B10000000000000000000045 /* MockHatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHatchService.swift; sourceTree = "<group>"; };
+		B10000000000000000000046 /* P05CreateSpiritFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P05CreateSpiritFixtures.swift; sourceTree = "<group>"; };
+		B10000000000000000000047 /* SpiritContractTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiritContractTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +220,8 @@
 				B10000000000000000000038 /* SyncCoordinatorTests.swift */,
 				B1000000000000000000003F /* StubURLProtocol.swift */,
 				B10000000000000000000040 /* APIClientTests.swift */,
+				B10000000000000000000046 /* P05CreateSpiritFixtures.swift */,
+				B10000000000000000000047 /* SpiritContractTests.swift */,
 			);
 			path = KelinTests;
 			sourceTree = "<group>";
@@ -257,6 +273,7 @@
 			children = (
 				G1000000000000000000000A /* Auth */,
 				G1000000000000000000000F /* API */,
+				G10000000000000000000010 /* Hatch */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -275,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				B10000000000000000000039 /* APIEnvelope.swift */,
+				B10000000000000000000041 /* Spirit.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -282,6 +300,8 @@
 		G1000000000000000000000F /* API */ = {
 			isa = PBXGroup;
 			children = (
+				G10000000000000000000011 /* DTO */,
+				G10000000000000000000012 /* Mappers */,
 				B1000000000000000000003A /* APIErrorMapper.swift */,
 				B1000000000000000000003B /* APIEndpoint.swift */,
 				B1000000000000000000003C /* APIClientProtocol.swift */,
@@ -289,6 +309,31 @@
 				B1000000000000000000003E /* MockAPIClient.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000010 /* Hatch */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000044 /* HatchServiceProtocol.swift */,
+				B10000000000000000000045 /* MockHatchService.swift */,
+			);
+			path = Hatch;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000011 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000042 /* CreateSpiritDTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000012 /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000043 /* SpiritMapper.swift */,
+			);
+			path = Mappers;
 			sourceTree = "<group>";
 		};
 		G1000000000000000000000B /* Features */ = {
@@ -467,6 +512,11 @@
 				A10000000000000000000032 /* APIClientProtocol.swift in Sources */,
 				A10000000000000000000033 /* APIClient.swift in Sources */,
 				A10000000000000000000034 /* MockAPIClient.swift in Sources */,
+				A10000000000000000000037 /* Spirit.swift in Sources */,
+				A10000000000000000000038 /* CreateSpiritDTO.swift in Sources */,
+				A10000000000000000000039 /* SpiritMapper.swift in Sources */,
+				A1000000000000000000003A /* HatchServiceProtocol.swift in Sources */,
+				A1000000000000000000003B /* MockHatchService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +537,8 @@
 				A1000000000000000000002E /* SyncCoordinatorTests.swift in Sources */,
 				A10000000000000000000035 /* StubURLProtocol.swift in Sources */,
 				A10000000000000000000036 /* APIClientTests.swift in Sources */,
+				A1000000000000000000003C /* P05CreateSpiritFixtures.swift in Sources */,
+				A1000000000000000000003D /* SpiritContractTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
