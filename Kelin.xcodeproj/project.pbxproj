@@ -49,6 +49,10 @@
 		A10000000000000000000028 /* LocalStoreRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000032 /* LocalStoreRecords.swift */; };
 		A10000000000000000000029 /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000033 /* LocalStore.swift */; };
 		A1000000000000000000002A /* LocalStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000034 /* LocalStoreTests.swift */; };
+		A1000000000000000000002B /* PendingOperationExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000035 /* PendingOperationExecutor.swift */; };
+		A1000000000000000000002C /* SyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000036 /* SyncCoordinator.swift */; };
+		A1000000000000000000002D /* MockPendingOperationExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000037 /* MockPendingOperationExecutor.swift */; };
+		A1000000000000000000002E /* SyncCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000038 /* SyncCoordinatorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +112,10 @@
 		B10000000000000000000032 /* LocalStoreRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStoreRecords.swift; sourceTree = "<group>"; };
 		B10000000000000000000033 /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
 		B10000000000000000000034 /* LocalStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStoreTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000035 /* PendingOperationExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOperationExecutor.swift; sourceTree = "<group>"; };
+		B10000000000000000000036 /* SyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncCoordinator.swift; sourceTree = "<group>"; };
+		B10000000000000000000037 /* MockPendingOperationExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPendingOperationExecutor.swift; sourceTree = "<group>"; };
+		B10000000000000000000038 /* SyncCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncCoordinatorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +185,8 @@
 				B10000000000000000000023 /* MockAuthServiceTests.swift */,
 				B1000000000000000000002D /* KelinSchemaV1Tests.swift */,
 				B10000000000000000000034 /* LocalStoreTests.swift */,
+				B10000000000000000000037 /* MockPendingOperationExecutor.swift */,
+				B10000000000000000000038 /* SyncCoordinatorTests.swift */,
 			);
 			path = KelinTests;
 			sourceTree = "<group>";
@@ -272,6 +282,8 @@
 				B10000000000000000000031 /* LocalStoreLimits.swift */,
 				B10000000000000000000032 /* LocalStoreRecords.swift */,
 				B10000000000000000000033 /* LocalStore.swift */,
+				B10000000000000000000035 /* PendingOperationExecutor.swift */,
+				B10000000000000000000036 /* SyncCoordinator.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -407,6 +419,8 @@
 				A10000000000000000000027 /* LocalStoreLimits.swift in Sources */,
 				A10000000000000000000028 /* LocalStoreRecords.swift in Sources */,
 				A10000000000000000000029 /* LocalStore.swift in Sources */,
+				A1000000000000000000002B /* PendingOperationExecutor.swift in Sources */,
+				A1000000000000000000002C /* SyncCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +437,8 @@
 				A10000000000000000000019 /* MockAuthServiceTests.swift in Sources */,
 				A10000000000000000000023 /* KelinSchemaV1Tests.swift in Sources */,
 				A1000000000000000000002A /* LocalStoreTests.swift in Sources */,
+				A1000000000000000000002D /* MockPendingOperationExecutor.swift in Sources */,
+				A1000000000000000000002E /* SyncCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

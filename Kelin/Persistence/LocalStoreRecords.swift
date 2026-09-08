@@ -58,4 +58,24 @@ struct PendingOperationRecord: Equatable, Sendable, Identifiable {
     let nextRetryAt: Date?
     let lastErrorCode: String?
     let state: PendingOperationState
+
+    func with(
+        attemptCount: Int? = nil,
+        nextRetryAt: Date?? = nil,
+        lastErrorCode: String?? = nil,
+        state: PendingOperationState? = nil
+    ) -> PendingOperationRecord {
+        PendingOperationRecord(
+            id: id,
+            accountUserID: accountUserID,
+            kind: kind,
+            clientID: clientID,
+            payloadData: payloadData,
+            createdAt: createdAt,
+            attemptCount: attemptCount ?? self.attemptCount,
+            nextRetryAt: nextRetryAt ?? self.nextRetryAt,
+            lastErrorCode: lastErrorCode ?? self.lastErrorCode,
+            state: state ?? self.state
+        )
+    }
 }
