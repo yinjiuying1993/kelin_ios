@@ -1,20 +1,49 @@
 import Foundation
+import SwiftData
 
 @MainActor
-@Observable
 final class AppEnvironment {
     let dateProvider: any DateProvider
     let auth: any AuthServiceProtocol
+    let bootstrapService: any BootstrapServiceProtocol
+    let modelContainer: ModelContainer
 
     init(
         dateProvider: any DateProvider = SystemDateProvider(),
-        auth: any AuthServiceProtocol = MockAuthService()
+        auth: any AuthServiceProtocol = MockAuthService(),
+        bootstrapService: any BootstrapServiceProtocol = MockBootstrapService(),
+        modelContainer: ModelContainer
     ) {
         self.dateProvider = dateProvider
         self.auth = auth
+        self.bootstrapService = bootstrapService
+        self.modelContainer = modelContainer
+    }
+
+    func makeLocalStore() -> LocalStore {
+        LocalStore(modelContainer: modelContainer)
+    }
+
+    func makeAppState(
+        sessionStore: SessionStore = SessionStore(),
+        bootstrapCoordinator: BootstrapCoordinator = BootstrapCoordinator(),
+        syncCoordinator: SyncCoordinator? = nil
+    ) -> AppState {
+        AppState(
+            auth: auth,
+            localStore: makeLocalStore(),
+            bootstrapService: bootstrapService,
+            sessionStore: sessionStore,
+            bootstrapCoordinator: bootstrapCoordinator,
+            syncCoordinator: syncCoordinator
+        )
     }
 
     static var preview: AppEnvironment {
-        AppEnvironment(dateProvider: SystemDateProvider())
+        AppEnvironment(modelContainer: try! KelinModelContainerFactory.makeInMemoryContainer())
+    }
+
+    static func makeDefault() throws -> AppEnvironment {
+        AppEnvironment(modelContainer: try KelinModelContainerFactory.makeDefaultContainer())
     }
 }

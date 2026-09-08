@@ -1,7 +1,7 @@
 import Foundation
-@testable import Kelin
 
-enum P06BootstrapFixtures {
+
+enum BootstrapDraftFixtures {
     // Source: kelin_server_technical_spec.md §9.2 (draft, Mock-only; OpenAPI SHA pending)
 
     static let newUserEnvelope = """

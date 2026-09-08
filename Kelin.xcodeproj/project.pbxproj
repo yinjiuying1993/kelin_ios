@@ -71,7 +71,12 @@
 		A1000000000000000000003E /* BootstrapSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000048 /* BootstrapSnapshot.swift */; };
 		A1000000000000000000003F /* BootstrapDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000049 /* BootstrapDTO.swift */; };
 		A10000000000000000000040 /* BootstrapMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000004A /* BootstrapMapper.swift */; };
-		A10000000000000000000041 /* P06BootstrapFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000004B /* P06BootstrapFixtures.swift */; };
+		A10000000000000000000041 /* BootstrapDraftFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000055 /* BootstrapDraftFixtures.swift */; };
+		A10000000000000000000047 /* BootstrapCacheCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000051 /* BootstrapCacheCodec.swift */; };
+		A10000000000000000000048 /* BootstrapServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000052 /* BootstrapServiceProtocol.swift */; };
+		A10000000000000000000049 /* MockBootstrapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000053 /* MockBootstrapService.swift */; };
+		A1000000000000000000004A /* BootstrapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000054 /* BootstrapCoordinator.swift */; };
+		A1000000000000000000004B /* LaunchBootstrapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000056 /* LaunchBootstrapTests.swift */; };
 		A10000000000000000000042 /* BootstrapContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000004C /* BootstrapContractTests.swift */; };
 		A10000000000000000000043 /* SessionPatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000004D /* SessionPatch.swift */; };
 		A10000000000000000000044 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000004E /* SessionStore.swift */; };
@@ -158,7 +163,12 @@
 		B10000000000000000000048 /* BootstrapSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapSnapshot.swift; sourceTree = "<group>"; };
 		B10000000000000000000049 /* BootstrapDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapDTO.swift; sourceTree = "<group>"; };
 		B1000000000000000000004A /* BootstrapMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapMapper.swift; sourceTree = "<group>"; };
-		B1000000000000000000004B /* P06BootstrapFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P06BootstrapFixtures.swift; sourceTree = "<group>"; };
+		B10000000000000000000051 /* BootstrapCacheCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapCacheCodec.swift; sourceTree = "<group>"; };
+		B10000000000000000000052 /* BootstrapServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapServiceProtocol.swift; sourceTree = "<group>"; };
+		B10000000000000000000053 /* MockBootstrapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBootstrapService.swift; sourceTree = "<group>"; };
+		B10000000000000000000054 /* BootstrapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapCoordinator.swift; sourceTree = "<group>"; };
+		B10000000000000000000055 /* BootstrapDraftFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapDraftFixtures.swift; sourceTree = "<group>"; };
+		B10000000000000000000056 /* LaunchBootstrapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchBootstrapTests.swift; sourceTree = "<group>"; };
 		B1000000000000000000004C /* BootstrapContractTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapContractTests.swift; sourceTree = "<group>"; };
 		B1000000000000000000004D /* SessionPatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPatch.swift; sourceTree = "<group>"; };
 		B1000000000000000000004E /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
@@ -241,9 +251,9 @@
 				B10000000000000000000040 /* APIClientTests.swift */,
 				B10000000000000000000046 /* P05CreateSpiritFixtures.swift */,
 				B10000000000000000000047 /* SpiritContractTests.swift */,
-				B1000000000000000000004B /* P06BootstrapFixtures.swift */,
 				B1000000000000000000004C /* BootstrapContractTests.swift */,
 				B10000000000000000000050 /* SessionStoreTests.swift */,
+				B10000000000000000000056 /* LaunchBootstrapTests.swift */,
 			);
 			path = KelinTests;
 			sourceTree = "<group>";
@@ -296,6 +306,7 @@
 				G1000000000000000000000A /* Auth */,
 				G1000000000000000000000F /* API */,
 				G10000000000000000000010 /* Hatch */,
+				G10000000000000000000013 /* Bootstrap */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -344,6 +355,17 @@
 			path = Hatch;
 			sourceTree = "<group>";
 		};
+		G10000000000000000000013 /* Bootstrap */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000052 /* BootstrapServiceProtocol.swift */,
+				B10000000000000000000053 /* MockBootstrapService.swift */,
+				B10000000000000000000054 /* BootstrapCoordinator.swift */,
+				B10000000000000000000055 /* BootstrapDraftFixtures.swift */,
+			);
+			path = Bootstrap;
+			sourceTree = "<group>";
+		};
 		G10000000000000000000011 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +405,7 @@
 			isa = PBXGroup;
 			children = (
 				B1000000000000000000002C /* KelinSchemaV1.swift */,
+				B10000000000000000000051 /* BootstrapCacheCodec.swift */,
 				B10000000000000000000024 /* PersistenceEnums.swift */,
 				B10000000000000000000025 /* CachedBootstrap.swift */,
 				B10000000000000000000026 /* CachedMessage.swift */,
@@ -548,6 +571,11 @@
 				A1000000000000000000003E /* BootstrapSnapshot.swift in Sources */,
 				A1000000000000000000003F /* BootstrapDTO.swift in Sources */,
 				A10000000000000000000040 /* BootstrapMapper.swift in Sources */,
+				A10000000000000000000041 /* BootstrapDraftFixtures.swift in Sources */,
+				A10000000000000000000047 /* BootstrapCacheCodec.swift in Sources */,
+				A10000000000000000000048 /* BootstrapServiceProtocol.swift in Sources */,
+				A10000000000000000000049 /* MockBootstrapService.swift in Sources */,
+				A1000000000000000000004A /* BootstrapCoordinator.swift in Sources */,
 				A10000000000000000000043 /* SessionPatch.swift in Sources */,
 				A10000000000000000000045 /* SessionPatchMapper.swift in Sources */,
 			);
@@ -572,9 +600,9 @@
 				A10000000000000000000036 /* APIClientTests.swift in Sources */,
 				A1000000000000000000003C /* P05CreateSpiritFixtures.swift in Sources */,
 				A1000000000000000000003D /* SpiritContractTests.swift in Sources */,
-				A10000000000000000000041 /* P06BootstrapFixtures.swift in Sources */,
 				A10000000000000000000042 /* BootstrapContractTests.swift in Sources */,
 				A10000000000000000000046 /* SessionStoreTests.swift in Sources */,
+				A1000000000000000000004B /* LaunchBootstrapTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

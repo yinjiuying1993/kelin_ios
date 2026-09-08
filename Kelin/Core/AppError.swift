@@ -5,7 +5,7 @@ enum PermissionKind: String, CaseIterable, Equatable, Sendable {
     case notifications
 }
 
-enum QuotaKind: String, CaseIterable, Equatable, Sendable {
+enum QuotaKind: String, CaseIterable, Equatable, Sendable, Codable {
     case chat
     case asr
     case tts

@@ -5,7 +5,7 @@ final class BootstrapContractTests: XCTestCase {
     private let decoder = APIDecoding.makeJSONDecoder()
 
     func testNewUserFixtureDecodesExplicitNullSpiritAndRoom() throws {
-        let snapshot = try mapEnvelope(P06BootstrapFixtures.newUserEnvelope)
+        let snapshot = try mapEnvelope(BootstrapDraftFixtures.newUserEnvelope)
 
         XCTAssertNil(snapshot.spirit)
         XCTAssertNil(snapshot.room)
@@ -16,7 +16,7 @@ final class BootstrapContractTests: XCTestCase {
     }
 
     func testOnboardingUserFixtureDecodesSpiritRoomAndQuotas() throws {
-        let snapshot = try mapEnvelope(P06BootstrapFixtures.onboardingUserEnvelope)
+        let snapshot = try mapEnvelope(BootstrapDraftFixtures.onboardingUserEnvelope)
 
         XCTAssertEqual(snapshot.spirit?.egg, .warm)
         XCTAssertEqual(snapshot.room?.weather, "cloudy")
@@ -27,7 +27,7 @@ final class BootstrapContractTests: XCTestCase {
     }
 
     func testFullUserFixtureDecodesCompletedOnboardingAndRoomLayers() throws {
-        let snapshot = try mapEnvelope(P06BootstrapFixtures.fullUserEnvelope)
+        let snapshot = try mapEnvelope(BootstrapDraftFixtures.fullUserEnvelope)
 
         XCTAssertEqual(snapshot.spirit?.name, "雾生")
         XCTAssertEqual(snapshot.spirit?.stage, .formed)
@@ -42,7 +42,7 @@ final class BootstrapContractTests: XCTestCase {
 
     func testUnknownReportStatusFailsMapping() throws {
         let envelope: APIEnvelope<BootstrapDataDTO> = try decode(
-            P06BootstrapFixtures.unknownReportStatusEnvelope
+            BootstrapDraftFixtures.unknownReportStatusEnvelope
         )
 
         XCTAssertThrowsError(try BootstrapMapper.map(envelope)) { error in
@@ -52,12 +52,12 @@ final class BootstrapContractTests: XCTestCase {
 
     func testMissingRequiredFieldFailsDecoding() throws {
         XCTAssertThrowsError(
-            try decode(P06BootstrapFixtures.missingRequiredFieldEnvelope) as APIEnvelope<BootstrapDataDTO>
+            try decode(BootstrapDraftFixtures.missingRequiredFieldEnvelope) as APIEnvelope<BootstrapDataDTO>
         )
     }
 
     func testServerTimeComesFromEnvelope() throws {
-        let snapshot = try mapEnvelope(P06BootstrapFixtures.fullUserEnvelope)
+        let snapshot = try mapEnvelope(BootstrapDraftFixtures.fullUserEnvelope)
 
         XCTAssertEqual(
             snapshot.serverTime,

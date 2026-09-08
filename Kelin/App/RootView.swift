@@ -149,6 +149,6 @@ private extension SheetRoute {
 }
 
 #Preview("根视图") {
-    RootView(router: AppRouter(), appState: AppState(auth: MockAuthService()))
-        .environment(AppEnvironment.preview)
+    let environment = AppEnvironment.preview
+    RootView(router: AppRouter(), appState: environment.makeAppState())
 }

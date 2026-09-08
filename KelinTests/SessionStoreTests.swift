@@ -5,7 +5,6 @@ import XCTest
 final class SessionStoreTests: XCTestCase {
     private var store: SessionStore!
 
-    @MainActor
     override func setUp() {
         super.setUp()
         store = SessionStore()
@@ -170,7 +169,7 @@ final class SessionStoreTests: XCTestCase {
     private func makeOnboardingSnapshot(version: Int) throws -> BootstrapSnapshot {
         let envelope: APIEnvelope<BootstrapDataDTO> = try APIDecoding.makeJSONDecoder().decode(
             APIEnvelope<BootstrapDataDTO>.self,
-            from: Data(P06BootstrapFixtures.onboardingUserEnvelope.utf8)
+            from: Data(BootstrapDraftFixtures.onboardingUserEnvelope.utf8)
         )
         var snapshot = try BootstrapMapper.map(try XCTUnwrap(envelope.data), serverTime: envelope.serverTime)
         snapshot = BootstrapSnapshot(

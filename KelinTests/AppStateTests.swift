@@ -1,9 +1,10 @@
+import SwiftData
 import XCTest
 @testable import Kelin
 
 @MainActor
 final class AppStateTests: XCTestCase {
-    func testExistingSessionSkipsAnonymousSignIn() async {
+    func testExistingSessionSkipsAnonymousSignIn() async throws {
         let userID = UUID(uuidString: "00000000-0000-0000-0000-000000000001")!
         let auth = MockAuthService(
             configuration: MockAuthConfiguration(
@@ -14,7 +15,7 @@ final class AppStateTests: XCTestCase {
                 )
             )
         )
-        let appState = AppState(auth: auth)
+        let (appState, _, _) = try makeAppState(auth: auth)
 
         appState.beginLaunch()
         await waitForPhase(.ready, in: appState)
@@ -23,9 +24,9 @@ final class AppStateTests: XCTestCase {
         XCTAssertEqual(calls, [.restoreSession])
     }
 
-    func testMissingSessionSignsInAnonymously() async {
+    func testMissingSessionSignsInAnonymously() async throws {
         let auth = MockAuthService()
-        let appState = AppState(auth: auth)
+        let (appState, _, _) = try makeAppState(auth: auth)
 
         appState.beginLaunch()
         await waitForPhase(.ready, in: appState)
@@ -34,25 +35,25 @@ final class AppStateTests: XCTestCase {
         XCTAssertEqual(calls, [.restoreSession, .signInAnonymously])
     }
 
-    func testRestoreFailureShowsRecoverableError() async {
+    func testRestoreFailureShowsRecoverableError() async throws {
         let auth = MockAuthService(
             configuration: MockAuthConfiguration(
                 restoreError: .networkUnavailable
             )
         )
-        let appState = AppState(auth: auth)
+        let (appState, _, _) = try makeAppState(auth: auth)
 
         appState.beginLaunch()
         await waitForPhase(.recoverableError(.networkUnavailable), in: appState)
     }
 
-    func testAnonymousSignInFailureShowsRecoverableError() async {
+    func testAnonymousSignInFailureShowsRecoverableError() async throws {
         let auth = MockAuthService(
             configuration: MockAuthConfiguration(
                 signInError: .networkUnavailable
             )
         )
-        let appState = AppState(auth: auth)
+        let (appState, _, _) = try makeAppState(auth: auth)
 
         appState.beginLaunch()
         await waitForPhase(.recoverableError(.networkUnavailable), in: appState)
@@ -61,13 +62,13 @@ final class AppStateTests: XCTestCase {
         XCTAssertEqual(calls, [.restoreSession, .signInAnonymously])
     }
 
-    func testRetryFromErrorRestartsLaunchFlow() async {
+    func testRetryFromErrorRestartsLaunchFlow() async throws {
         let auth = MockAuthService(
             configuration: MockAuthConfiguration(
                 restoreError: .networkUnavailable
             )
         )
-        let appState = AppState(auth: auth)
+        let (appState, _, _) = try makeAppState(auth: auth)
 
         appState.beginLaunch()
         await waitForPhase(.recoverableError(.networkUnavailable), in: appState)
@@ -75,6 +76,19 @@ final class AppStateTests: XCTestCase {
         await auth.setConfiguration(MockAuthConfiguration())
         appState.retryFromError()
         await waitForPhase(.ready, in: appState)
+    }
+
+    private func makeAppState(
+        auth: MockAuthService = MockAuthService(),
+        bootstrap: MockBootstrapService = MockBootstrapService(mode: .fullUser)
+    ) throws -> (AppState, ModelContainer, MockBootstrapService) {
+        let container = try KelinModelContainerFactory.makeInMemoryContainer()
+        let appState = AppState(
+            auth: auth,
+            localStore: LocalStore(modelContainer: container),
+            bootstrapService: bootstrap
+        )
+        return (appState, container, bootstrap)
     }
 
     private func waitForPhase(

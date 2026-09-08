@@ -36,4 +36,11 @@ enum KelinModelContainerFactory {
             configurations: [configuration]
         )
     }
+
+    static func makeDefaultContainer() throws -> ModelContainer {
+        try ModelContainer(
+            for: Schema(versionedSchema: KelinSchemaV1.self),
+            migrationPlan: KelinMigrationPlan.self
+        )
+    }
 }

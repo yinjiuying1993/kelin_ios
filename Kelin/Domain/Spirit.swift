@@ -19,7 +19,7 @@ enum SpiritStatus: String, Codable, Sendable {
     case lost
 }
 
-struct TraitValues: Equatable, Sendable {
+struct TraitValues: Equatable, Sendable, Codable {
     let closeness: Int
     let curiosity: Int
     let sharpness: Int
@@ -27,14 +27,14 @@ struct TraitValues: Equatable, Sendable {
     let stubborn: Int
 }
 
-struct VitalValues: Equatable, Sendable {
+struct VitalValues: Equatable, Sendable, Codable {
     let hunger: Int
     let energy: Int
     let mood: Int
     let bond: Int
 }
 
-struct SpiritPreferences: Equatable, Sendable {
+struct SpiritPreferences: Equatable, Sendable, Codable {
     let ttsOn: Bool
     let pushOn: Bool
     let visitOn: Bool
@@ -46,7 +46,7 @@ struct SpiritPreferences: Equatable, Sendable {
     let remoteSearchOn: Bool
 }
 
-struct Spirit: Equatable, Sendable, Identifiable {
+struct Spirit: Equatable, Sendable, Identifiable, Codable {
     let id: UUID
     let userID: UUID
     var name: String
@@ -66,7 +66,7 @@ struct Spirit: Equatable, Sendable, Identifiable {
     var version: Int
 }
 
-struct OnboardingState: Equatable, Sendable {
+struct OnboardingState: Equatable, Sendable, Codable {
     let required: Bool
     let step: Int
     let totalSteps: Int

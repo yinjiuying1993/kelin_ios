@@ -54,12 +54,16 @@ final class AppRouterTests: XCTestCase {
         XCTAssertFalse(first === second)
     }
 
-    func testRootViewCanBeConstructedWithInjectedDependencies() {
+    func testRootViewCanBeConstructedWithInjectedDependencies() throws {
+        let container = try KelinModelContainerFactory.makeInMemoryContainer()
         _ = RootView(
             router: AppRouter(),
-            appState: AppState(auth: MockAuthService())
+            appState: AppState(
+                auth: MockAuthService(),
+                localStore: LocalStore(modelContainer: container),
+                bootstrapService: MockBootstrapService()
+            )
         )
-        .environment(AppEnvironment.preview)
     }
 
     #if DEBUG

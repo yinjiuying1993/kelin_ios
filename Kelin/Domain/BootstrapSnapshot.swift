@@ -1,11 +1,11 @@
 import Foundation
 
-struct RoomLayer: Equatable, Sendable {
+struct RoomLayer: Equatable, Sendable, Codable {
     let key: String
     let variant: String
 }
 
-struct RoomSnapshot: Equatable, Sendable {
+struct RoomSnapshot: Equatable, Sendable, Codable {
     let weather: String
     let layers: [RoomLayer]
     let letter: String?
@@ -14,7 +14,7 @@ struct RoomSnapshot: Equatable, Sendable {
     let updatedAt: Date
 }
 
-enum ReportStatus: String, Sendable, CaseIterable {
+enum ReportStatus: String, Sendable, CaseIterable, Codable {
     case locked
     case generating
     case partial
@@ -22,7 +22,7 @@ enum ReportStatus: String, Sendable, CaseIterable {
     case failed
 }
 
-struct ReportEligibility: Equatable, Sendable {
+struct ReportEligibility: Equatable, Sendable, Codable {
     let isEligible: Bool
     let eligibleAt: Date
     let daysRemaining: Int
@@ -31,25 +31,25 @@ struct ReportEligibility: Equatable, Sendable {
     let dialogueRoundsRemaining: Int
 }
 
-struct ReportSnapshot: Equatable, Sendable {
+struct ReportSnapshot: Equatable, Sendable, Codable {
     let status: ReportStatus
     let reportID: UUID?
     let eligibility: ReportEligibility
 }
 
-struct QuotaEntry: Equatable, Sendable {
+struct QuotaEntry: Equatable, Sendable, Codable {
     let capability: QuotaKind
     let used: Int
     let limit: Int
     let resetAt: Date
 }
 
-struct FeatureFlags: Equatable, Sendable {
+struct FeatureFlags: Equatable, Sendable, Codable {
     let remoteSearch: Bool
     let imageFeed: Bool
 }
 
-struct MemorySummary: Equatable, Sendable, Identifiable {
+struct MemorySummary: Equatable, Sendable, Identifiable, Codable {
     let id: UUID
     let type: String
     let summary: String
@@ -57,20 +57,20 @@ struct MemorySummary: Equatable, Sendable, Identifiable {
     let createdAt: Date
 }
 
-struct PostcardSummary: Equatable, Sendable, Identifiable {
+struct PostcardSummary: Equatable, Sendable, Identifiable, Codable {
     let id: UUID
     let text: String
     let createdAt: Date
 }
 
-struct PactSummary: Equatable, Sendable, Identifiable {
+struct PactSummary: Equatable, Sendable, Identifiable, Codable {
     let id: UUID
     let theme: String
     let title: String
     let status: String
 }
 
-struct BootstrapSnapshot: Equatable, Sendable {
+struct BootstrapSnapshot: Equatable, Sendable, Codable {
     let schemaVersion: Int
     let snapshotVersion: Int
     let apiVersion: String
