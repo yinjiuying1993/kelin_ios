@@ -1,0 +1,58 @@
+import Foundation
+
+struct APIErrorPayload: Decodable, Sendable, Equatable {
+    let code: String
+    let message: String
+    let retryable: Bool
+    let details: [String: String]?
+
+    init(code: String, message: String, retryable: Bool, details: [String: String]? = nil) {
+        self.code = code
+        self.message = message
+        self.retryable = retryable
+        self.details = details
+    }
+}
+
+struct APIEnvelope<T: Decodable & Sendable>: Decodable, Sendable {
+    let ok: Bool
+    let data: T?
+    let error: APIErrorPayload?
+    let requestID: String
+    let serverTime: Date
+
+    enum CodingKeys: String, CodingKey {
+        case ok
+        case data
+        case error
+        case requestID = "request_id"
+        case serverTime = "server_time"
+    }
+}
+
+enum APIDecoding {
+    static func makeJSONDecoder() -> JSONDecoder {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom { decoder in
+            let container = try decoder.singleValueContainer()
+            let value = try container.decode(String.self)
+
+            let withFractionalSeconds = ISO8601DateFormatter()
+            withFractionalSeconds.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+            if let date = withFractionalSeconds.date(from: value) {
+                return date
+            }
+
+            let standard = ISO8601DateFormatter()
+            standard.formatOptions = [.withInternetDateTime]
+            guard let date = standard.date(from: value) else {
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Invalid ISO8601 date: \(value)"
+                )
+            }
+            return date
+        }
+        return decoder
+    }
+}
