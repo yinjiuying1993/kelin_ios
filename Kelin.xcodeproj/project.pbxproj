@@ -32,9 +32,19 @@
 		A10000000000000000000017 /* LaunchGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000021 /* LaunchGateView.swift */; };
 		A10000000000000000000018 /* AppStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000022 /* AppStateTests.swift */; };
 		A10000000000000000000019 /* MockAuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000023 /* MockAuthServiceTests.swift */; };
-		A1000000000000000000001A /* KelinLoadingDots.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000024 /* KelinLoadingDots.swift */; };
-		A1000000000000000000001B /* KelinButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000025 /* KelinButtonStyles.swift */; };
-		A1000000000000000000001C /* KelinViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000026 /* KelinViewModifiers.swift */; };
+		A1000000000000000000001A /* PersistenceEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000024 /* PersistenceEnums.swift */; };
+		A1000000000000000000001B /* CachedBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000025 /* CachedBootstrap.swift */; };
+		A1000000000000000000001C /* CachedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000026 /* CachedMessage.swift */; };
+		A1000000000000000000001D /* CachedMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000027 /* CachedMemory.swift */; };
+		A1000000000000000000001E /* CachedPostcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000028 /* CachedPostcard.swift */; };
+		A1000000000000000000001F /* CachedPact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000029 /* CachedPact.swift */; };
+		A10000000000000000000020 /* Draft.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000002A /* Draft.swift */; };
+		A10000000000000000000021 /* PendingOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000002B /* PendingOperation.swift */; };
+		A10000000000000000000022 /* KelinSchemaV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000002C /* KelinSchemaV1.swift */; };
+		A10000000000000000000023 /* KelinSchemaV1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000002D /* KelinSchemaV1Tests.swift */; };
+		A10000000000000000000024 /* KelinLoadingDots.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000002E /* KelinLoadingDots.swift */; };
+		A10000000000000000000025 /* KelinButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000002F /* KelinButtonStyles.swift */; };
+		A10000000000000000000026 /* KelinViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000030 /* KelinViewModifiers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,9 +87,19 @@
 		B10000000000000000000021 /* LaunchGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchGateView.swift; sourceTree = "<group>"; };
 		B10000000000000000000022 /* AppStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateTests.swift; sourceTree = "<group>"; };
 		B10000000000000000000023 /* MockAuthServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthServiceTests.swift; sourceTree = "<group>"; };
-		B10000000000000000000024 /* KelinLoadingDots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelinLoadingDots.swift; sourceTree = "<group>"; };
-		B10000000000000000000025 /* KelinButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelinButtonStyles.swift; sourceTree = "<group>"; };
-		B10000000000000000000026 /* KelinViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelinViewModifiers.swift; sourceTree = "<group>"; };
+		B10000000000000000000024 /* PersistenceEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceEnums.swift; sourceTree = "<group>"; };
+		B10000000000000000000025 /* CachedBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedBootstrap.swift; sourceTree = "<group>"; };
+		B10000000000000000000026 /* CachedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedMessage.swift; sourceTree = "<group>"; };
+		B10000000000000000000027 /* CachedMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedMemory.swift; sourceTree = "<group>"; };
+		B10000000000000000000028 /* CachedPostcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedPostcard.swift; sourceTree = "<group>"; };
+		B10000000000000000000029 /* CachedPact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedPact.swift; sourceTree = "<group>"; };
+		B1000000000000000000002A /* Draft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Draft.swift; sourceTree = "<group>"; };
+		B1000000000000000000002B /* PendingOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOperation.swift; sourceTree = "<group>"; };
+		B1000000000000000000002C /* KelinSchemaV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelinSchemaV1.swift; sourceTree = "<group>"; };
+		B1000000000000000000002D /* KelinSchemaV1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelinSchemaV1Tests.swift; sourceTree = "<group>"; };
+		B1000000000000000000002E /* KelinLoadingDots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelinLoadingDots.swift; sourceTree = "<group>"; };
+		B1000000000000000000002F /* KelinButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelinButtonStyles.swift; sourceTree = "<group>"; };
+		B10000000000000000000030 /* KelinViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelinViewModifiers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +135,7 @@
 				G10000000000000000000003 /* App */,
 				G10000000000000000000009 /* Services */,
 				G1000000000000000000000B /* Features */,
+				G1000000000000000000000D /* Persistence */,
 				G10000000000000000000006 /* Core */,
 				G10000000000000000000007 /* Config */,
 				G10000000000000000000008 /* Components */,
@@ -146,6 +167,7 @@
 				B1000000000000000000001B /* AppRouterTests.swift */,
 				B10000000000000000000022 /* AppStateTests.swift */,
 				B10000000000000000000023 /* MockAuthServiceTests.swift */,
+				B1000000000000000000002D /* KelinSchemaV1Tests.swift */,
 			);
 			path = KelinTests;
 			sourceTree = "<group>";
@@ -185,9 +207,9 @@
 			isa = PBXGroup;
 			children = (
 				B10000000000000000000014 /* KelinStatusCard.swift */,
-				B10000000000000000000024 /* KelinLoadingDots.swift */,
-				B10000000000000000000025 /* KelinButtonStyles.swift */,
-				B10000000000000000000026 /* KelinViewModifiers.swift */,
+				B1000000000000000000002E /* KelinLoadingDots.swift */,
+				B1000000000000000000002F /* KelinButtonStyles.swift */,
+				B10000000000000000000030 /* KelinViewModifiers.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -224,6 +246,22 @@
 				B10000000000000000000021 /* LaunchGateView.swift */,
 			);
 			path = Launch;
+			sourceTree = "<group>";
+		};
+		G1000000000000000000000D /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				B1000000000000000000002C /* KelinSchemaV1.swift */,
+				B10000000000000000000024 /* PersistenceEnums.swift */,
+				B10000000000000000000025 /* CachedBootstrap.swift */,
+				B10000000000000000000026 /* CachedMessage.swift */,
+				B10000000000000000000027 /* CachedMemory.swift */,
+				B10000000000000000000028 /* CachedPostcard.swift */,
+				B10000000000000000000029 /* CachedPact.swift */,
+				B1000000000000000000002A /* Draft.swift */,
+				B1000000000000000000002B /* PendingOperation.swift */,
+			);
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,9 +371,9 @@
 				A10000000000000000000007 /* ErrorCopy.swift in Sources */,
 				A10000000000000000000009 /* AppConfig.swift in Sources */,
 				A1000000000000000000000A /* KelinStatusCard.swift in Sources */,
-				A1000000000000000000001A /* KelinLoadingDots.swift in Sources */,
-				A1000000000000000000001B /* KelinButtonStyles.swift in Sources */,
-				A1000000000000000000001C /* KelinViewModifiers.swift in Sources */,
+				A10000000000000000000024 /* KelinLoadingDots.swift in Sources */,
+				A10000000000000000000025 /* KelinButtonStyles.swift in Sources */,
+				A10000000000000000000026 /* KelinViewModifiers.swift in Sources */,
 				A1000000000000000000000E /* AppEnvironment.swift in Sources */,
 				A1000000000000000000000F /* AppRouter.swift in Sources */,
 				A10000000000000000000010 /* DateProvider.swift in Sources */,
@@ -345,6 +383,15 @@
 				A10000000000000000000015 /* AppPhase.swift in Sources */,
 				A10000000000000000000016 /* AppState.swift in Sources */,
 				A10000000000000000000017 /* LaunchGateView.swift in Sources */,
+				A1000000000000000000001A /* PersistenceEnums.swift in Sources */,
+				A1000000000000000000001B /* CachedBootstrap.swift in Sources */,
+				A1000000000000000000001C /* CachedMessage.swift in Sources */,
+				A1000000000000000000001D /* CachedMemory.swift in Sources */,
+				A1000000000000000000001E /* CachedPostcard.swift in Sources */,
+				A1000000000000000000001F /* CachedPact.swift in Sources */,
+				A10000000000000000000020 /* Draft.swift in Sources */,
+				A10000000000000000000021 /* PendingOperation.swift in Sources */,
+				A10000000000000000000022 /* KelinSchemaV1.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +406,7 @@
 				A10000000000000000000011 /* AppRouterTests.swift in Sources */,
 				A10000000000000000000018 /* AppStateTests.swift in Sources */,
 				A10000000000000000000019 /* MockAuthServiceTests.swift in Sources */,
+				A10000000000000000000023 /* KelinSchemaV1Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
