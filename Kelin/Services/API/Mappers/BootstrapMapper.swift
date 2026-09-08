@@ -39,7 +39,7 @@ enum BootstrapMapper {
         )
     }
 
-    private static func mapRoom(_ dto: RoomSnapshotDTO) -> RoomSnapshot {
+    static func mapRoom(_ dto: RoomSnapshotDTO) -> RoomSnapshot {
         RoomSnapshot(
             weather: dto.weather,
             layers: dto.layers.map { RoomLayer(key: $0.key, variant: $0.variant) },
@@ -50,7 +50,7 @@ enum BootstrapMapper {
         )
     }
 
-    private static func mapOnboarding(_ dto: OnboardingDTO) -> OnboardingState {
+    static func mapOnboarding(_ dto: OnboardingDTO) -> OnboardingState {
         OnboardingState(
             required: dto.required,
             step: dto.step,

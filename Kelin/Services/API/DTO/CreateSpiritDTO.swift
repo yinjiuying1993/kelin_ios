@@ -150,12 +150,14 @@ struct SessionPatchDTO: Decodable, Sendable, Equatable {
     let snapshotVersion: Int
     let spirit: SpiritDTO?
     let preferences: PreferencesDTO?
+    let room: RoomSnapshotDTO?
     let onboarding: OnboardingDTO?
 
     enum CodingKeys: String, CodingKey {
         case snapshotVersion = "snapshot_version"
         case spirit
         case preferences
+        case room
         case onboarding
     }
 }

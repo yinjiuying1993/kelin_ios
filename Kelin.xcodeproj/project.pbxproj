@@ -73,6 +73,10 @@
 		A10000000000000000000040 /* BootstrapMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000004A /* BootstrapMapper.swift */; };
 		A10000000000000000000041 /* P06BootstrapFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000004B /* P06BootstrapFixtures.swift */; };
 		A10000000000000000000042 /* BootstrapContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000004C /* BootstrapContractTests.swift */; };
+		A10000000000000000000043 /* SessionPatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000004D /* SessionPatch.swift */; };
+		A10000000000000000000044 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000004E /* SessionStore.swift */; };
+		A10000000000000000000045 /* SessionPatchMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000004F /* SessionPatchMapper.swift */; };
+		A10000000000000000000046 /* SessionStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000050 /* SessionStoreTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +160,10 @@
 		B1000000000000000000004A /* BootstrapMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapMapper.swift; sourceTree = "<group>"; };
 		B1000000000000000000004B /* P06BootstrapFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P06BootstrapFixtures.swift; sourceTree = "<group>"; };
 		B1000000000000000000004C /* BootstrapContractTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapContractTests.swift; sourceTree = "<group>"; };
+		B1000000000000000000004D /* SessionPatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPatch.swift; sourceTree = "<group>"; };
+		B1000000000000000000004E /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		B1000000000000000000004F /* SessionPatchMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPatchMapper.swift; sourceTree = "<group>"; };
+		B10000000000000000000050 /* SessionStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStoreTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +218,7 @@
 				B1000000000000000000001A /* DateProvider.swift */,
 				B1000000000000000000001F /* AppPhase.swift */,
 				B10000000000000000000020 /* AppState.swift */,
+				B1000000000000000000004E /* SessionStore.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -234,6 +243,7 @@
 				B10000000000000000000047 /* SpiritContractTests.swift */,
 				B1000000000000000000004B /* P06BootstrapFixtures.swift */,
 				B1000000000000000000004C /* BootstrapContractTests.swift */,
+				B10000000000000000000050 /* SessionStoreTests.swift */,
 			);
 			path = KelinTests;
 			sourceTree = "<group>";
@@ -306,6 +316,7 @@
 				B10000000000000000000039 /* APIEnvelope.swift */,
 				B10000000000000000000041 /* Spirit.swift */,
 				B10000000000000000000048 /* BootstrapSnapshot.swift */,
+				B1000000000000000000004D /* SessionPatch.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -347,6 +358,7 @@
 			children = (
 				B10000000000000000000043 /* SpiritMapper.swift */,
 				B1000000000000000000004A /* BootstrapMapper.swift */,
+				B1000000000000000000004F /* SessionPatchMapper.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -506,6 +518,7 @@
 				A10000000000000000000014 /* MockAuthService.swift in Sources */,
 				A10000000000000000000015 /* AppPhase.swift in Sources */,
 				A10000000000000000000016 /* AppState.swift in Sources */,
+				A10000000000000000000044 /* SessionStore.swift in Sources */,
 				A10000000000000000000017 /* LaunchGateView.swift in Sources */,
 				A1000000000000000000001A /* PersistenceEnums.swift in Sources */,
 				A1000000000000000000001B /* CachedBootstrap.swift in Sources */,
@@ -535,6 +548,8 @@
 				A1000000000000000000003E /* BootstrapSnapshot.swift in Sources */,
 				A1000000000000000000003F /* BootstrapDTO.swift in Sources */,
 				A10000000000000000000040 /* BootstrapMapper.swift in Sources */,
+				A10000000000000000000043 /* SessionPatch.swift in Sources */,
+				A10000000000000000000045 /* SessionPatchMapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,6 +574,7 @@
 				A1000000000000000000003D /* SpiritContractTests.swift in Sources */,
 				A10000000000000000000041 /* P06BootstrapFixtures.swift in Sources */,
 				A10000000000000000000042 /* BootstrapContractTests.swift in Sources */,
+				A10000000000000000000046 /* SessionStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
