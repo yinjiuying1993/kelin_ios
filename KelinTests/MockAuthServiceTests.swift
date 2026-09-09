@@ -1,3 +1,4 @@
+import Supabase
 import XCTest
 @testable import Kelin
 
@@ -64,5 +65,42 @@ final class MockAuthServiceTests: XCTestCase {
         } catch {
             XCTFail("Unexpected error: \(error)")
         }
+    }
+}
+
+final class SupabaseAuthErrorMapperTests: XCTestCase {
+    func testURLErrorMapsToNetworkUnavailable() {
+        XCTAssertEqual(
+            SupabaseAuthErrorMapper.map(URLError(.notConnectedToInternet)),
+            .networkUnavailable
+        )
+    }
+
+    func testSessionMissingMapsToUnauthenticated() {
+        XCTAssertEqual(
+            SupabaseAuthErrorMapper.map(AuthError.sessionMissing),
+            .unauthenticated
+        )
+    }
+
+    func testAnonymousProviderDisabledMapsToInvalidInput() {
+        let response = HTTPURLResponse(
+            url: URL(string: "https://example.supabase.co/auth/v1/signup")!,
+            statusCode: 422,
+            httpVersion: nil,
+            headerFields: nil
+        )!
+        let error = AuthError.api(
+            message: "Anonymous sign-ins are disabled",
+            errorCode: .anonymousProviderDisabled,
+            underlyingData: Data(),
+            underlyingResponse: response
+        )
+
+        XCTAssertEqual(SupabaseAuthErrorMapper.map(error), .invalidInput)
+        XCTAssertEqual(
+            SupabaseAuthErrorMapper.diagnosticDetail(error),
+            "supabase_code=anonymous_provider_disabled http_status=422"
+        )
     }
 }
