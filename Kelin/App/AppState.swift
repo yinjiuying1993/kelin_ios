@@ -20,6 +20,8 @@ final class AppState {
     private(set) var isHatching = false
     private(set) var onboardingCompleteError: AppError?
     private(set) var isCompletingOnboarding = false
+    let usesRemoteAPI: Bool
+    let apiBaseURL: URL?
 
     var hasCompletedOnboardingConversation: Bool {
         (sessionStore.snapshot?.onboarding.step ?? 0) >= OnboardingConversationDefaults.totalSteps
@@ -54,7 +56,9 @@ final class AppState {
         sessionStore: SessionStore = SessionStore(),
         bootstrapCoordinator: BootstrapCoordinator = BootstrapCoordinator(),
         syncCoordinator: SyncCoordinator? = nil,
-        hatchAnimationDuration: Duration = .milliseconds(1_000)
+        hatchAnimationDuration: Duration = .milliseconds(1_000),
+        usesRemoteAPI: Bool = false,
+        apiBaseURL: URL? = nil
     ) {
         self.auth = auth
         self.localStore = localStore
@@ -67,6 +71,29 @@ final class AppState {
         self.bootstrapCoordinator = bootstrapCoordinator
         self.syncCoordinator = syncCoordinator
         self.hatchAnimationDuration = hatchAnimationDuration
+        self.usesRemoteAPI = usesRemoteAPI
+        self.apiBaseURL = apiBaseURL
+    }
+
+    func failBeforeLaunch(_ error: AppError) {
+        phase = .recoverableError(error)
+    }
+
+    func discardLocalCacheAndReload() async {
+        if let activeAccountUserID {
+            try? await localStore.clearAccount(accountUserID: activeAccountUserID)
+            try? await clearOnboardingConversationCache(accountUserID: activeAccountUserID)
+        }
+
+        sessionStore.clear()
+        onboardingMessages = []
+        pendingConsents = nil
+        pendingSpiritClientID = nil
+        pendingOnboardingClientMessageID = nil
+        pendingOnboardingCompleteClientID = nil
+        isOffline = false
+        isShowingCachedSnapshot = false
+        beginLaunch()
     }
 
     func beginLaunch() {

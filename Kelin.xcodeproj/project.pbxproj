@@ -230,6 +230,7 @@
 		B1000000000000000000006C /* HatchTransitionOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HatchTransitionOverlay.swift; sourceTree = "<group>"; };
 		B1000000000000000000006D /* OnboardingResumeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingResumeTests.swift; sourceTree = "<group>"; };
 		B1000000000000000000006E /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		B10000000000000000000078 /* Debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Debug-Info.plist"; sourceTree = "<group>"; };
 		B1000000000000000000006F /* SupabaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseAuthService.swift; sourceTree = "<group>"; };
 		B10000000000000000000070 /* APIBootstrapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBootstrapService.swift; sourceTree = "<group>"; };
 		B10000000000000000000071 /* APIHatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHatchService.swift; sourceTree = "<group>"; };
@@ -355,6 +356,7 @@
 				B10000000000000000000057 /* ConsentDocuments.swift */,
 				B10000000000000000000012 /* Debug.xcconfig.example */,
 				B1000000000000000000006E /* Debug.xcconfig */,
+				B10000000000000000000078 /* Debug-Info.plist */,
 				B10000000000000000000013 /* Release.xcconfig.example */,
 			);
 			path = Config;
@@ -890,11 +892,11 @@
 				DEVELOPMENT_TEAM = LF9ZW78X7X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Kelin/Config/Debug-Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "刻灵";
 				INFOPLIST_KEY_API_BASE_URL = "$(API_BASE_URL)";
 				INFOPLIST_KEY_APP_ENV = "$(APP_ENV)";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsLocalNetworking = YES;
 				INFOPLIST_KEY_SUPABASE_ANON_KEY = "$(SUPABASE_ANON_KEY)";
 				INFOPLIST_KEY_SUPABASE_URL = "$(SUPABASE_URL)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

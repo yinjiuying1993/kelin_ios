@@ -45,6 +45,10 @@ struct RootView: View {
                     .kelinTypography(KelinTypography.secondary, color: KelinColor.textSecondary)
                     .multilineTextAlignment(.center)
 
+                #if DEBUG
+                integrationStatus
+                #endif
+
                 Button {
                     router.push(.chat)
                 } label: {
@@ -78,6 +82,45 @@ struct RootView: View {
             }
         }
     }
+
+    #if DEBUG
+    private var integrationStatus: some View {
+        let snapshot = appState.sessionStore.snapshot
+        let onboarding = snapshot?.onboarding
+        let source = appState.usesRemoteAPI
+            ? String(localized: "真实 API")
+            : String(localized: "本地 Mock")
+        let spiritName = snapshot?.spirit?.name ?? String(localized: "无精灵")
+        let stepText: String = {
+            guard let onboarding else { return String(localized: "无快照") }
+            return "step \(onboarding.step)/\(onboarding.totalSteps)"
+        }()
+
+        return VStack(alignment: .leading, spacing: KelinSpacing.small) {
+            Text(String(localized: "这是孵化完成后的占位首页，房间四态在 P08。"))
+                .kelinTypography(KelinTypography.secondary, color: KelinColor.textSecondary)
+            Text("\(source) · \(appState.apiBaseURL?.absoluteString ?? String(localized: "未配置"))")
+                .kelinTypography(KelinTypography.label, color: KelinColor.textSecondary)
+            Text("\(spiritName) · \(stepText)")
+                .kelinTypography(KelinTypography.label, color: KelinColor.textSecondary)
+            if appState.isOffline {
+                Text(String(localized: "当前在用本地缓存，服务端未同步成功。"))
+                    .kelinTypography(KelinTypography.label, color: KelinColor.textSecondary)
+            }
+
+            Button {
+                Task {
+                    await appState.discardLocalCacheAndReload()
+                }
+            } label: {
+                Text(String(localized: "丢弃本地缓存并重新同步"))
+            }
+            .buttonStyle(.kelinSecondary)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.bottom, KelinSpacing.section)
+    }
+    #endif
 }
 
 private struct RoutePlaceholderView: View {

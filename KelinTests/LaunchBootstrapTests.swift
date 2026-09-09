@@ -142,6 +142,49 @@ final class LaunchBootstrapTests: XCTestCase {
         XCTAssertEqual(fetchCount, 1)
     }
 
+    func testDiscardLocalCacheReloadsFromBootstrap() async throws {
+        let userID = UUID(uuidString: "00000000-0000-0000-0000-0000000000B1")!
+        let container = try KelinModelContainerFactory.makeInMemoryContainer()
+        let localStore = LocalStore(modelContainer: container)
+        let cachedSnapshot = try makeFullUserSnapshot(version: 120)
+
+        try await localStore.upsertBootstrap(
+            CachedBootstrapRecord(
+                accountUserID: userID,
+                payloadData: try BootstrapCacheCodec.encode(cachedSnapshot),
+                snapshotVersion: 120,
+                updatedAt: cachedSnapshot.serverTime
+            )
+        )
+
+        let bootstrap = MockBootstrapService(mode: .failure(.networkUnavailable))
+        let auth = MockAuthService(
+            configuration: MockAuthConfiguration(
+                storedSession: AuthSession(
+                    userID: userID,
+                    accessToken: "existing-token",
+                    expiresAt: Date().addingTimeInterval(3_600)
+                )
+            )
+        )
+        let appState = AppState(
+            auth: auth,
+            localStore: localStore,
+            bootstrapService: bootstrap
+        )
+
+        appState.beginLaunch()
+        await waitUntil({ appState.isOffline })
+        XCTAssertEqual(appState.phase, .ready)
+
+        await bootstrap.setMode(.newUser)
+        await appState.discardLocalCacheAndReload()
+        await waitForPhase(.needsAgreement, in: appState)
+
+        XCTAssertNil(appState.sessionStore.snapshot?.spirit)
+        XCTAssertFalse(appState.isOffline)
+    }
+
     private func makeFullUserSnapshot(
         version: Int,
         userID: UUID = UUID(uuidString: "00000000-0000-0000-0000-0000000000B1")!,

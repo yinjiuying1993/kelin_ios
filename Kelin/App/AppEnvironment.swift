@@ -11,6 +11,8 @@ final class AppEnvironment {
     let onboardingChatService: any OnboardingChatServiceProtocol
     let onboardingCompleteService: any OnboardingCompleteServiceProtocol
     let modelContainer: ModelContainer
+    let usesRemoteAPI: Bool
+    let apiBaseURL: URL?
 
     init(
         dateProvider: any DateProvider = SystemDateProvider(),
@@ -20,7 +22,9 @@ final class AppEnvironment {
         hatchService: any HatchServiceProtocol = MockHatchService(),
         onboardingChatService: any OnboardingChatServiceProtocol = MockOnboardingChatService(),
         onboardingCompleteService: any OnboardingCompleteServiceProtocol = MockOnboardingCompleteService(),
-        modelContainer: ModelContainer
+        modelContainer: ModelContainer,
+        usesRemoteAPI: Bool = false,
+        apiBaseURL: URL? = nil
     ) {
         self.dateProvider = dateProvider
         self.auth = auth
@@ -30,6 +34,8 @@ final class AppEnvironment {
         self.onboardingChatService = onboardingChatService
         self.onboardingCompleteService = onboardingCompleteService
         self.modelContainer = modelContainer
+        self.usesRemoteAPI = usesRemoteAPI
+        self.apiBaseURL = apiBaseURL
     }
 
     func makeLocalStore() -> LocalStore {
@@ -51,7 +57,9 @@ final class AppEnvironment {
             onboardingCompleteService: onboardingCompleteService,
             sessionStore: sessionStore,
             bootstrapCoordinator: bootstrapCoordinator,
-            syncCoordinator: syncCoordinator
+            syncCoordinator: syncCoordinator,
+            usesRemoteAPI: usesRemoteAPI,
+            apiBaseURL: apiBaseURL
         )
     }
 
@@ -70,7 +78,9 @@ final class AppEnvironment {
             hatchService: APIHatchService(client: client),
             onboardingChatService: APIOnboardingChatService(client: client),
             onboardingCompleteService: APIOnboardingCompleteService(client: client),
-            modelContainer: try KelinModelContainerFactory.makeDefaultContainer()
+            modelContainer: try KelinModelContainerFactory.makeDefaultContainer(),
+            usesRemoteAPI: true,
+            apiBaseURL: config.apiBaseURL
         )
     }
 }
