@@ -17,6 +17,9 @@ final class AppState {
     private(set) var isSendingOnboardingMessage = false
     private(set) var onboardingChatError: AppError?
     private(set) var onboardingChatServiceUsesStub = false
+    private(set) var isHatching = false
+    private(set) var onboardingCompleteError: AppError?
+    private(set) var isCompletingOnboarding = false
 
     var hasCompletedOnboardingConversation: Bool {
         (sessionStore.snapshot?.onboarding.step ?? 0) >= OnboardingConversationDefaults.totalSteps
@@ -28,13 +31,17 @@ final class AppState {
     private let agreementGate: any AgreementGateServiceProtocol
     private let hatchService: any HatchServiceProtocol
     private let onboardingChatService: any OnboardingChatServiceProtocol
+    private let onboardingCompleteService: any OnboardingCompleteServiceProtocol
     private let bootstrapCoordinator: BootstrapCoordinator
     private let syncCoordinator: SyncCoordinator?
+    private let hatchAnimationDuration: Duration
 
     private var launchTask: Task<Void, Never>?
+    private var completeOnboardingTask: Task<Void, Never>?
     private var activeAccountUserID: UUID?
     private var pendingSpiritClientID: UUID?
     private var pendingOnboardingClientMessageID: UUID?
+    private var pendingOnboardingCompleteClientID: UUID?
 
     init(
         auth: any AuthServiceProtocol,
@@ -43,9 +50,11 @@ final class AppState {
         agreementGate: any AgreementGateServiceProtocol = MockAgreementGateService(),
         hatchService: any HatchServiceProtocol = MockHatchService(),
         onboardingChatService: any OnboardingChatServiceProtocol = MockOnboardingChatService(),
+        onboardingCompleteService: any OnboardingCompleteServiceProtocol = MockOnboardingCompleteService(),
         sessionStore: SessionStore = SessionStore(),
         bootstrapCoordinator: BootstrapCoordinator = BootstrapCoordinator(),
-        syncCoordinator: SyncCoordinator? = nil
+        syncCoordinator: SyncCoordinator? = nil,
+        hatchAnimationDuration: Duration = .milliseconds(1_000)
     ) {
         self.auth = auth
         self.localStore = localStore
@@ -53,9 +62,11 @@ final class AppState {
         self.agreementGate = agreementGate
         self.hatchService = hatchService
         self.onboardingChatService = onboardingChatService
+        self.onboardingCompleteService = onboardingCompleteService
         self.sessionStore = sessionStore
         self.bootstrapCoordinator = bootstrapCoordinator
         self.syncCoordinator = syncCoordinator
+        self.hatchAnimationDuration = hatchAnimationDuration
     }
 
     func beginLaunch() {
@@ -130,6 +141,14 @@ final class AppState {
         onboardingChatError = nil
     }
 
+    func clearOnboardingCompleteError() {
+        onboardingCompleteError = nil
+    }
+
+    func retryOnboardingComplete() {
+        scheduleOnboardingCompleteIfNeeded()
+    }
+
     func sendOnboardingMessage(content: String) async {
         let trimmed = content.trimmingCharacters(in: .whitespacesAndNewlines)
         guard
@@ -164,9 +183,14 @@ final class AppState {
             pendingOnboardingClientMessageID = nil
 
             try await applyOnboardingChatResult(result)
+            try await persistOnboardingMessages()
             phase = .needsFirstConversation(
                 step: min(result.completedRounds + 1, OnboardingConversationDefaults.totalSteps)
             )
+
+            if result.completedRounds >= OnboardingConversationDefaults.totalSteps {
+                scheduleOnboardingCompleteIfNeeded()
+            }
         } catch let error as AppError {
             onboardingChatError = error
         } catch {
@@ -232,6 +256,10 @@ final class AppState {
             try await applyCreateSpiritResult(result)
             pendingSpiritClientID = nil
             onboardingMessages = []
+            pendingOnboardingCompleteClientID = UUID()
+            if let activeAccountUserID {
+                try await clearOnboardingConversationCache(accountUserID: activeAccountUserID)
+            }
             phase = .needsFirstConversation(step: 1)
         } catch let error as AppError {
             hatchError = error
@@ -294,13 +322,18 @@ final class AppState {
                 phase = .requestingBootstrap
             }
 
+            let cachedSnapshot = sessionStore.snapshot
             let freshSnapshot = try await bootstrapCoordinator.fetch(using: bootstrapService)
-            sessionStore.replace(with: freshSnapshot)
-            try await persistSnapshot(freshSnapshot, accountUserID: session.userID)
+            let mergedSnapshot = mergeBootstrapSnapshots(cached: cachedSnapshot, fresh: freshSnapshot)
+            sessionStore.replace(with: mergedSnapshot)
+            try await persistSnapshot(mergedSnapshot, accountUserID: session.userID)
+
+            try await restoreOnboardingConversationIfNeeded(for: session.userID, snapshot: mergedSnapshot)
 
             isShowingCachedSnapshot = false
             isOffline = false
-            phase = resolvePhase(from: freshSnapshot)
+            phase = resolvePhase(from: mergedSnapshot)
+            scheduleOnboardingCompleteIfNeeded()
         } catch is CancellationError {
             return
         } catch let error as AppError {
@@ -377,5 +410,183 @@ final class AppState {
         }
 
         return .ready
+    }
+
+    private func scheduleOnboardingCompleteIfNeeded() {
+        guard
+            hasCompletedOnboardingConversation,
+            sessionStore.snapshot?.onboarding.completedAt == nil,
+            !isCompletingOnboarding,
+            completeOnboardingTask == nil
+        else {
+            return
+        }
+
+        completeOnboardingTask = Task { [weak self] in
+            await self?.performOnboardingComplete()
+            self?.completeOnboardingTask = nil
+        }
+    }
+
+    private func performOnboardingComplete() async {
+        guard
+            let snapshot = sessionStore.snapshot,
+            let spirit = snapshot.spirit,
+            hasCompletedOnboardingConversation,
+            snapshot.onboarding.completedAt == nil
+        else {
+            return
+        }
+
+        if pendingOnboardingCompleteClientID == nil {
+            pendingOnboardingCompleteClientID = UUID()
+        }
+
+        onboardingCompleteError = nil
+        isCompletingOnboarding = true
+        isHatching = true
+        defer {
+            isCompletingOnboarding = false
+            isHatching = false
+        }
+
+        do {
+            if hatchAnimationDuration > .zero {
+                try await Task.sleep(for: hatchAnimationDuration)
+            }
+            try Task.checkCancellation()
+
+            let result = try await onboardingCompleteService.completeOnboarding(
+                clientID: pendingOnboardingCompleteClientID!,
+                expectedSpiritVersion: spirit.version
+            )
+
+            try await applyOnboardingCompleteResult(result)
+            pendingOnboardingCompleteClientID = nil
+
+            if let activeAccountUserID {
+                try await clearOnboardingConversationCache(accountUserID: activeAccountUserID)
+            }
+
+            phase = .ready
+        } catch is CancellationError {
+            return
+        } catch let error as AppError {
+            onboardingCompleteError = error
+        } catch {
+            onboardingCompleteError = .unknown(requestID: "")
+        }
+    }
+
+    private func applyOnboardingCompleteResult(_ result: OnboardingCompleteResult) async throws {
+        guard let base = sessionStore.snapshot else {
+            throw AppError.decoding
+        }
+
+        let snapshot = BootstrapSnapshot(
+            schemaVersion: base.schemaVersion,
+            snapshotVersion: result.snapshotVersion,
+            apiVersion: base.apiVersion,
+            spirit: base.spirit,
+            room: result.room ?? base.room,
+            onboarding: result.onboarding,
+            latestMemories: base.latestMemories,
+            unreadPostcards: base.unreadPostcards,
+            activePact: base.activePact,
+            report: base.report,
+            quotas: base.quotas,
+            featureFlags: base.featureFlags,
+            serverTime: base.serverTime
+        )
+
+        sessionStore.replace(with: snapshot)
+
+        if let activeAccountUserID {
+            try await persistSnapshot(snapshot, accountUserID: activeAccountUserID)
+        }
+    }
+
+    private func mergeBootstrapSnapshots(
+        cached: BootstrapSnapshot?,
+        fresh: BootstrapSnapshot
+    ) -> BootstrapSnapshot {
+        guard
+            let cached,
+            let cachedSpirit = cached.spirit,
+            cached.onboarding.required,
+            cached.onboarding.completedAt == nil
+        else {
+            return fresh
+        }
+
+        let mergedStep = max(cached.onboarding.step, fresh.onboarding.step)
+        let spirit: Spirit? = {
+            if let freshSpirit = fresh.spirit, freshSpirit.id == cachedSpirit.id {
+                return freshSpirit
+            }
+            return cachedSpirit
+        }()
+
+        return BootstrapSnapshot(
+            schemaVersion: fresh.schemaVersion,
+            snapshotVersion: max(cached.snapshotVersion, fresh.snapshotVersion),
+            apiVersion: fresh.apiVersion,
+            spirit: spirit,
+            room: fresh.room ?? cached.room,
+            onboarding: OnboardingState(
+                required: fresh.onboarding.completedAt == nil,
+                step: mergedStep,
+                totalSteps: max(cached.onboarding.totalSteps, fresh.onboarding.totalSteps),
+                completedAt: fresh.onboarding.completedAt ?? cached.onboarding.completedAt
+            ),
+            latestMemories: fresh.latestMemories.isEmpty ? cached.latestMemories : fresh.latestMemories,
+            unreadPostcards: fresh.unreadPostcards.isEmpty ? cached.unreadPostcards : fresh.unreadPostcards,
+            activePact: fresh.activePact ?? cached.activePact,
+            report: fresh.report,
+            quotas: fresh.quotas.isEmpty ? cached.quotas : fresh.quotas,
+            featureFlags: fresh.featureFlags,
+            serverTime: fresh.serverTime
+        )
+    }
+
+    private func restoreOnboardingConversationIfNeeded(
+        for accountUserID: UUID,
+        snapshot: BootstrapSnapshot
+    ) async throws {
+        guard snapshot.spirit != nil, snapshot.onboarding.completedAt == nil else {
+            onboardingMessages = []
+            return
+        }
+
+        onboardingMessages = try await loadOnboardingMessages(accountUserID: accountUserID)
+    }
+
+    private func persistOnboardingMessages() async throws {
+        guard let activeAccountUserID else { return }
+
+        let record = DraftRecord(
+            id: OnboardingConversationDraftID.make(accountUserID: activeAccountUserID),
+            accountUserID: activeAccountUserID,
+            kind: .onboardingConversation,
+            payloadData: try OnboardingConversationCodec.encode(onboardingMessages),
+            updatedAt: Date()
+        )
+        try await localStore.upsertDraft(record)
+    }
+
+    private func loadOnboardingMessages(accountUserID: UUID) async throws -> [OnboardingMessage] {
+        let draftID = OnboardingConversationDraftID.make(accountUserID: accountUserID)
+        let drafts = try await localStore.fetchDrafts(accountUserID: accountUserID)
+        guard let draft = drafts.first(where: { $0.id == draftID && $0.kind == .onboardingConversation }) else {
+            return []
+        }
+        return try OnboardingConversationCodec.decode(draft.payloadData)
+    }
+
+    private func clearOnboardingConversationCache(accountUserID: UUID) async throws {
+        try await localStore.deleteDraft(
+            id: OnboardingConversationDraftID.make(accountUserID: accountUserID),
+            accountUserID: accountUserID
+        )
     }
 }

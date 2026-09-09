@@ -22,6 +22,7 @@ enum DraftKind: String, Codable, CaseIterable, Sendable {
     case emotion
     case promise
     case sight
+    case onboardingConversation
 }
 
 enum CachedMessageSendState: String, Codable, CaseIterable, Sendable {

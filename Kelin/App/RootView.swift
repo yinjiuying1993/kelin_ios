@@ -14,7 +14,14 @@ struct RootView: View {
             case .needsEggSelection:
                 EggSelectionView(appState: appState)
             case let .needsFirstConversation(step):
-                OnboardingConversationView(appState: appState, displayStep: step)
+                ZStack {
+                    OnboardingConversationView(appState: appState, displayStep: step)
+
+                    if appState.isHatching {
+                        HatchTransitionOverlay()
+                            .transition(.opacity)
+                    }
+                }
             case .recoverableError:
                 LaunchGateView(phase: appState.phase) {
                     appState.retryFromError()

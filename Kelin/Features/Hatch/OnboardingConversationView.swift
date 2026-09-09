@@ -158,6 +158,19 @@ struct OnboardingConversationView: View {
                 Text(String(localized: "对话由测试 Stub 生成"))
                     .kelinTypography(KelinTypography.label, color: KelinColor.textSecondary.opacity(0.7))
             }
+
+            if appState.onboardingCompleteError != nil {
+                HStack(spacing: KelinSpacing.compact) {
+                    Text(String(localized: "孵化未完成，再试一次"))
+                        .kelinTypography(KelinTypography.secondary, color: KelinColor.danger)
+
+                    Button(String(localized: "再试一次")) {
+                        appState.clearOnboardingCompleteError()
+                        appState.retryOnboardingComplete()
+                    }
+                    .kelinTypography(KelinTypography.secondary, color: KelinColor.textPrimary)
+                }
+            }
         }
         .padding(.bottom, KelinSpacing.standard)
     }

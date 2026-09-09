@@ -63,17 +63,21 @@ final class OnboardingConversationTests: XCTestCase {
     }
 
     func testFiveSuccessfulRoundsCompleteConversation() async throws {
-        let chat = MockOnboardingChatService()
-        let (appState, _) = try await makeAppStateAtConversation(chat: chat)
+        let complete = MockOnboardingCompleteService()
+        let (appState, _) = try await makeAppStateAtConversation(
+            chat: MockOnboardingChatService(),
+            complete: complete
+        )
 
         for index in 1 ... 5 {
             await appState.sendOnboardingMessage(content: "第\(index)句")
         }
 
+        await waitForPhase(.ready, in: appState, timeout: .seconds(3))
+
         XCTAssertEqual(appState.sessionStore.snapshot?.onboarding.step, 5)
-        XCTAssertTrue(appState.hasCompletedOnboardingConversation)
+        XCTAssertNotNil(appState.sessionStore.snapshot?.onboarding.completedAt)
         XCTAssertEqual(appState.onboardingMessages.filter { $0.role == .user }.count, 5)
-        XCTAssertEqual(appState.phase, .needsFirstConversation(step: 5))
 
         await appState.sendOnboardingMessage(content: "第六句不应发送")
         XCTAssertEqual(appState.onboardingMessages.filter { $0.role == .user }.count, 5)
@@ -95,7 +99,8 @@ final class OnboardingConversationTests: XCTestCase {
     }
 
     private func makeAppStateAtConversation(
-        chat: MockOnboardingChatService = MockOnboardingChatService()
+        chat: MockOnboardingChatService = MockOnboardingChatService(),
+        complete: MockOnboardingCompleteService = MockOnboardingCompleteService()
     ) async throws -> (appState: AppState, chat: MockOnboardingChatService) {
         let container = try KelinModelContainerFactory.makeInMemoryContainer()
         let appState = AppState(
@@ -103,7 +108,9 @@ final class OnboardingConversationTests: XCTestCase {
             localStore: LocalStore(modelContainer: container),
             bootstrapService: MockBootstrapService(mode: .newUser),
             hatchService: MockHatchService(),
-            onboardingChatService: chat
+            onboardingChatService: chat,
+            onboardingCompleteService: complete,
+            hatchAnimationDuration: .zero
         )
 
         appState.beginLaunch()
