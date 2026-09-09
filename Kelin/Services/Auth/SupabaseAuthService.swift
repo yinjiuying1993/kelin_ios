@@ -13,13 +13,17 @@ actor SupabaseAuthService: AuthServiceProtocol {
 
     func restoreSession() async throws -> AuthSession? {
         guard client.auth.currentSession != nil else {
+            KelinLog.auth.info("restore_session result=none")
             return nil
         }
 
         do {
             let session = try await client.auth.session
-            return try mapSession(session)
+            let mapped = try mapSession(session)
+            KelinLog.auth.info("restore_session result=ok user=\(KelinLog.shortID(mapped.userID), privacy: .public)")
+            return mapped
         } catch {
+            KelinLog.auth.info("restore_session result=none")
             return nil
         }
     }
@@ -29,11 +33,15 @@ actor SupabaseAuthService: AuthServiceProtocol {
 
         do {
             let session = try await client.auth.signInAnonymously()
-            return try mapSession(session)
+            let mapped = try mapSession(session)
+            KelinLog.auth.info("sign_in_anonymously result=ok user=\(KelinLog.shortID(mapped.userID), privacy: .public)")
+            return mapped
         } catch is CancellationError {
             throw AppError.cancelled
         } catch {
-            throw mapAuthError(error)
+            let mapped = mapAuthError(error)
+            KelinLog.auth.error("sign_in_anonymously result=error error_code=\(mapped.diagnosticCode, privacy: .public)")
+            throw mapped
         }
     }
 
@@ -42,11 +50,15 @@ actor SupabaseAuthService: AuthServiceProtocol {
 
         do {
             let session = try await client.auth.refreshSession()
-            return try mapSession(session)
+            let mapped = try mapSession(session)
+            KelinLog.auth.info("refresh_session result=ok user=\(KelinLog.shortID(mapped.userID), privacy: .public)")
+            return mapped
         } catch is CancellationError {
             throw AppError.cancelled
         } catch {
-            throw mapAuthError(error)
+            let mapped = mapAuthError(error)
+            KelinLog.auth.error("refresh_session result=error error_code=\(mapped.diagnosticCode, privacy: .public)")
+            throw mapped
         }
     }
 

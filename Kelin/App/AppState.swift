@@ -76,10 +76,14 @@ final class AppState {
     }
 
     func failBeforeLaunch(_ error: AppError) {
+        KelinLog.launch.error("fail_before_launch error_code=\(error.diagnosticCode, privacy: .public)")
         phase = .recoverableError(error)
     }
 
     func discardLocalCacheAndReload() async {
+        KelinLog.launch.info(
+            "discard_cache user=\(self.activeAccountUserID.map(KelinLog.shortID) ?? "nil", privacy: .public)"
+        )
         if let activeAccountUserID {
             try? await localStore.clearAccount(accountUserID: activeAccountUserID)
             try? await clearOnboardingConversationCache(accountUserID: activeAccountUserID)
@@ -143,10 +147,13 @@ final class AppState {
             try await agreementGate.acknowledgeAgreement(consents: consents)
             pendingConsents = consents
             phase = .needsEggSelection
+            KelinLog.onboarding.info("agreement_ok phase=\(self.phase.diagnosticName, privacy: .public)")
         } catch let error as AppError {
             agreementError = error
+            logOnboardingError("agreement_failed", error)
         } catch {
             agreementError = .unknown(requestID: "")
+            logOnboardingError("agreement_failed", agreementError!)
         }
     }
 
@@ -214,14 +221,19 @@ final class AppState {
             phase = .needsFirstConversation(
                 step: min(result.completedRounds + 1, OnboardingConversationDefaults.totalSteps)
             )
+            KelinLog.onboarding.info(
+                "chat_ok client=\(KelinLog.shortID(result.userMessage.id), privacy: .public) rounds=\(result.completedRounds)/\(OnboardingConversationDefaults.totalSteps) snapshot=\(result.snapshotVersion) stub=\(result.usesStubProvider) phase=\(self.phase.diagnosticName, privacy: .public)"
+            )
 
             if result.completedRounds >= OnboardingConversationDefaults.totalSteps {
                 scheduleOnboardingCompleteIfNeeded()
             }
         } catch let error as AppError {
             onboardingChatError = error
+            logOnboardingError("chat_failed", error)
         } catch {
             onboardingChatError = .unknown(requestID: "")
+            logOnboardingError("chat_failed", onboardingChatError!)
         }
     }
 
@@ -288,10 +300,15 @@ final class AppState {
                 try await clearOnboardingConversationCache(accountUserID: activeAccountUserID)
             }
             phase = .needsFirstConversation(step: 1)
+            KelinLog.onboarding.info(
+                "create_spirit_ok client=\(KelinLog.shortID(request.clientID), privacy: .public) egg=\(request.egg.rawValue, privacy: .public) spirit=\(KelinLog.shortID(result.spirit.id), privacy: .public) version=\(result.spirit.version) snapshot=\(result.snapshotVersion) phase=\(self.phase.diagnosticName, privacy: .public)"
+            )
         } catch let error as AppError {
             hatchError = error
+            logOnboardingError("create_spirit_failed", error)
         } catch {
             hatchError = .unknown(requestID: "")
+            logOnboardingError("create_spirit_failed", hatchError!)
         }
     }
 
@@ -328,6 +345,9 @@ final class AppState {
         isOffline = false
         isShowingCachedSnapshot = false
         activeAccountUserID = nil
+        KelinLog.launch.info(
+            "begin remote_api=\(self.usesRemoteAPI) base=\(self.apiBaseURL?.absoluteString ?? "nil", privacy: .public)"
+        )
 
         do {
             try Task.checkCancellation()
@@ -335,6 +355,7 @@ final class AppState {
 
             let session = try await resolveSession()
             activeAccountUserID = session.userID
+            KelinLog.launch.info("session_ready user=\(KelinLog.shortID(session.userID), privacy: .public)")
 
             let hadCachedSnapshot = try await loadCachedSnapshot(for: session.userID)
 
@@ -360,6 +381,9 @@ final class AppState {
             isShowingCachedSnapshot = false
             isOffline = false
             phase = resolvePhase(from: mergedSnapshot)
+            KelinLog.launch.info(
+                "bootstrap_ok \(KelinLog.snapshotSummary(mergedSnapshot), privacy: .public) phase=\(self.phase.diagnosticName, privacy: .public)"
+            )
             scheduleOnboardingCompleteIfNeeded()
         } catch is CancellationError {
             return
@@ -377,6 +401,7 @@ final class AppState {
 
         try Task.checkCancellation()
         phase = .signingInAnonymously
+        KelinLog.auth.info("sign_in_required")
         return try await auth.signInAnonymously()
     }
 
@@ -394,6 +419,9 @@ final class AppState {
         sessionStore.replace(with: snapshot)
         isShowingCachedSnapshot = true
         phase = resolvePhase(from: snapshot)
+        KelinLog.launch.info(
+            "cache_hit \(KelinLog.snapshotSummary(snapshot), privacy: .public) phase=\(self.phase.diagnosticName, privacy: .public)"
+        )
         return true
     }
 
@@ -413,10 +441,16 @@ final class AppState {
             if let snapshot = sessionStore.snapshot {
                 phase = resolvePhase(from: snapshot)
             }
+            KelinLog.launch.error(
+                "launch_failed error_code=\(error.diagnosticCode, privacy: .public) offline_cache=true phase=\(self.phase.diagnosticName, privacy: .public)"
+            )
             return
         }
 
         phase = .recoverableError(error)
+        KelinLog.launch.error(
+            "launch_failed error_code=\(error.diagnosticCode, privacy: .public) offline_cache=false phase=\(self.phase.diagnosticName, privacy: .public)"
+        )
     }
 
     private func resolvePhase(from snapshot: BootstrapSnapshot) -> AppPhase {
@@ -483,8 +517,9 @@ final class AppState {
             }
             try Task.checkCancellation()
 
+            let completeClientID = pendingOnboardingCompleteClientID!
             let result = try await onboardingCompleteService.completeOnboarding(
-                clientID: pendingOnboardingCompleteClientID!,
+                clientID: completeClientID,
                 expectedSpiritVersion: spirit.version
             )
 
@@ -496,12 +531,17 @@ final class AppState {
             }
 
             phase = .ready
+            KelinLog.onboarding.info(
+                "complete_ok client=\(KelinLog.shortID(completeClientID), privacy: .public) expected_version=\(spirit.version) snapshot=\(result.snapshotVersion) phase=\(self.phase.diagnosticName, privacy: .public)"
+            )
         } catch is CancellationError {
             return
         } catch let error as AppError {
             onboardingCompleteError = error
+            logOnboardingError("complete_failed", error)
         } catch {
             onboardingCompleteError = .unknown(requestID: "")
+            logOnboardingError("complete_failed", onboardingCompleteError!)
         }
     }
 
@@ -615,5 +655,17 @@ final class AppState {
             id: OnboardingConversationDraftID.make(accountUserID: accountUserID),
             accountUserID: accountUserID
         )
+    }
+
+    private func logOnboardingError(_ event: String, _ error: AppError) {
+        if let requestID = error.diagnosticRequestID {
+            KelinLog.onboarding.error(
+                "\(event, privacy: .public) error_code=\(error.diagnosticCode, privacy: .public) request_id=\(requestID, privacy: .public)"
+            )
+        } else {
+            KelinLog.onboarding.error(
+                "\(event, privacy: .public) error_code=\(error.diagnosticCode, privacy: .public)"
+            )
+        }
     }
 }

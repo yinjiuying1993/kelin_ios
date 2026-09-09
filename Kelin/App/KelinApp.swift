@@ -12,9 +12,15 @@ struct KelinApp: App {
 
         do {
             let environment = try AppEnvironment.makeDefault()
+            KelinLog.launch.info(
+                "make_default result=ok remote_api=true base=\(environment.apiBaseURL?.absoluteString ?? "nil", privacy: .public)"
+            )
             _appState = State(initialValue: environment.makeAppState())
             shouldAutoLaunch = true
         } catch {
+            KelinLog.launch.error(
+                "make_default result=error error_code=APP_CONFIG detail=\(String(describing: error), privacy: .public)"
+            )
             let fallback = AppEnvironment.preview
             let state = fallback.makeAppState()
             state.failBeforeLaunch(.unknown(requestID: "app-config"))

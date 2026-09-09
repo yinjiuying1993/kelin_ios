@@ -29,4 +29,27 @@ enum AppPhase: Equatable, Sendable {
     var isLoading: Bool {
         loadingTitle != nil
     }
+
+    var diagnosticName: String {
+        switch self {
+        case .launching:
+            "launching"
+        case .restoringSession:
+            "restoringSession"
+        case .signingInAnonymously:
+            "signingInAnonymously"
+        case .requestingBootstrap:
+            "requestingBootstrap"
+        case .needsAgreement:
+            "needsAgreement"
+        case .needsEggSelection:
+            "needsEggSelection"
+        case let .needsFirstConversation(step):
+            "needsFirstConversation(\(step))"
+        case .ready:
+            "ready"
+        case let .recoverableError(error):
+            "recoverableError(\(error.diagnosticCode))"
+        }
+    }
 }

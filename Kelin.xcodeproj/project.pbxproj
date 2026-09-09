@@ -114,6 +114,8 @@
 		A10000000000000000000072 /* OnboardingCompleteDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000075 /* OnboardingCompleteDTO.swift */; };
 		A10000000000000000000073 /* ChatMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000076 /* ChatMapper.swift */; };
 		A10000000000000000000074 /* OnboardingCompleteMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000077 /* OnboardingCompleteMapper.swift */; };
+		A10000000000000000000079 /* KelinLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000079 /* KelinLog.swift */; };
+		A1000000000000000000007A /* KelinLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000007A /* KelinLogTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -231,6 +233,8 @@
 		B1000000000000000000006D /* OnboardingResumeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingResumeTests.swift; sourceTree = "<group>"; };
 		B1000000000000000000006E /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		B10000000000000000000078 /* Debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Debug-Info.plist"; sourceTree = "<group>"; };
+		B10000000000000000000079 /* KelinLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelinLog.swift; sourceTree = "<group>"; };
+		B1000000000000000000007A /* KelinLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelinLogTests.swift; sourceTree = "<group>"; };
 		B1000000000000000000006F /* SupabaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseAuthService.swift; sourceTree = "<group>"; };
 		B10000000000000000000070 /* APIBootstrapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBootstrapService.swift; sourceTree = "<group>"; };
 		B10000000000000000000071 /* APIHatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHatchService.swift; sourceTree = "<group>"; };
@@ -306,6 +310,7 @@
 				B10000000000000000000015 /* DesignTokensTests.swift */,
 				B10000000000000000000016 /* AppConfigTests.swift */,
 				B10000000000000000000017 /* StateAndErrorTests.swift */,
+				B1000000000000000000007A /* KelinLogTests.swift */,
 				B1000000000000000000001B /* AppRouterTests.swift */,
 				B10000000000000000000022 /* AppStateTests.swift */,
 				B10000000000000000000023 /* MockAuthServiceTests.swift */,
@@ -342,6 +347,7 @@
 			children = (
 				B10000000000000000000006 /* DesignTokens.swift */,
 				B10000000000000000000007 /* AppError.swift */,
+				B10000000000000000000079 /* KelinLog.swift */,
 				B10000000000000000000008 /* Loadable.swift */,
 				B10000000000000000000009 /* ErrorCopy.swift */,
 				B10000000000000000000010 /* Localizable.xcstrings */,
@@ -648,6 +654,7 @@
 				A10000000000000000000002 /* RootView.swift in Sources */,
 				A10000000000000000000004 /* DesignTokens.swift in Sources */,
 				A10000000000000000000005 /* AppError.swift in Sources */,
+				A10000000000000000000079 /* KelinLog.swift in Sources */,
 				A10000000000000000000006 /* Loadable.swift in Sources */,
 				A10000000000000000000007 /* ErrorCopy.swift in Sources */,
 				A10000000000000000000009 /* AppConfig.swift in Sources */,
@@ -739,6 +746,7 @@
 				A1000000000000000000000B /* DesignTokensTests.swift in Sources */,
 				A1000000000000000000000C /* AppConfigTests.swift in Sources */,
 				A1000000000000000000000D /* StateAndErrorTests.swift in Sources */,
+				A1000000000000000000007A /* KelinLogTests.swift in Sources */,
 				A10000000000000000000011 /* AppRouterTests.swift in Sources */,
 				A10000000000000000000018 /* AppStateTests.swift in Sources */,
 				A10000000000000000000019 /* MockAuthServiceTests.swift in Sources */,
