@@ -365,7 +365,9 @@ final class AppState {
 
             let session = try await resolveSession()
             activeAccountUserID = session.userID
-            KelinLog.launch.info("session_ready user=\(KelinLog.shortID(session.userID), privacy: .public)")
+            KelinLog.launch.info(
+                "session_ready user=\(KelinLog.shortID(session.userID), privacy: .public) user_id=\(session.userID.uuidString.lowercased(), privacy: .public)"
+            )
 
             let hadCachedSnapshot = try await loadCachedSnapshot(for: session.userID)
 
