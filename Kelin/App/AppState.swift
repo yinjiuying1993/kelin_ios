@@ -275,6 +275,16 @@ final class AppState {
             return
         }
 
+        guard
+            consents.aiDisclosure.explicitlyAccepted,
+            consents.dataNotice.displayed,
+            consents.userTerms.displayed
+        else {
+            hatchError = .invalidInput
+            KelinLog.onboarding.error("create_spirit_failed error_code=INVALID_INPUT details_keys=consents.displayed")
+            return
+        }
+
         hatchError = nil
         isSubmittingHatch = true
         defer { isSubmittingHatch = false }

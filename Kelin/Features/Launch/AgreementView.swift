@@ -9,7 +9,10 @@ struct AgreementView: View {
     @State private var presentedDocument: ConsentDocumentKind?
 
     private var canSubmit: Bool {
-        isAIDisclosureAccepted && !appState.isSubmittingAgreement
+        isAIDisclosureAccepted
+            && hasViewedUserTerms
+            && hasViewedDataNotice
+            && !appState.isSubmittingAgreement
     }
 
     var body: some View {
@@ -49,11 +52,7 @@ struct AgreementView: View {
                     )
                 )
                 .disabled(!canSubmit)
-                .accessibilityHint(
-                    isAIDisclosureAccepted
-                        ? String(localized: "进入选蛋")
-                        : String(localized: "需要先确认人工智能声明")
-                )
+                .accessibilityHint(submitAccessibilityHint)
 
                 aiDisclosureRow
                     .padding(.top, KelinSpacing.standard)
@@ -86,6 +85,16 @@ struct AgreementView: View {
                 break
             }
         }
+    }
+
+    private var submitAccessibilityHint: String {
+        if !isAIDisclosureAccepted {
+            return String(localized: "需要先确认人工智能声明")
+        }
+        if !hasViewedUserTerms || !hasViewedDataNotice {
+            return String(localized: "需要先查看用户说明和数据说明")
+        }
+        return String(localized: "进入选蛋")
     }
 
     private var aiDisclosureRow: some View {

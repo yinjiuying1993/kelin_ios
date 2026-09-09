@@ -141,8 +141,9 @@ actor APIClient: APIClientProtocol {
         }
 
         if let errorPayload = envelope.error {
+            let detailKeys = errorPayload.detailKeys.joined(separator: ",")
             KelinLog.api.error(
-                "business_error method=\(endpoint.method.rawValue, privacy: .public) endpoint=\(endpoint.path, privacy: .public) request_id=\(envelope.requestID, privacy: .public) http_status=\(httpResponse.statusCode) error_code=\(errorPayload.code, privacy: .public) retryable=\(errorPayload.retryable) latency_ms=\(latency)"
+                "business_error method=\(endpoint.method.rawValue, privacy: .public) endpoint=\(endpoint.path, privacy: .public) request_id=\(envelope.requestID, privacy: .public) http_status=\(httpResponse.statusCode) error_code=\(errorPayload.code, privacy: .public) retryable=\(errorPayload.retryable) details_keys=\(detailKeys, privacy: .public) latency_ms=\(latency)"
             )
             throw APIErrorMapper.map(errorPayload, requestID: envelope.requestID)
         }

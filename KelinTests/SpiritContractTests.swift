@@ -44,6 +44,34 @@ final class SpiritContractTests: XCTestCase {
         }
     }
 
+    func testErrorEnvelopeWithoutOkAndObjectDetailsDecodes() throws {
+        let json = """
+        {
+          "data": null,
+          "error": {
+            "code": "INVALID_INPUT",
+            "message": "validation failed",
+            "retryable": false,
+            "details": {
+              "consents.data_notice.displayed": ["Input should be true"]
+            }
+          },
+          "request_id": "req-invalid-displayed",
+          "server_time": "2026-09-09T09:10:00.123Z"
+        }
+        """
+
+        let envelope: APIEnvelope<MutationResultDTO> = try decode(json)
+
+        XCTAssertFalse(envelope.ok)
+        XCTAssertEqual(envelope.error?.code, "INVALID_INPUT")
+        XCTAssertEqual(envelope.error?.details?["consents.data_notice.displayed"], "Input should be true")
+        XCTAssertEqual(
+            APIErrorMapper.map(try XCTUnwrap(envelope.error), requestID: envelope.requestID),
+            .invalidInput
+        )
+    }
+
     func testBusinessErrorFixtureMapsToConflict() throws {
         let envelope: APIEnvelope<MutationResultDTO> = try decode(
             P05CreateSpiritFixtures.businessErrorEnvelope
