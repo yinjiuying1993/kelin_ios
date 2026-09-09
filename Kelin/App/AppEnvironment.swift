@@ -6,17 +6,20 @@ final class AppEnvironment {
     let dateProvider: any DateProvider
     let auth: any AuthServiceProtocol
     let bootstrapService: any BootstrapServiceProtocol
+    let agreementGate: any AgreementGateServiceProtocol
     let modelContainer: ModelContainer
 
     init(
         dateProvider: any DateProvider = SystemDateProvider(),
         auth: any AuthServiceProtocol = MockAuthService(),
         bootstrapService: any BootstrapServiceProtocol = MockBootstrapService(),
+        agreementGate: any AgreementGateServiceProtocol = MockAgreementGateService(),
         modelContainer: ModelContainer
     ) {
         self.dateProvider = dateProvider
         self.auth = auth
         self.bootstrapService = bootstrapService
+        self.agreementGate = agreementGate
         self.modelContainer = modelContainer
     }
 
@@ -33,6 +36,7 @@ final class AppEnvironment {
             auth: auth,
             localStore: makeLocalStore(),
             bootstrapService: bootstrapService,
+            agreementGate: agreementGate,
             sessionStore: sessionStore,
             bootstrapCoordinator: bootstrapCoordinator,
             syncCoordinator: syncCoordinator

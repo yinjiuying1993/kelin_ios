@@ -8,10 +8,14 @@ final class AppState {
     private(set) var phase: AppPhase = .launching
     private(set) var isOffline = false
     private(set) var isShowingCachedSnapshot = false
+    private(set) var pendingConsents: CreateSpiritConsents?
+    private(set) var agreementError: AppError?
+    private(set) var isSubmittingAgreement = false
 
     private let auth: any AuthServiceProtocol
     private let localStore: LocalStore
     private let bootstrapService: any BootstrapServiceProtocol
+    private let agreementGate: any AgreementGateServiceProtocol
     private let bootstrapCoordinator: BootstrapCoordinator
     private let syncCoordinator: SyncCoordinator?
 
@@ -22,6 +26,7 @@ final class AppState {
         auth: any AuthServiceProtocol,
         localStore: LocalStore,
         bootstrapService: any BootstrapServiceProtocol,
+        agreementGate: any AgreementGateServiceProtocol = MockAgreementGateService(),
         sessionStore: SessionStore = SessionStore(),
         bootstrapCoordinator: BootstrapCoordinator = BootstrapCoordinator(),
         syncCoordinator: SyncCoordinator? = nil
@@ -29,6 +34,7 @@ final class AppState {
         self.auth = auth
         self.localStore = localStore
         self.bootstrapService = bootstrapService
+        self.agreementGate = agreementGate
         self.sessionStore = sessionStore
         self.bootstrapCoordinator = bootstrapCoordinator
         self.syncCoordinator = syncCoordinator
@@ -43,6 +49,49 @@ final class AppState {
 
     func retryFromError() {
         beginLaunch()
+    }
+
+    func clearAgreementError() {
+        agreementError = nil
+    }
+
+    func submitAgreement(
+        aiDisclosureAccepted: Bool,
+        hasViewedUserTerms: Bool,
+        hasViewedDataNotice: Bool
+    ) async {
+        guard aiDisclosureAccepted, !isSubmittingAgreement else {
+            return
+        }
+
+        agreementError = nil
+        isSubmittingAgreement = true
+        defer { isSubmittingAgreement = false }
+
+        let consents = CreateSpiritConsents(
+            aiDisclosure: .init(
+                documentVersion: ConsentDocuments.currentVersion,
+                explicitlyAccepted: true
+            ),
+            dataNotice: .init(
+                documentVersion: ConsentDocuments.currentVersion,
+                displayed: hasViewedDataNotice
+            ),
+            userTerms: .init(
+                documentVersion: ConsentDocuments.currentVersion,
+                displayed: hasViewedUserTerms
+            )
+        )
+
+        do {
+            try await agreementGate.acknowledgeAgreement(consents: consents)
+            pendingConsents = consents
+            phase = .needsEggSelection
+        } catch let error as AppError {
+            agreementError = error
+        } catch {
+            agreementError = .unknown(requestID: "")
+        }
     }
 
     private func performLaunch() async {
