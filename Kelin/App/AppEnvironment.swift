@@ -7,6 +7,7 @@ final class AppEnvironment {
     let auth: any AuthServiceProtocol
     let bootstrapService: any BootstrapServiceProtocol
     let agreementGate: any AgreementGateServiceProtocol
+    let hatchService: any HatchServiceProtocol
     let modelContainer: ModelContainer
 
     init(
@@ -14,12 +15,14 @@ final class AppEnvironment {
         auth: any AuthServiceProtocol = MockAuthService(),
         bootstrapService: any BootstrapServiceProtocol = MockBootstrapService(),
         agreementGate: any AgreementGateServiceProtocol = MockAgreementGateService(),
+        hatchService: any HatchServiceProtocol = MockHatchService(),
         modelContainer: ModelContainer
     ) {
         self.dateProvider = dateProvider
         self.auth = auth
         self.bootstrapService = bootstrapService
         self.agreementGate = agreementGate
+        self.hatchService = hatchService
         self.modelContainer = modelContainer
     }
 
@@ -37,6 +40,7 @@ final class AppEnvironment {
             localStore: makeLocalStore(),
             bootstrapService: bootstrapService,
             agreementGate: agreementGate,
+            hatchService: hatchService,
             sessionStore: sessionStore,
             bootstrapCoordinator: bootstrapCoordinator,
             syncCoordinator: syncCoordinator

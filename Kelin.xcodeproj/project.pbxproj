@@ -89,6 +89,10 @@
 		A10000000000000000000055 /* ConsentDocumentSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000005B /* ConsentDocumentSheet.swift */; };
 		A10000000000000000000056 /* AgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000005C /* AgreementView.swift */; };
 		A10000000000000000000057 /* AgreementGateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000005D /* AgreementGateTests.swift */; };
+		A1000000000000000000005C /* EggSelectionOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000005E /* EggSelectionOption.swift */; };
+		A1000000000000000000005D /* SpiritEggCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000005F /* SpiritEggCard.swift */; };
+		A1000000000000000000005E /* EggSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000060 /* EggSelectionView.swift */; };
+		A1000000000000000000005F /* EggSelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000061 /* EggSelectionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,6 +192,10 @@
 		B1000000000000000000005B /* ConsentDocumentSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentDocumentSheet.swift; sourceTree = "<group>"; };
 		B1000000000000000000005C /* AgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementView.swift; sourceTree = "<group>"; };
 		B1000000000000000000005D /* AgreementGateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementGateTests.swift; sourceTree = "<group>"; };
+		B1000000000000000000005E /* EggSelectionOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggSelectionOption.swift; sourceTree = "<group>"; };
+		B1000000000000000000005F /* SpiritEggCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiritEggCard.swift; sourceTree = "<group>"; };
+		B10000000000000000000060 /* EggSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggSelectionView.swift; sourceTree = "<group>"; };
+		B10000000000000000000061 /* EggSelectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggSelectionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +277,7 @@
 				B10000000000000000000050 /* SessionStoreTests.swift */,
 				B10000000000000000000056 /* LaunchBootstrapTests.swift */,
 				B1000000000000000000005D /* AgreementGateTests.swift */,
+				B10000000000000000000061 /* EggSelectionTests.swift */,
 			);
 			path = KelinTests;
 			sourceTree = "<group>";
@@ -415,6 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				G1000000000000000000000C /* Launch */,
+				G10000000000000000000015 /* Hatch */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -428,6 +438,16 @@
 				B1000000000000000000005B /* ConsentDocumentSheet.swift */,
 			);
 			path = Launch;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000015 /* Hatch */ = {
+			isa = PBXGroup;
+			children = (
+				B1000000000000000000005E /* EggSelectionOption.swift */,
+				B1000000000000000000005F /* SpiritEggCard.swift */,
+				B10000000000000000000060 /* EggSelectionView.swift */,
+			);
+			path = Hatch;
 			sourceTree = "<group>";
 		};
 		G1000000000000000000000D /* Persistence */ = {
@@ -613,6 +633,9 @@
 				A10000000000000000000054 /* DormantCoreMark.swift in Sources */,
 				A10000000000000000000055 /* ConsentDocumentSheet.swift in Sources */,
 				A10000000000000000000056 /* AgreementView.swift in Sources */,
+				A1000000000000000000005C /* EggSelectionOption.swift in Sources */,
+				A1000000000000000000005D /* SpiritEggCard.swift in Sources */,
+				A1000000000000000000005E /* EggSelectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,6 +662,7 @@
 				A10000000000000000000046 /* SessionStoreTests.swift in Sources */,
 				A1000000000000000000004B /* LaunchBootstrapTests.swift in Sources */,
 				A10000000000000000000057 /* AgreementGateTests.swift in Sources */,
+				A1000000000000000000005F /* EggSelectionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

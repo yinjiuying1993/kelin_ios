@@ -12,7 +12,7 @@ struct RootView: View {
             case .needsAgreement:
                 AgreementView(appState: appState)
             case .needsEggSelection:
-                onboardingPlaceholder(title: String(localized: "选蛋"))
+                EggSelectionView(appState: appState)
             case let .needsFirstConversation(step):
                 onboardingPlaceholder(title: String(localized: "初识对话 \(step)/5"))
             case .recoverableError:

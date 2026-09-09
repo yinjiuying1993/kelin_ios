@@ -7,10 +7,20 @@ actor MockHatchService: HatchServiceProtocol {
     }
 
     private var mode: Mode = .success(.warm)
+    private var delay: Duration?
     private(set) var requests: [CreateSpiritRequest] = []
+
+    init(mode: Mode = .success(.warm), delay: Duration? = nil) {
+        self.mode = mode
+        self.delay = delay
+    }
 
     func setMode(_ mode: Mode) {
         self.mode = mode
+    }
+
+    func setDelay(_ delay: Duration?) {
+        self.delay = delay
     }
 
     func recordedRequests() -> [CreateSpiritRequest] {
@@ -18,6 +28,11 @@ actor MockHatchService: HatchServiceProtocol {
     }
 
     func createSpirit(_ request: CreateSpiritRequest) async throws -> CreateSpiritResult {
+        if let delay {
+            try await Task.sleep(for: delay)
+        }
+
+        try Task.checkCancellation()
         requests.append(request)
 
         switch mode {
