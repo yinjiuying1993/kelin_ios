@@ -14,7 +14,7 @@ struct RootView: View {
             case .needsEggSelection:
                 EggSelectionView(appState: appState)
             case let .needsFirstConversation(step):
-                onboardingPlaceholder(title: String(localized: "初识对话 \(step)/5"))
+                OnboardingConversationView(appState: appState, displayStep: step)
             case .recoverableError:
                 LaunchGateView(phase: appState.phase) {
                     appState.retryFromError()
@@ -25,17 +25,6 @@ struct RootView: View {
                 }
             }
         }
-    }
-
-    private func onboardingPlaceholder(title: String) -> some View {
-        VStack(spacing: KelinSpacing.section) {
-            Text(title)
-                .kelinTypography(KelinTypography.pageTitle)
-            Text(String(localized: "后续任务实现"))
-                .kelinTypography(KelinTypography.secondary, color: KelinColor.textSecondary)
-        }
-        .padding(KelinSpacing.pageHorizontal)
-        .kelinScreenBackground()
     }
 
     private var readyContent: some View {

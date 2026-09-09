@@ -93,6 +93,13 @@
 		A1000000000000000000005D /* SpiritEggCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000005F /* SpiritEggCard.swift */; };
 		A1000000000000000000005E /* EggSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000060 /* EggSelectionView.swift */; };
 		A1000000000000000000005F /* EggSelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000061 /* EggSelectionTests.swift */; };
+		A10000000000000000000060 /* OnboardingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000062 /* OnboardingMessage.swift */; };
+		A10000000000000000000061 /* OnboardingChatServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000063 /* OnboardingChatServiceProtocol.swift */; };
+		A10000000000000000000062 /* MockOnboardingChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000064 /* MockOnboardingChatService.swift */; };
+		A10000000000000000000063 /* IncubatingEggView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000065 /* IncubatingEggView.swift */; };
+		A10000000000000000000064 /* OnboardingMessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000066 /* OnboardingMessageBubble.swift */; };
+		A10000000000000000000065 /* OnboardingConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000067 /* OnboardingConversationView.swift */; };
+		A10000000000000000000066 /* OnboardingConversationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000068 /* OnboardingConversationTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +203,13 @@
 		B1000000000000000000005F /* SpiritEggCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiritEggCard.swift; sourceTree = "<group>"; };
 		B10000000000000000000060 /* EggSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggSelectionView.swift; sourceTree = "<group>"; };
 		B10000000000000000000061 /* EggSelectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggSelectionTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000062 /* OnboardingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingMessage.swift; sourceTree = "<group>"; };
+		B10000000000000000000063 /* OnboardingChatServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingChatServiceProtocol.swift; sourceTree = "<group>"; };
+		B10000000000000000000064 /* MockOnboardingChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOnboardingChatService.swift; sourceTree = "<group>"; };
+		B10000000000000000000065 /* IncubatingEggView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncubatingEggView.swift; sourceTree = "<group>"; };
+		B10000000000000000000066 /* OnboardingMessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingMessageBubble.swift; sourceTree = "<group>"; };
+		B10000000000000000000067 /* OnboardingConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConversationView.swift; sourceTree = "<group>"; };
+		B10000000000000000000068 /* OnboardingConversationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConversationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +292,7 @@
 				B10000000000000000000056 /* LaunchBootstrapTests.swift */,
 				B1000000000000000000005D /* AgreementGateTests.swift */,
 				B10000000000000000000061 /* EggSelectionTests.swift */,
+				B10000000000000000000068 /* OnboardingConversationTests.swift */,
 			);
 			path = KelinTests;
 			sourceTree = "<group>";
@@ -353,6 +368,7 @@
 				B10000000000000000000039 /* APIEnvelope.swift */,
 				B10000000000000000000041 /* Spirit.swift */,
 				B10000000000000000000048 /* BootstrapSnapshot.swift */,
+				B10000000000000000000062 /* OnboardingMessage.swift */,
 				B1000000000000000000004D /* SessionPatch.swift */,
 			);
 			path = Domain;
@@ -397,6 +413,8 @@
 			children = (
 				B10000000000000000000058 /* AgreementGateServiceProtocol.swift */,
 				B10000000000000000000059 /* MockAgreementGateService.swift */,
+				B10000000000000000000063 /* OnboardingChatServiceProtocol.swift */,
+				B10000000000000000000064 /* MockOnboardingChatService.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -446,6 +464,9 @@
 				B1000000000000000000005E /* EggSelectionOption.swift */,
 				B1000000000000000000005F /* SpiritEggCard.swift */,
 				B10000000000000000000060 /* EggSelectionView.swift */,
+				B10000000000000000000065 /* IncubatingEggView.swift */,
+				B10000000000000000000066 /* OnboardingMessageBubble.swift */,
+				B10000000000000000000067 /* OnboardingConversationView.swift */,
 			);
 			path = Hatch;
 			sourceTree = "<group>";
@@ -636,6 +657,12 @@
 				A1000000000000000000005C /* EggSelectionOption.swift in Sources */,
 				A1000000000000000000005D /* SpiritEggCard.swift in Sources */,
 				A1000000000000000000005E /* EggSelectionView.swift in Sources */,
+				A10000000000000000000060 /* OnboardingMessage.swift in Sources */,
+				A10000000000000000000061 /* OnboardingChatServiceProtocol.swift in Sources */,
+				A10000000000000000000062 /* MockOnboardingChatService.swift in Sources */,
+				A10000000000000000000063 /* IncubatingEggView.swift in Sources */,
+				A10000000000000000000064 /* OnboardingMessageBubble.swift in Sources */,
+				A10000000000000000000065 /* OnboardingConversationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,6 +690,7 @@
 				A1000000000000000000004B /* LaunchBootstrapTests.swift in Sources */,
 				A10000000000000000000057 /* AgreementGateTests.swift in Sources */,
 				A1000000000000000000005F /* EggSelectionTests.swift in Sources */,
+				A10000000000000000000066 /* OnboardingConversationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,18 +13,28 @@ final class AppState {
     private(set) var isSubmittingAgreement = false
     private(set) var hatchError: AppError?
     private(set) var isSubmittingHatch = false
+    private(set) var onboardingMessages: [OnboardingMessage] = []
+    private(set) var isSendingOnboardingMessage = false
+    private(set) var onboardingChatError: AppError?
+    private(set) var onboardingChatServiceUsesStub = false
+
+    var hasCompletedOnboardingConversation: Bool {
+        (sessionStore.snapshot?.onboarding.step ?? 0) >= OnboardingConversationDefaults.totalSteps
+    }
 
     private let auth: any AuthServiceProtocol
     private let localStore: LocalStore
     private let bootstrapService: any BootstrapServiceProtocol
     private let agreementGate: any AgreementGateServiceProtocol
     private let hatchService: any HatchServiceProtocol
+    private let onboardingChatService: any OnboardingChatServiceProtocol
     private let bootstrapCoordinator: BootstrapCoordinator
     private let syncCoordinator: SyncCoordinator?
 
     private var launchTask: Task<Void, Never>?
     private var activeAccountUserID: UUID?
     private var pendingSpiritClientID: UUID?
+    private var pendingOnboardingClientMessageID: UUID?
 
     init(
         auth: any AuthServiceProtocol,
@@ -32,6 +42,7 @@ final class AppState {
         bootstrapService: any BootstrapServiceProtocol,
         agreementGate: any AgreementGateServiceProtocol = MockAgreementGateService(),
         hatchService: any HatchServiceProtocol = MockHatchService(),
+        onboardingChatService: any OnboardingChatServiceProtocol = MockOnboardingChatService(),
         sessionStore: SessionStore = SessionStore(),
         bootstrapCoordinator: BootstrapCoordinator = BootstrapCoordinator(),
         syncCoordinator: SyncCoordinator? = nil
@@ -41,6 +52,7 @@ final class AppState {
         self.bootstrapService = bootstrapService
         self.agreementGate = agreementGate
         self.hatchService = hatchService
+        self.onboardingChatService = onboardingChatService
         self.sessionStore = sessionStore
         self.bootstrapCoordinator = bootstrapCoordinator
         self.syncCoordinator = syncCoordinator
@@ -109,6 +121,92 @@ final class AppState {
         phase = .needsAgreement
     }
 
+    func returnToEggSelection() {
+        onboardingChatError = nil
+        phase = .needsEggSelection
+    }
+
+    func clearOnboardingChatError() {
+        onboardingChatError = nil
+    }
+
+    func sendOnboardingMessage(content: String) async {
+        let trimmed = content.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard
+            !trimmed.isEmpty,
+            !isSendingOnboardingMessage,
+            !hasCompletedOnboardingConversation,
+            case .needsFirstConversation = phase
+        else {
+            return
+        }
+
+        onboardingChatError = nil
+        isSendingOnboardingMessage = true
+        defer { isSendingOnboardingMessage = false }
+
+        if pendingOnboardingClientMessageID == nil {
+            pendingOnboardingClientMessageID = UUID()
+        }
+
+        let completedRounds = sessionStore.snapshot?.onboarding.step ?? 0
+
+        do {
+            let result = try await onboardingChatService.sendOnboardingMessage(
+                clientMessageID: pendingOnboardingClientMessageID!,
+                content: trimmed,
+                completedRounds: completedRounds
+            )
+
+            onboardingMessages.append(result.userMessage)
+            onboardingMessages.append(result.spiritMessage)
+            onboardingChatServiceUsesStub = result.usesStubProvider
+            pendingOnboardingClientMessageID = nil
+
+            try await applyOnboardingChatResult(result)
+            phase = .needsFirstConversation(
+                step: min(result.completedRounds + 1, OnboardingConversationDefaults.totalSteps)
+            )
+        } catch let error as AppError {
+            onboardingChatError = error
+        } catch {
+            onboardingChatError = .unknown(requestID: "")
+        }
+    }
+
+    private func applyOnboardingChatResult(_ result: OnboardingChatResult) async throws {
+        guard let base = sessionStore.snapshot else {
+            throw AppError.decoding
+        }
+
+        let snapshot = BootstrapSnapshot(
+            schemaVersion: base.schemaVersion,
+            snapshotVersion: result.snapshotVersion,
+            apiVersion: base.apiVersion,
+            spirit: base.spirit,
+            room: base.room,
+            onboarding: OnboardingState(
+                required: true,
+                step: result.completedRounds,
+                totalSteps: OnboardingConversationDefaults.totalSteps,
+                completedAt: nil
+            ),
+            latestMemories: base.latestMemories,
+            unreadPostcards: base.unreadPostcards,
+            activePact: base.activePact,
+            report: base.report,
+            quotas: base.quotas,
+            featureFlags: base.featureFlags,
+            serverTime: base.serverTime
+        )
+
+        sessionStore.replace(with: snapshot)
+
+        if let activeAccountUserID {
+            try await persistSnapshot(snapshot, accountUserID: activeAccountUserID)
+        }
+    }
+
     func createSpirit(selectedOption: EggSelectionOption) async {
         guard let consents = pendingConsents, !isSubmittingHatch else {
             return
@@ -133,6 +231,7 @@ final class AppState {
             let result = try await hatchService.createSpirit(request)
             try await applyCreateSpiritResult(result)
             pendingSpiritClientID = nil
+            onboardingMessages = []
             phase = .needsFirstConversation(step: 1)
         } catch let error as AppError {
             hatchError = error
@@ -269,7 +368,12 @@ final class AppState {
             if snapshot.onboarding.step == 0 {
                 return .needsFirstConversation(step: 1)
             }
-            return .needsFirstConversation(step: snapshot.onboarding.step)
+
+            let completed = snapshot.onboarding.step
+            if completed >= OnboardingConversationDefaults.totalSteps {
+                return .needsFirstConversation(step: OnboardingConversationDefaults.totalSteps)
+            }
+            return .needsFirstConversation(step: completed + 1)
         }
 
         return .ready
