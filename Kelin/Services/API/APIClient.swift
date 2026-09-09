@@ -21,6 +21,13 @@ actor APIClient: APIClientProtocol {
         _ endpoint: APIEndpoint,
         responseType: T.Type
     ) async throws -> T {
+        try await sendWithMetadata(endpoint, responseType: responseType).payload
+    }
+
+    func sendWithMetadata<T: Decodable & Sendable>(
+        _ endpoint: APIEndpoint,
+        responseType: T.Type
+    ) async throws -> APISendResult<T> {
         var didRefreshSession = false
 
         while true {
@@ -36,7 +43,7 @@ actor APIClient: APIClientProtocol {
     private func performRequest<T: Decodable & Sendable>(
         _ endpoint: APIEndpoint,
         responseType: T.Type
-    ) async throws -> T {
+    ) async throws -> APISendResult<T> {
         var connectionAttempt = 0
 
         while true {
@@ -57,7 +64,7 @@ actor APIClient: APIClientProtocol {
     private func executeRequest<T: Decodable & Sendable>(
         _ endpoint: APIEndpoint,
         responseType: T.Type
-    ) async throws -> T {
+    ) async throws -> APISendResult<T> {
         let request = try await makeURLRequest(for: endpoint)
 
         let data: Data
@@ -94,7 +101,11 @@ actor APIClient: APIClientProtocol {
             guard let payload = envelope.data else {
                 throw AppError.decoding
             }
-            return payload
+            return APISendResult(
+                payload: payload,
+                serverTime: envelope.serverTime,
+                requestID: envelope.requestID
+            )
         }
 
         if let errorPayload = envelope.error {

@@ -9,6 +9,7 @@ final class AppEnvironment {
     let agreementGate: any AgreementGateServiceProtocol
     let hatchService: any HatchServiceProtocol
     let onboardingChatService: any OnboardingChatServiceProtocol
+    let onboardingCompleteService: any OnboardingCompleteServiceProtocol
     let modelContainer: ModelContainer
 
     init(
@@ -18,6 +19,7 @@ final class AppEnvironment {
         agreementGate: any AgreementGateServiceProtocol = MockAgreementGateService(),
         hatchService: any HatchServiceProtocol = MockHatchService(),
         onboardingChatService: any OnboardingChatServiceProtocol = MockOnboardingChatService(),
+        onboardingCompleteService: any OnboardingCompleteServiceProtocol = MockOnboardingCompleteService(),
         modelContainer: ModelContainer
     ) {
         self.dateProvider = dateProvider
@@ -26,6 +28,7 @@ final class AppEnvironment {
         self.agreementGate = agreementGate
         self.hatchService = hatchService
         self.onboardingChatService = onboardingChatService
+        self.onboardingCompleteService = onboardingCompleteService
         self.modelContainer = modelContainer
     }
 
@@ -45,6 +48,7 @@ final class AppEnvironment {
             agreementGate: agreementGate,
             hatchService: hatchService,
             onboardingChatService: onboardingChatService,
+            onboardingCompleteService: onboardingCompleteService,
             sessionStore: sessionStore,
             bootstrapCoordinator: bootstrapCoordinator,
             syncCoordinator: syncCoordinator
@@ -57,8 +61,15 @@ final class AppEnvironment {
 
     static func makeDefault() throws -> AppEnvironment {
         let config = try AppConfig.load()
+        let auth = SupabaseAuthService(config: config)
+        let client = APIClient(config: config, auth: auth)
         return AppEnvironment(
-            auth: SupabaseAuthService(config: config),
+            auth: auth,
+            bootstrapService: APIBootstrapService(client: client),
+            agreementGate: MockAgreementGateService(),
+            hatchService: APIHatchService(client: client),
+            onboardingChatService: APIOnboardingChatService(client: client),
+            onboardingCompleteService: APIOnboardingCompleteService(client: client),
             modelContainer: try KelinModelContainerFactory.makeDefaultContainer()
         )
     }

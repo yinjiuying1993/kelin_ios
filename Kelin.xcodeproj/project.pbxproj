@@ -106,6 +106,14 @@
 		A1000000000000000000006A /* HatchTransitionOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000006C /* HatchTransitionOverlay.swift */; };
 		A1000000000000000000006B /* OnboardingResumeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000006D /* OnboardingResumeTests.swift */; };
 		A1000000000000000000006C /* SupabaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000006F /* SupabaseAuthService.swift */; };
+		A1000000000000000000006D /* APIBootstrapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000070 /* APIBootstrapService.swift */; };
+		A1000000000000000000006E /* APIHatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000071 /* APIHatchService.swift */; };
+		A1000000000000000000006F /* APIOnboardingChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000072 /* APIOnboardingChatService.swift */; };
+		A10000000000000000000070 /* APIOnboardingCompleteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000073 /* APIOnboardingCompleteService.swift */; };
+		A10000000000000000000071 /* ChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000074 /* ChatDTO.swift */; };
+		A10000000000000000000072 /* OnboardingCompleteDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000075 /* OnboardingCompleteDTO.swift */; };
+		A10000000000000000000073 /* ChatMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000076 /* ChatMapper.swift */; };
+		A10000000000000000000074 /* OnboardingCompleteMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000077 /* OnboardingCompleteMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,6 +231,14 @@
 		B1000000000000000000006D /* OnboardingResumeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingResumeTests.swift; sourceTree = "<group>"; };
 		B1000000000000000000006E /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		B1000000000000000000006F /* SupabaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseAuthService.swift; sourceTree = "<group>"; };
+		B10000000000000000000070 /* APIBootstrapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBootstrapService.swift; sourceTree = "<group>"; };
+		B10000000000000000000071 /* APIHatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHatchService.swift; sourceTree = "<group>"; };
+		B10000000000000000000072 /* APIOnboardingChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOnboardingChatService.swift; sourceTree = "<group>"; };
+		B10000000000000000000073 /* APIOnboardingCompleteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOnboardingCompleteService.swift; sourceTree = "<group>"; };
+		B10000000000000000000074 /* ChatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDTO.swift; sourceTree = "<group>"; };
+		B10000000000000000000075 /* OnboardingCompleteDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompleteDTO.swift; sourceTree = "<group>"; };
+		B10000000000000000000076 /* ChatMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMapper.swift; sourceTree = "<group>"; };
+		B10000000000000000000077 /* OnboardingCompleteMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompleteMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,6 +425,7 @@
 			children = (
 				B10000000000000000000044 /* HatchServiceProtocol.swift */,
 				B10000000000000000000045 /* MockHatchService.swift */,
+				B10000000000000000000071 /* APIHatchService.swift */,
 			);
 			path = Hatch;
 			sourceTree = "<group>";
@@ -418,6 +435,7 @@
 			children = (
 				B10000000000000000000052 /* BootstrapServiceProtocol.swift */,
 				B10000000000000000000053 /* MockBootstrapService.swift */,
+				B10000000000000000000070 /* APIBootstrapService.swift */,
 				B10000000000000000000054 /* BootstrapCoordinator.swift */,
 				B10000000000000000000055 /* BootstrapDraftFixtures.swift */,
 			);
@@ -431,8 +449,10 @@
 				B10000000000000000000059 /* MockAgreementGateService.swift */,
 				B10000000000000000000063 /* OnboardingChatServiceProtocol.swift */,
 				B10000000000000000000064 /* MockOnboardingChatService.swift */,
+				B10000000000000000000072 /* APIOnboardingChatService.swift */,
 				B1000000000000000000006A /* OnboardingCompleteServiceProtocol.swift */,
 				B1000000000000000000006B /* MockOnboardingCompleteService.swift */,
+				B10000000000000000000073 /* APIOnboardingCompleteService.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -442,6 +462,8 @@
 			children = (
 				B10000000000000000000042 /* CreateSpiritDTO.swift */,
 				B10000000000000000000049 /* BootstrapDTO.swift */,
+				B10000000000000000000074 /* ChatDTO.swift */,
+				B10000000000000000000075 /* OnboardingCompleteDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -452,6 +474,8 @@
 				B10000000000000000000043 /* SpiritMapper.swift */,
 				B1000000000000000000004A /* BootstrapMapper.swift */,
 				B1000000000000000000004F /* SessionPatchMapper.swift */,
+				B10000000000000000000076 /* ChatMapper.swift */,
+				B10000000000000000000077 /* OnboardingCompleteMapper.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -636,6 +660,14 @@
 				A10000000000000000000013 /* AuthServiceProtocol.swift in Sources */,
 				A10000000000000000000014 /* MockAuthService.swift in Sources */,
 				A1000000000000000000006C /* SupabaseAuthService.swift in Sources */,
+				A1000000000000000000006D /* APIBootstrapService.swift in Sources */,
+				A1000000000000000000006E /* APIHatchService.swift in Sources */,
+				A1000000000000000000006F /* APIOnboardingChatService.swift in Sources */,
+				A10000000000000000000070 /* APIOnboardingCompleteService.swift in Sources */,
+				A10000000000000000000071 /* ChatDTO.swift in Sources */,
+				A10000000000000000000072 /* OnboardingCompleteDTO.swift in Sources */,
+				A10000000000000000000073 /* ChatMapper.swift in Sources */,
+				A10000000000000000000074 /* OnboardingCompleteMapper.swift in Sources */,
 				A10000000000000000000015 /* AppPhase.swift in Sources */,
 				A10000000000000000000016 /* AppState.swift in Sources */,
 				A10000000000000000000044 /* SessionStore.swift in Sources */,
@@ -862,6 +894,7 @@
 				INFOPLIST_KEY_API_BASE_URL = "$(API_BASE_URL)";
 				INFOPLIST_KEY_APP_ENV = "$(APP_ENV)";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsLocalNetworking = YES;
 				INFOPLIST_KEY_SUPABASE_ANON_KEY = "$(SUPABASE_ANON_KEY)";
 				INFOPLIST_KEY_SUPABASE_URL = "$(SUPABASE_URL)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

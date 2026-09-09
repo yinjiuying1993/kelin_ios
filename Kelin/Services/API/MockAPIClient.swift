@@ -24,6 +24,13 @@ actor MockAPIClient: APIClientProtocol {
         _ endpoint: APIEndpoint,
         responseType: T.Type
     ) async throws -> T {
+        try await sendWithMetadata(endpoint, responseType: responseType).payload
+    }
+
+    func sendWithMetadata<T: Decodable & Sendable>(
+        _ endpoint: APIEndpoint,
+        responseType: T.Type
+    ) async throws -> APISendResult<T> {
         requestedPaths.append(endpoint.path)
 
         if let error = errorByPath[endpoint.path] {
@@ -51,6 +58,10 @@ actor MockAPIClient: APIClientProtocol {
             throw AppError.decoding
         }
 
-        return payload
+        return APISendResult(
+            payload: payload,
+            serverTime: envelope.serverTime,
+            requestID: envelope.requestID
+        )
     }
 }

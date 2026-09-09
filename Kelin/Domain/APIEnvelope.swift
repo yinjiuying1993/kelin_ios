@@ -30,7 +30,23 @@ struct APIEnvelope<T: Decodable & Sendable>: Decodable, Sendable {
     }
 }
 
+struct APISendResult<T: Sendable>: Sendable {
+    let payload: T
+    let serverTime: Date
+    let requestID: String
+}
+
 enum APIDecoding {
+    static func makeJSONEncoder() -> JSONEncoder {
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        return encoder
+    }
+
+    static func encodeBody<T: Encodable>(_ value: T) throws -> Data {
+        try makeJSONEncoder().encode(value)
+    }
+
     static func makeJSONDecoder() -> JSONDecoder {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .custom { decoder in

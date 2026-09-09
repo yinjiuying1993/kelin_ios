@@ -9,7 +9,8 @@ enum APIErrorMapper {
             return .invalidInput
         case "NOT_FOUND":
             return .notFound
-        case "CONFLICT", "IDEMPOTENCY_IN_PROGRESS", "IDEMPOTENCY_CONFLICT", "PACT_ALREADY_ACTIVE":
+        case "CONFLICT", "IDEMPOTENCY_IN_PROGRESS", "IDEMPOTENCY_CONFLICT", "PACT_ALREADY_ACTIVE",
+             "ONBOARDING_INCOMPLETE", "ONBOARDING_ALREADY_COMPLETED":
             return .conflict
         case "RATE_LIMITED":
             return .rateLimited

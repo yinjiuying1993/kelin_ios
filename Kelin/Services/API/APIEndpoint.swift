@@ -31,6 +31,8 @@ struct APIEndpoint: Sendable {
         self.allowsConnectionRetry = allowsConnectionRetry
     }
 
+    static let defaultPOSTTimeout: TimeInterval = 30
+
     static func get(
         _ path: String,
         timeout: TimeInterval = defaultGETTimeout
@@ -40,6 +42,21 @@ struct APIEndpoint: Sendable {
             method: .get,
             timeout: timeout,
             allowsConnectionRetry: true
+        )
+    }
+
+    static func post(
+        _ path: String,
+        body: Data,
+        timeout: TimeInterval = defaultPOSTTimeout,
+        allowsConnectionRetry: Bool = false
+    ) -> APIEndpoint {
+        APIEndpoint(
+            path: path,
+            method: .post,
+            body: body,
+            timeout: timeout,
+            allowsConnectionRetry: allowsConnectionRetry
         )
     }
 }
