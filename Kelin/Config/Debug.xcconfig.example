@@ -1,4 +1,5 @@
 SUPABASE_URL = https:/$()/your-dev-project.supabase.co
+// Legacy anon JWT or new publishable key (sb_publishable_...) both go here.
 SUPABASE_ANON_KEY = REPLACE_WITH_SUPABASE_ANON_KEY
 API_BASE_URL = https:/$()/api-dev.example.invalid
 APP_ENV = dev

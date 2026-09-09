@@ -105,6 +105,7 @@
 		A10000000000000000000069 /* MockOnboardingCompleteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000006B /* MockOnboardingCompleteService.swift */; };
 		A1000000000000000000006A /* HatchTransitionOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000006C /* HatchTransitionOverlay.swift */; };
 		A1000000000000000000006B /* OnboardingResumeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000006D /* OnboardingResumeTests.swift */; };
+		A1000000000000000000006C /* SupabaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000006F /* SupabaseAuthService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -220,6 +221,8 @@
 		B1000000000000000000006B /* MockOnboardingCompleteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOnboardingCompleteService.swift; sourceTree = "<group>"; };
 		B1000000000000000000006C /* HatchTransitionOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HatchTransitionOverlay.swift; sourceTree = "<group>"; };
 		B1000000000000000000006D /* OnboardingResumeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingResumeTests.swift; sourceTree = "<group>"; };
+		B1000000000000000000006E /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		B1000000000000000000006F /* SupabaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseAuthService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +338,7 @@
 				B10000000000000000000011 /* AppConfig.swift */,
 				B10000000000000000000057 /* ConsentDocuments.swift */,
 				B10000000000000000000012 /* Debug.xcconfig.example */,
+				B1000000000000000000006E /* Debug.xcconfig */,
 				B10000000000000000000013 /* Release.xcconfig.example */,
 			);
 			path = Config;
@@ -369,6 +373,7 @@
 				B1000000000000000000001C /* AuthSession.swift */,
 				B1000000000000000000001D /* AuthServiceProtocol.swift */,
 				B1000000000000000000001E /* MockAuthService.swift */,
+				B1000000000000000000006F /* SupabaseAuthService.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -524,6 +529,9 @@
 			dependencies = (
 			);
 			name = Kelin;
+			packageProductDependencies = (
+				P10000000000000000000001 /* Supabase */,
+			);
 			productName = Kelin;
 			productReference = B10000000000000000000004 /* Kelin.app */;
 			productType = "com.apple.product-type.application";
@@ -574,6 +582,9 @@
 				Base,
 			);
 			mainGroup = G10000000000000000000001;
+			packageReferences = (
+				R10000000000000000000001 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			productRefGroup = G10000000000000000000005 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -624,6 +635,7 @@
 				A10000000000000000000012 /* AuthSession.swift in Sources */,
 				A10000000000000000000013 /* AuthServiceProtocol.swift in Sources */,
 				A10000000000000000000014 /* MockAuthService.swift in Sources */,
+				A1000000000000000000006C /* SupabaseAuthService.swift in Sources */,
 				A10000000000000000000015 /* AppPhase.swift in Sources */,
 				A10000000000000000000016 /* AppState.swift in Sources */,
 				A10000000000000000000044 /* SessionStore.swift in Sources */,
@@ -727,6 +739,7 @@
 /* Begin XCBuildConfiguration section */
 		L10000000000000000000001 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1000000000000000000006E /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -837,6 +850,7 @@
 		};
 		L10000000000000000000003 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1000000000000000000006E /* Debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -984,6 +998,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		R10000000000000000000001 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		P10000000000000000000001 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = R10000000000000000000001 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D10000000000000000000001 /* Project object */;
 }

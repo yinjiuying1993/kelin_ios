@@ -56,6 +56,10 @@ final class AppEnvironment {
     }
 
     static func makeDefault() throws -> AppEnvironment {
-        AppEnvironment(modelContainer: try KelinModelContainerFactory.makeDefaultContainer())
+        let config = try AppConfig.load()
+        return AppEnvironment(
+            auth: SupabaseAuthService(config: config),
+            modelContainer: try KelinModelContainerFactory.makeDefaultContainer()
+        )
     }
 }
