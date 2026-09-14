@@ -25,6 +25,19 @@ final class StateAndErrorTests: XCTestCase {
             ErrorCopy.app(.modelUnavailable).message,
             "它这会儿说不出话"
         )
+        XCTAssertEqual(
+            ErrorCopy.app(.quotaExceeded(.food, resetAt: nil)).message,
+            "今天的使用次数已经用完。"
+        )
+        XCTAssertEqual(
+            ErrorCopy.app(.quotaExceeded(.asr, resetAt: nil)).message,
+            "今天先看字吧"
+        )
+        let resetAt = APIDecoding.parseDate("2026-09-12T16:00:00Z")
+        let quotaCopy = ErrorCopy.app(.quotaExceeded(.food, resetAt: resetAt))
+        XCTAssertTrue(quotaCopy.message.contains("今天的使用次数已经用完。"))
+        XCTAssertTrue(quotaCopy.message.contains("下次重置时间："))
+        XCTAssertEqual(quotaCopy.title, "今天先到这里吧")
     }
 
     func testErrorCopyDoesNotExposeUnknownRequestID() {

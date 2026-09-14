@@ -24,6 +24,46 @@ actor APIClient: APIClientProtocol {
         try await sendWithMetadata(endpoint, responseType: responseType).payload
     }
 
+    func checkHealthLive() async throws -> String {
+        var base = config.apiBaseURL.absoluteString
+        if base.hasSuffix("/") {
+            base.removeLast()
+        }
+
+        guard let url = URL(string: "\(base)/health/live") else {
+            throw AppError.networkUnavailable
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.timeoutInterval = 5
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+
+        let data: Data
+        let response: URLResponse
+        do {
+            (data, response) = try await urlSession.data(for: request)
+        } catch is CancellationError {
+            throw AppError.cancelled
+        } catch {
+            throw AppError.networkUnavailable
+        }
+
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw AppError.networkUnavailable
+        }
+
+        struct HealthLiveDTO: Decodable {
+            let status: String
+        }
+
+        let payload = try jsonDecoder.decode(HealthLiveDTO.self, from: data)
+        guard payload.status == "live" else {
+            throw AppError.networkUnavailable
+        }
+        return payload.status
+    }
+
     func sendWithMetadata<T: Decodable & Sendable>(
         _ endpoint: APIEndpoint,
         responseType: T.Type
@@ -34,7 +74,7 @@ actor APIClient: APIClientProtocol {
             do {
                 return try await performRequest(endpoint, responseType: responseType)
             } catch let error as AppError where error == .unauthenticated && !didRefreshSession {
-                KelinLog.api.info("auth_refresh endpoint=\(endpoint.path, privacy: .public)")
+                KelinLog.api.info("auth_refresh endpoint=\(endpoint.path)")
                 _ = try await auth.refreshSession()
                 didRefreshSession = true
             }
@@ -52,8 +92,8 @@ actor APIClient: APIClientProtocol {
                 return try await executeRequest(endpoint, responseType: responseType)
             } catch let error as AppError where error == .networkUnavailable && endpoint.allowsConnectionRetry {
                 connectionAttempt += 1
-                KelinLog.api.info(
-                    "connection_retry endpoint=\(endpoint.path, privacy: .public) attempt=\(connectionAttempt)"
+                KelinLog.api.debug(
+                    "connection_retry endpoint=\(endpoint.path) attempt=\(connectionAttempt)"
                 )
                 guard connectionAttempt <= 2 else {
                     throw AppError.networkUnavailable
@@ -72,8 +112,8 @@ actor APIClient: APIClientProtocol {
         let prepared = try await makeURLRequest(for: endpoint)
         let startedAt = ContinuousClock.now
 
-        KelinLog.api.info(
-            "request method=\(endpoint.method.rawValue, privacy: .public) endpoint=\(endpoint.path, privacy: .public) request_id=\(prepared.requestID, privacy: .public)"
+        KelinLog.api.debug(
+            "request method=\(endpoint.method.rawValue) endpoint=\(endpoint.path) request_id=\(prepared.requestID)"
         )
 
         let data: Data
@@ -86,7 +126,7 @@ actor APIClient: APIClientProtocol {
         } catch let error as URLError {
             let latency = elapsedMilliseconds(since: startedAt)
             KelinLog.api.error(
-                "transport method=\(endpoint.method.rawValue, privacy: .public) endpoint=\(endpoint.path, privacy: .public) request_id=\(prepared.requestID, privacy: .public) url_error=\(error.code.rawValue) latency_ms=\(latency)"
+                "transport method=\(endpoint.method.rawValue) endpoint=\(endpoint.path) request_id=\(prepared.requestID) url_error=\(error.code.rawValue) latency_ms=\(latency)"
             )
             if error.code == .timedOut {
                 throw AppError.timedOut
@@ -95,7 +135,7 @@ actor APIClient: APIClientProtocol {
         } catch {
             let latency = elapsedMilliseconds(since: startedAt)
             KelinLog.api.error(
-                "transport method=\(endpoint.method.rawValue, privacy: .public) endpoint=\(endpoint.path, privacy: .public) request_id=\(prepared.requestID, privacy: .public) error_code=NETWORK_UNAVAILABLE latency_ms=\(latency)"
+                "transport method=\(endpoint.method.rawValue) endpoint=\(endpoint.path) request_id=\(prepared.requestID) error_code=NETWORK_UNAVAILABLE latency_ms=\(latency)"
             )
             throw AppError.networkUnavailable
         }
@@ -108,7 +148,7 @@ actor APIClient: APIClientProtocol {
 
         if httpResponse.statusCode == 401 {
             KelinLog.api.error(
-                "response method=\(endpoint.method.rawValue, privacy: .public) endpoint=\(endpoint.path, privacy: .public) request_id=\(prepared.requestID, privacy: .public) http_status=401 error_code=UNAUTHENTICATED latency_ms=\(latency)"
+                "response method=\(endpoint.method.rawValue) endpoint=\(endpoint.path) request_id=\(prepared.requestID) http_status=401 error_code=UNAUTHENTICATED latency_ms=\(latency)"
             )
             throw AppError.unauthenticated
         }
@@ -118,7 +158,7 @@ actor APIClient: APIClientProtocol {
             envelope = try jsonDecoder.decode(APIEnvelope<T>.self, from: data)
         } catch {
             KelinLog.api.error(
-                "decode_failed method=\(endpoint.method.rawValue, privacy: .public) endpoint=\(endpoint.path, privacy: .public) request_id=\(prepared.requestID, privacy: .public) http_status=\(httpResponse.statusCode) bytes=\(data.count) latency_ms=\(latency)"
+                "decode_failed method=\(endpoint.method.rawValue) endpoint=\(endpoint.path) request_id=\(prepared.requestID) http_status=\(httpResponse.statusCode) bytes=\(data.count) latency_ms=\(latency) debug=\(APIDecoding.decodingDebugDescription(error))"
             )
             throw AppError.decoding
         }
@@ -126,12 +166,13 @@ actor APIClient: APIClientProtocol {
         if envelope.ok {
             guard let payload = envelope.data else {
                 KelinLog.api.error(
-                    "decode_failed method=\(endpoint.method.rawValue, privacy: .public) endpoint=\(endpoint.path, privacy: .public) request_id=\(envelope.requestID, privacy: .public) http_status=\(httpResponse.statusCode) error_code=MISSING_DATA latency_ms=\(latency)"
+                    "decode_failed method=\(endpoint.method.rawValue) endpoint=\(endpoint.path) request_id=\(envelope.requestID) http_status=\(httpResponse.statusCode) error_code=MISSING_DATA latency_ms=\(latency)"
                 )
                 throw AppError.decoding
             }
-            KelinLog.api.info(
-                "response method=\(endpoint.method.rawValue, privacy: .public) endpoint=\(endpoint.path, privacy: .public) request_id=\(envelope.requestID, privacy: .public) http_status=\(httpResponse.statusCode) latency_ms=\(latency)"
+            KelinLog.api.log(
+                KelinLog.apiSuccessLevel(method: endpoint.method.rawValue, path: endpoint.path),
+                "response method=\(endpoint.method.rawValue) endpoint=\(endpoint.path) request_id=\(envelope.requestID) http_status=\(httpResponse.statusCode) latency_ms=\(latency)"
             )
             return APISendResult(
                 payload: payload,
@@ -143,13 +184,13 @@ actor APIClient: APIClientProtocol {
         if let errorPayload = envelope.error {
             let detailKeys = errorPayload.detailKeys.joined(separator: ",")
             KelinLog.api.error(
-                "business_error method=\(endpoint.method.rawValue, privacy: .public) endpoint=\(endpoint.path, privacy: .public) request_id=\(envelope.requestID, privacy: .public) http_status=\(httpResponse.statusCode) error_code=\(errorPayload.code, privacy: .public) retryable=\(errorPayload.retryable) details_keys=\(detailKeys, privacy: .public) latency_ms=\(latency)"
+                "business_error method=\(endpoint.method.rawValue) endpoint=\(endpoint.path) request_id=\(envelope.requestID) http_status=\(httpResponse.statusCode) error_code=\(errorPayload.code) retryable=\(errorPayload.retryable) details_keys=\(detailKeys) latency_ms=\(latency)"
             )
             throw APIErrorMapper.map(errorPayload, requestID: envelope.requestID)
         }
 
         KelinLog.api.error(
-            "response method=\(endpoint.method.rawValue, privacy: .public) endpoint=\(endpoint.path, privacy: .public) request_id=\(envelope.requestID, privacy: .public) http_status=\(httpResponse.statusCode) error_code=UNKNOWN latency_ms=\(latency)"
+            "response method=\(endpoint.method.rawValue) endpoint=\(endpoint.path) request_id=\(envelope.requestID) http_status=\(httpResponse.statusCode) error_code=UNKNOWN latency_ms=\(latency)"
         )
         throw AppError.unknown(requestID: envelope.requestID)
     }
@@ -166,7 +207,11 @@ actor APIClient: APIClientProtocol {
         request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         request.setValue(requestID, forHTTPHeaderField: "X-Request-ID")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        if let contentType = endpoint.contentType {
+            request.setValue(contentType, forHTTPHeaderField: "Content-Type")
+        } else if endpoint.body != nil {
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        }
         return PreparedRequest(request: request, requestID: requestID)
     }
 

@@ -37,6 +37,12 @@ struct ErrorCopy: Equatable, Sendable {
                 message: String(localized: "检查后再试一次。"),
                 recoveryActionTitle: nil
             )
+        case .invalidCursor:
+            ErrorCopy(
+                title: String(localized: "记录位置失效"),
+                message: String(localized: "从最新一页重新看。"),
+                recoveryActionTitle: String(localized: "重新加载")
+            )
         case .permissionDenied:
             ErrorCopy(
                 title: String(localized: "还没有权限"),
@@ -49,12 +55,16 @@ struct ErrorCopy: Equatable, Sendable {
                 message: String(localized: "稍等一会儿再试。"),
                 recoveryActionTitle: nil
             )
-        case let .quotaExceeded(kind):
+        case let .quotaExceeded(kind, resetAt):
             ErrorCopy(
                 title: String(localized: "今天先到这里吧"),
-                message: kind == .tts
-                    ? ttsQuotaExceeded
-                    : String(localized: "今天的使用次数已经用完。"),
+                message: quotaMessage(kind: kind, resetAt: resetAt),
+                recoveryActionTitle: nil
+            )
+        case .asrEmptyResult:
+            ErrorCopy(
+                title: String(localized: "没听清"),
+                message: asrEmptyResult,
                 recoveryActionTitle: nil
             )
         case .modelUnavailable:
@@ -81,6 +91,54 @@ struct ErrorCopy: Equatable, Sendable {
                 message: String(localized: "刷新后再试一次。"),
                 recoveryActionTitle: String(localized: "刷新")
             )
+        case .selfFriendNotAllowed:
+            ErrorCopy(
+                title: String(localized: "不能加自己"),
+                message: String(localized: "邀请码不对，或不能填自己的"),
+                recoveryActionTitle: nil
+            )
+        case .accountDeletePending:
+            ErrorCopy(
+                title: String(localized: "注销已在进行"),
+                message: String(localized: "账号正在删除，不要换一次再提。"),
+                recoveryActionTitle: nil
+            )
+        case .reportLineUnavailable:
+            ErrorCopy(
+                title: String(localized: "签名句还没写好"),
+                message: String(localized: "签名句暂时写不了，可稍后再试。"),
+                recoveryActionTitle: String(localized: "再试一次")
+            )
+        case .spiritNotLost:
+            ErrorCopy(
+                title: String(localized: "现在不用找回"),
+                message: String(localized: "它还在，不用叫它回来。"),
+                recoveryActionTitle: nil
+            )
+        case .recallSourceInvalid:
+            ErrorCopy(
+                title: String(localized: "这次带不回来"),
+                message: String(localized: "换食物找回，或换一条可用见闻。"),
+                recoveryActionTitle: nil
+            )
+        case .sightUploadUnavailable:
+            ErrorCopy(
+                title: String(localized: "见闻还没传上去"),
+                message: String(localized: "服务端给的上传地址这台设备到不了，先用地点见闻，或等存储签发可访问的地址。"),
+                recoveryActionTitle: nil
+            )
+        case .idempotencyConflict:
+            ErrorCopy(
+                title: String(localized: "这次请求对不上"),
+                message: String(localized: "同一操作换了内容，稍后再试。"),
+                recoveryActionTitle: nil
+            )
+        case .idempotencyInProgress:
+            ErrorCopy(
+                title: String(localized: "操作太快了"),
+                message: String(localized: "稍等一会儿再试。"),
+                recoveryActionTitle: nil
+            )
         case .decoding:
             ErrorCopy(
                 title: String(localized: "暂时无法显示"),
@@ -100,6 +158,21 @@ struct ErrorCopy: Equatable, Sendable {
                 recoveryActionTitle: String(localized: "再试一次")
             )
         }
+    }
+
+    private static func quotaMessage(kind: QuotaKind, resetAt: Date?) -> String {
+        let base = (kind == .tts || kind == .asr)
+            ? ttsQuotaExceeded
+            : String(localized: "今天的使用次数已经用完。")
+        guard let resetAt else {
+            return base
+        }
+
+        let formatted = resetAt.formatted(
+            Date.FormatStyle(date: .numeric, time: .shortened)
+                .locale(Locale(identifier: "zh_CN"))
+        )
+        return "\(base) \(String(localized: "下次重置时间："))\(formatted)"
     }
 
     static func configuration(_ error: AppConfigError) -> ErrorCopy {

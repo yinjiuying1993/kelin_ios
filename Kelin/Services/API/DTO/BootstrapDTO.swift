@@ -28,6 +28,22 @@ struct BootstrapDataDTO: Decodable, Sendable, Equatable {
         case quotas
         case featureFlags = "feature_flags"
     }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        schemaVersion = try container.decodeIfPresent(Int.self, forKey: .schemaVersion) ?? 2
+        snapshotVersion = try container.decode(Int.self, forKey: .snapshotVersion)
+        apiVersion = try container.decodeIfPresent(String.self, forKey: .apiVersion) ?? "v1"
+        spirit = try container.decodeIfPresent(SpiritDTO.self, forKey: .spirit)
+        room = try container.decodeIfPresent(RoomSnapshotDTO.self, forKey: .room)
+        onboarding = try container.decode(OnboardingDTO.self, forKey: .onboarding)
+        latestMemories = (try? container.decodeIfPresent([MemorySummaryDTO].self, forKey: .latestMemories)) ?? []
+        unreadPostcards = (try? container.decodeIfPresent([PostcardSummaryDTO].self, forKey: .unreadPostcards)) ?? []
+        activePact = try? container.decodeIfPresent(PactSummaryDTO.self, forKey: .activePact)
+        report = try container.decode(ReportSnapshotDTO.self, forKey: .report)
+        quotas = (try? container.decodeIfPresent([QuotaEntryDTO].self, forKey: .quotas)) ?? []
+        featureFlags = try container.decode(FeatureFlagsDTO.self, forKey: .featureFlags)
+    }
 }
 
 struct RoomSnapshotDTO: Decodable, Sendable, Equatable {
@@ -46,15 +62,82 @@ struct RoomSnapshotDTO: Decodable, Sendable, Equatable {
         case unreadFootprintCount = "unread_footprint_count"
         case updatedAt = "updated_at"
     }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        weather = try container.decode(String.self, forKey: .weather)
+        layers = try container.decodeIfPresent([RoomLayerDTO].self, forKey: .layers) ?? []
+        letter = Self.decodeLetter(from: container)
+        pendingSight = try container.decodeIfPresent(PendingSightDTO.self, forKey: .pendingSight)
+        unreadFootprintCount = try container.decodeIfPresent(Int.self, forKey: .unreadFootprintCount) ?? 0
+        updatedAt = try container.decode(Date.self, forKey: .updatedAt)
+    }
+
+    private static func decodeLetter(
+        from container: KeyedDecodingContainer<CodingKeys>
+    ) -> String? {
+        if let text = try? container.decodeIfPresent(String.self, forKey: .letter) {
+            return text
+        }
+        if let object = try? container.decodeIfPresent(RoomLetterDTO.self, forKey: .letter) {
+            return object.titleKey
+        }
+        return nil
+    }
 }
 
 struct RoomLayerDTO: Decodable, Sendable, Equatable {
     let key: String
     let variant: String
+
+    init(key: String, variant: String) {
+        self.key = key
+        self.variant = variant
+    }
+
+    init(from decoder: Decoder) throws {
+        if let container = try? decoder.singleValueContainer(),
+           let value = try? container.decode(String.self) {
+            key = value
+            variant = "default"
+            return
+        }
+
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        key = try container.decode(String.self, forKey: .key)
+        variant = try container.decodeIfPresent(String.self, forKey: .variant) ?? "default"
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case key
+        case variant
+    }
+}
+
+struct RoomLetterDTO: Decodable, Sendable, Equatable {
+    let titleKey: String
+
+    enum CodingKeys: String, CodingKey {
+        case titleKey = "title_key"
+    }
 }
 
 struct PendingSightDTO: Decodable, Sendable, Equatable {
     let id: UUID
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case feedID = "feed_id"
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let id = try container.decodeIfPresent(UUID.self, forKey: .id) {
+            self.id = id
+        } else {
+            id = try container.decode(UUID.self, forKey: .feedID)
+        }
+    }
 }
 
 struct MemorySummaryDTO: Decodable, Sendable, Equatable {
@@ -63,6 +146,10 @@ struct MemorySummaryDTO: Decodable, Sendable, Equatable {
     let summary: String
     let status: String
     let createdAt: Date
+    let version: Int
+    let tags: [String]
+    let salience: Int
+    let confidence: Double
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -70,6 +157,24 @@ struct MemorySummaryDTO: Decodable, Sendable, Equatable {
         case summary
         case status
         case createdAt = "created_at"
+        case version
+        case tags
+        case salience
+        case confidence
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        type = try container.decode(String.self, forKey: .type)
+        summary = try container.decode(String.self, forKey: .summary)
+        status = try container.decodeIfPresent(String.self, forKey: .status) ?? "active"
+        createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt)
+            ?? Date(timeIntervalSince1970: 0)
+        version = try container.decodeIfPresent(Int.self, forKey: .version) ?? 1
+        tags = try container.decodeIfPresent([String].self, forKey: .tags) ?? []
+        salience = try container.decodeIfPresent(Int.self, forKey: .salience) ?? 0
+        confidence = try container.decodeIfPresent(Double.self, forKey: .confidence) ?? 0
     }
 }
 
@@ -96,7 +201,7 @@ struct ReportSnapshotDTO: Decodable, Sendable, Equatable {
     let status: String
     let reportID: UUID?
     let eligibility: ReportEligibilityDTO
-    let card: String?
+    let card: ReportCardDTO?
 
     enum CodingKeys: String, CodingKey {
         case status

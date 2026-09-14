@@ -23,6 +23,13 @@ enum DraftKind: String, Codable, CaseIterable, Sendable {
     case promise
     case sight
     case onboardingConversation
+    case onboardingStableIDs
+    case extractStableIDs
+    case memoryStableIDs
+    case feedStableIDs
+    case pactStableIDs
+    case pactAnswerQueue
+    case p16p20StableIDs
 }
 
 enum CachedMessageSendState: String, Codable, CaseIterable, Sendable {

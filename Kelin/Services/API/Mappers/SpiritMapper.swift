@@ -22,7 +22,8 @@ enum SpiritMapper {
         return CreateSpiritResult(
             spirit: spirit,
             onboarding: mapOnboarding(onboardingDTO),
-            snapshotVersion: dto.patch.snapshotVersion
+            snapshotVersion: dto.patch.snapshotVersion,
+            room: dto.patch.room.map(BootstrapMapper.mapRoom)
         )
     }
 
@@ -40,9 +41,11 @@ enum SpiritMapper {
             throw AppError.decoding
         }
 
+        let timestamp = dto.lastInteractAt ?? dto.updatedAt ?? dto.createdAt
+
         return Spirit(
             id: dto.id,
-            userID: dto.userID,
+            userID: dto.userID ?? UUID(uuidString: "00000000-0000-0000-0000-000000000000")!,
             name: dto.name,
             egg: egg,
             inviteCode: dto.inviteCode,
@@ -65,9 +68,9 @@ enum SpiritMapper {
             preferences: mapPreferences(preferences),
             awayUntil: dto.awayUntil,
             studyUntil: dto.studyUntil,
-            lastInteractAt: dto.lastInteractAt,
+            lastInteractAt: timestamp,
             createdAt: dto.createdAt,
-            updatedAt: dto.updatedAt,
+            updatedAt: dto.updatedAt ?? dto.createdAt,
             version: dto.version
         )
     }

@@ -48,7 +48,7 @@ struct CreateSpiritRequestDTO: Codable, Sendable, Equatable {
 
 struct SpiritDTO: Decodable, Sendable, Equatable {
     let id: UUID
-    let userID: UUID
+    let userID: UUID?
     let name: String
     let egg: String
     let inviteCode: String
@@ -65,11 +65,13 @@ struct SpiritDTO: Decodable, Sendable, Equatable {
     let status: String
     let scholarMarks: [String]
     let version: Int
+    let onboardingStep: Int?
+    let onboardingCompletedAt: Date?
     let awayUntil: Date?
     let studyUntil: Date?
-    let lastInteractAt: Date
+    let lastInteractAt: Date?
     let createdAt: Date
-    let updatedAt: Date
+    let updatedAt: Date?
     let hatchedAt: Date?
     let preferences: PreferencesDTO?
 
@@ -92,6 +94,8 @@ struct SpiritDTO: Decodable, Sendable, Equatable {
         case status
         case scholarMarks = "scholar_marks"
         case version
+        case onboardingStep = "onboarding_step"
+        case onboardingCompletedAt = "onboarding_completed_at"
         case awayUntil = "away_until"
         case studyUntil = "study_until"
         case lastInteractAt = "last_interact_at"
@@ -138,12 +142,43 @@ struct OnboardingDTO: Decodable, Sendable, Equatable {
         case totalSteps = "total_steps"
         case completedAt = "completed_at"
     }
+
+    init(required: Bool, step: Int, totalSteps: Int, completedAt: Date?) {
+        self.required = required
+        self.step = step
+        self.totalSteps = totalSteps
+        self.completedAt = completedAt
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        required = try container.decode(Bool.self, forKey: .required)
+        step = try container.decode(Int.self, forKey: .step)
+        totalSteps = try container.decodeIfPresent(Int.self, forKey: .totalSteps) ?? 5
+        completedAt = try container.decodeIfPresent(Date.self, forKey: .completedAt)
+    }
 }
 
 struct MutationResourceDTO: Decodable, Sendable, Equatable {
     let type: String
     let id: UUID
     let version: Int
+    let status: String?
+
+    enum CodingKeys: String, CodingKey {
+        case type
+        case id
+        case version
+        case status
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        type = try container.decodeIfPresent(String.self, forKey: .type) ?? "memory"
+        id = try container.decode(UUID.self, forKey: .id)
+        version = try container.decodeIfPresent(Int.self, forKey: .version) ?? 1
+        status = try container.decodeIfPresent(String.self, forKey: .status)
+    }
 }
 
 struct SessionPatchDTO: Decodable, Sendable, Equatable {
@@ -152,6 +187,12 @@ struct SessionPatchDTO: Decodable, Sendable, Equatable {
     let preferences: PreferencesDTO?
     let room: RoomSnapshotDTO?
     let onboarding: OnboardingDTO?
+    let memoriesUpsert: [MemorySummaryDTO]
+    let memoryTombstones: [MemoryTombstoneDTO]
+    let pact: PactResourceDTO?
+    let social: SocialPatchDTO?
+    let postcardsUpsert: [PostcardPublicDTO]
+    let report: ReportSnapshotDTO?
 
     enum CodingKeys: String, CodingKey {
         case snapshotVersion = "snapshot_version"
@@ -159,6 +200,27 @@ struct SessionPatchDTO: Decodable, Sendable, Equatable {
         case preferences
         case room
         case onboarding
+        case memoriesUpsert = "memories_upsert"
+        case memoryTombstones = "memory_tombstones"
+        case pact
+        case social
+        case postcardsUpsert = "postcards_upsert"
+        case report
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        snapshotVersion = try container.decode(Int.self, forKey: .snapshotVersion)
+        spirit = try container.decodeIfPresent(SpiritDTO.self, forKey: .spirit)
+        preferences = try container.decodeIfPresent(PreferencesDTO.self, forKey: .preferences)
+        room = try container.decodeIfPresent(RoomSnapshotDTO.self, forKey: .room)
+        onboarding = try container.decodeIfPresent(OnboardingDTO.self, forKey: .onboarding)
+        memoriesUpsert = try container.decodeIfPresent([MemorySummaryDTO].self, forKey: .memoriesUpsert) ?? []
+        memoryTombstones = try container.decodeIfPresent([MemoryTombstoneDTO].self, forKey: .memoryTombstones) ?? []
+        pact = try container.decodeIfPresent(PactResourceDTO.self, forKey: .pact)
+        social = try container.decodeIfPresent(SocialPatchDTO.self, forKey: .social)
+        postcardsUpsert = try container.decodeIfPresent([PostcardPublicDTO].self, forKey: .postcardsUpsert) ?? []
+        report = try container.decodeIfPresent(ReportSnapshotDTO.self, forKey: .report)
     }
 }
 

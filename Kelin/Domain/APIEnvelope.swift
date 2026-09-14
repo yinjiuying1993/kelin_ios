@@ -122,23 +122,103 @@ enum APIDecoding {
         decoder.dateDecodingStrategy = .custom { decoder in
             let container = try decoder.singleValueContainer()
             let value = try container.decode(String.self)
-
-            let withFractionalSeconds = ISO8601DateFormatter()
-            withFractionalSeconds.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-            if let date = withFractionalSeconds.date(from: value) {
-                return date
-            }
-
-            let standard = ISO8601DateFormatter()
-            standard.formatOptions = [.withInternetDateTime]
-            guard let date = standard.date(from: value) else {
+            guard let date = parseDate(value) else {
                 throw DecodingError.dataCorruptedError(
                     in: container,
-                    debugDescription: "Invalid ISO8601 date: \(value)"
+                    debugDescription: "Invalid ISO8601 date"
                 )
             }
             return date
         }
         return decoder
+    }
+
+    static func parseDate(_ raw: String) -> Date? {
+        let fractional = ISO8601DateFormatter()
+        fractional.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        let standard = ISO8601DateFormatter()
+        standard.formatOptions = [.withInternetDateTime]
+
+        let candidates = [raw, normalizeDateString(raw)]
+        for candidate in Set(candidates) {
+            if let date = fractional.date(from: candidate) {
+                return date
+            }
+            if let date = standard.date(from: candidate) {
+                return date
+            }
+        }
+
+        if raw.count == 10, raw.filter({ $0 == "-" }).count == 2 {
+            return parseDate(raw + "T00:00:00Z")
+        }
+
+        if !hasTimeZone(raw) {
+            return parseDate(raw + "Z")
+        }
+
+        return nil
+    }
+
+    static func decodingDebugDescription(_ error: Error) -> String {
+        guard let decodingError = error as? DecodingError else {
+            return String(describing: type(of: error))
+        }
+
+        switch decodingError {
+        case .keyNotFound(let key, let context):
+            return "key_not_found \(key.stringValue) path=\(codingPath(context))"
+        case .typeMismatch(_, let context):
+            return "type_mismatch path=\(codingPath(context))"
+        case .valueNotFound(_, let context):
+            return "value_not_found path=\(codingPath(context))"
+        case .dataCorrupted(let context):
+            return "data_corrupted path=\(codingPath(context))"
+        @unknown default:
+            return "decoding"
+        }
+    }
+
+    private static func codingPath(_ context: DecodingError.Context) -> String {
+        context.codingPath.map(\.stringValue).joined(separator: ".")
+    }
+
+    private static func hasTimeZone(_ value: String) -> Bool {
+        guard let timeSeparator = value.firstIndex(of: "T") else {
+            return value.hasSuffix("Z")
+        }
+        let timePart = value[value.index(after: timeSeparator)...]
+        return timePart.contains("Z") || timePart.contains("+") || timePart.contains("-")
+    }
+
+    private static func normalizeDateString(_ value: String) -> String {
+        var normalized = value.replacingOccurrences(of: "+00:00", with: "Z")
+        normalized = normalized.replacingOccurrences(of: "-00:00", with: "Z")
+        return normalizeFractionalSeconds(normalized)
+    }
+
+    private static func normalizeFractionalSeconds(_ value: String) -> String {
+        guard let dot = value.lastIndex(of: ".") else {
+            return value
+        }
+
+        let digitsStart = value.index(after: dot)
+        var digitsEnd = digitsStart
+        while digitsEnd < value.endIndex, value[digitsEnd].isNumber {
+            digitsEnd = value.index(after: digitsEnd)
+        }
+
+        let digits = value[digitsStart..<digitsEnd]
+        guard digits.count != 3 else {
+            return value
+        }
+
+        let millis: String
+        if digits.count > 3 {
+            millis = String(digits.prefix(3))
+        } else {
+            millis = digits + String(repeating: "0", count: 3 - digits.count)
+        }
+        return String(value[..<digitsStart]) + millis + String(value[digitsEnd...])
     }
 }

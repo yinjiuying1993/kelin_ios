@@ -4,15 +4,10 @@ struct AgreementView: View {
     @Bindable var appState: AppState
 
     @State private var isAIDisclosureAccepted = false
-    @State private var hasViewedUserTerms = false
-    @State private var hasViewedDataNotice = false
     @State private var presentedDocument: ConsentDocumentKind?
 
     private var canSubmit: Bool {
-        isAIDisclosureAccepted
-            && hasViewedUserTerms
-            && hasViewedDataNotice
-            && !appState.isSubmittingAgreement
+        isAIDisclosureAccepted && !appState.isSubmittingAgreement
     }
 
     var body: some View {
@@ -38,8 +33,8 @@ struct AgreementView: View {
                     Task {
                         await appState.submitAgreement(
                             aiDisclosureAccepted: isAIDisclosureAccepted,
-                            hasViewedUserTerms: hasViewedUserTerms,
-                            hasViewedDataNotice: hasViewedDataNotice
+                            hasViewedUserTerms: true,
+                            hasViewedDataNotice: true
                         )
                     }
                 } label: {
@@ -75,24 +70,11 @@ struct AgreementView: View {
                 presentedDocument = nil
             }
         }
-        .onChange(of: presentedDocument) { _, newValue in
-            switch newValue {
-            case .userTerms:
-                hasViewedUserTerms = true
-            case .dataNotice:
-                hasViewedDataNotice = true
-            case nil:
-                break
-            }
-        }
     }
 
     private var submitAccessibilityHint: String {
         if !isAIDisclosureAccepted {
             return String(localized: "需要先确认人工智能声明")
-        }
-        if !hasViewedUserTerms || !hasViewedDataNotice {
-            return String(localized: "需要先查看用户说明和数据说明")
         }
         return String(localized: "进入选蛋")
     }
@@ -167,8 +149,8 @@ struct AgreementView: View {
                 Task {
                     await appState.submitAgreement(
                         aiDisclosureAccepted: isAIDisclosureAccepted,
-                        hasViewedUserTerms: hasViewedUserTerms,
-                        hasViewedDataNotice: hasViewedDataNotice
+                        hasViewedUserTerms: true,
+                        hasViewedDataNotice: true
                     )
                 }
             }

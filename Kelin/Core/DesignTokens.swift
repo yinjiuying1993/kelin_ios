@@ -11,6 +11,8 @@ enum KelinColor {
     static let accent = Color(hex: 0x8C7CFF)
     static let accentPressed = Color(hex: 0x7465E8)
     static let accentSurface = Color(hex: 0x2B2750)
+    static let onPrimary = Color(hex: 0x2B039C)
+    static let primaryTint = Color(hex: 0xC7BFFF)
     static let accentWarm = Color(hex: 0xF2B86B)
     static let accentCold = Color(hex: 0x73B8D4)
     static let success = Color(hex: 0x7BC8A4)

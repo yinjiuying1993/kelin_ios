@@ -23,6 +23,23 @@ struct OnboardingChatResult: Equatable, Sendable {
     let completedRounds: Int
     let snapshotVersion: Int
     let usesStubProvider: Bool
+    let spirit: Spirit?
+
+    init(
+        userMessage: OnboardingMessage,
+        spiritMessage: OnboardingMessage,
+        completedRounds: Int,
+        snapshotVersion: Int,
+        usesStubProvider: Bool,
+        spirit: Spirit? = nil
+    ) {
+        self.userMessage = userMessage
+        self.spiritMessage = spiritMessage
+        self.completedRounds = completedRounds
+        self.snapshotVersion = snapshotVersion
+        self.usesStubProvider = usesStubProvider
+        self.spirit = spirit
+    }
 }
 
 enum OnboardingConversationDefaults {

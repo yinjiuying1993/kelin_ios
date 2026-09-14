@@ -9,6 +9,8 @@ final class DesignTokensTests: XCTestCase {
         assertColor(KelinColor.surfacePrimary, hex: 0x181D2A)
         assertColor(KelinColor.textPrimary, hex: 0xF2F4F8)
         assertColor(KelinColor.accent, hex: 0x8C7CFF)
+        assertColor(KelinColor.onPrimary, hex: 0x2B039C)
+        assertColor(KelinColor.primaryTint, hex: 0xC7BFFF)
         assertColor(KelinColor.danger, hex: 0xDB6B78)
     }
 

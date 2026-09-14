@@ -3,6 +3,7 @@ import SwiftUI
 struct RootView: View {
     @Bindable var router: AppRouter
     @Bindable var appState: AppState
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         Group {
@@ -36,91 +37,73 @@ struct RootView: View {
 
     private var readyContent: some View {
         NavigationStack(path: $router.path) {
-            VStack(spacing: KelinSpacing.section) {
-                Text("刻灵")
-                    .kelinTypography(KelinTypography.largeTitle)
-                    .accessibilityAddTraits(.isHeader)
-
-                Text(String(localized: "相处，会在身上留下痕迹。"))
-                    .kelinTypography(KelinTypography.secondary, color: KelinColor.textSecondary)
-                    .multilineTextAlignment(.center)
-
-                #if DEBUG
-                integrationStatus
-                #endif
-
-                Button {
-                    router.push(.chat)
-                } label: {
-                    Text(String(localized: "进入对话"))
+            Group {
+                if let snapshot = appState.sessionStore.snapshot,
+                   let spirit = snapshot.spirit {
+                    RoomHostView(
+                        appState: appState,
+                        router: router,
+                        spirit: spirit,
+                        room: snapshot.room
+                    )
+                    .id(spirit.id)
+                } else {
+                    readyFallback
                 }
-                .buttonStyle(.kelinPrimary)
-
-                Button {
-                    router.present(.renameSpirit)
-                } label: {
-                    Text(String(localized: "打开改名"))
-                }
-                .buttonStyle(.kelinSecondary)
-
-                #if DEBUG
-                Button {
-                    router.push(.debug)
-                } label: {
-                    Text(String(localized: "调试"))
-                }
-                .buttonStyle(.kelinSecondary)
-                #endif
             }
-            .padding(KelinSpacing.pageHorizontal)
-            .kelinScreenBackground()
             .navigationDestination(for: Route.self) { route in
-                RoutePlaceholderView(route: route)
+                switch route {
+                case .chat:
+                    ChatHostView(appState: appState)
+                case .memory:
+                    MemoryHostView(appState: appState, router: router)
+                case .feed:
+                    FeedHostView(appState: appState, router: router)
+                case .pact:
+                    PactHostView(appState: appState, router: router)
+                case .social:
+                    SocialHostView(appState: appState, router: router)
+                case .settings:
+                    SettingsHostView(appState: appState, router: router)
+                case .report:
+                    ReportHostView(appState: appState, router: router)
+                default:
+                    RoutePlaceholderView(route: route)
+                }
             }
             .sheet(item: $router.sheet) { sheet in
                 SheetPlaceholderView(router: router, sheet: sheet)
             }
         }
+        .onChange(of: scenePhase) { _, newPhase in
+            guard newPhase == .active else { return }
+            Task {
+                await appState.refreshRoomIfReady()
+            }
+        }
     }
 
-    #if DEBUG
-    private var integrationStatus: some View {
-        let snapshot = appState.sessionStore.snapshot
-        let onboarding = snapshot?.onboarding
-        let source = appState.usesRemoteAPI
-            ? String(localized: "真实 API")
-            : String(localized: "本地 Mock")
-        let spiritName = snapshot?.spirit?.name ?? String(localized: "无精灵")
-        let stepText: String = {
-            guard let onboarding else { return String(localized: "无快照") }
-            return "step \(onboarding.step)/\(onboarding.totalSteps)"
-        }()
+    private var readyFallback: some View {
+        VStack(spacing: KelinSpacing.section) {
+            Text(String(localized: "房间还没准备好"))
+                .kelinTypography(KelinTypography.pageTitle)
 
-        return VStack(alignment: .leading, spacing: KelinSpacing.small) {
-            Text(String(localized: "这是孵化完成后的占位首页，房间四态在 P08。"))
+            Text(String(localized: "相处，会在身上留下痕迹。"))
                 .kelinTypography(KelinTypography.secondary, color: KelinColor.textSecondary)
-            Text("\(source) · \(appState.apiBaseURL?.absoluteString ?? String(localized: "未配置"))")
-                .kelinTypography(KelinTypography.label, color: KelinColor.textSecondary)
-            Text("\(spiritName) · \(stepText)")
-                .kelinTypography(KelinTypography.label, color: KelinColor.textSecondary)
-            if appState.isOffline {
-                Text(String(localized: "当前在用本地缓存，服务端未同步成功。"))
-                    .kelinTypography(KelinTypography.label, color: KelinColor.textSecondary)
-            }
+                .multilineTextAlignment(.center)
 
             Button {
                 Task {
                     await appState.discardLocalCacheAndReload()
                 }
             } label: {
-                Text(String(localized: "丢弃本地缓存并重新同步"))
+                Text(String(localized: "重新同步"))
             }
-            .buttonStyle(.kelinSecondary)
+            .buttonStyle(.kelinPrimary)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.bottom, KelinSpacing.section)
+        .padding(KelinSpacing.pageHorizontal)
+        .kelinScreenBackground()
     }
-    #endif
 }
 
 private struct RoutePlaceholderView: View {

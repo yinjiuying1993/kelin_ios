@@ -125,6 +125,8 @@ fixture 必须使用合成、脱敏数据，并验证与指定 OpenAPI SHA 一�
 
 AI 必须先检查 `git status`、分支和 diff，只改当前任务范围，保护用户修改，并交付 PR 草案。除非用户明确要求，AI 不得 commit、push、创建 PR；任何情况下不得自行批准、签署验收或合并，也不得声称未实际运行的构建、真机或 CI 已通过。
 
+**模拟器/真机测试**：AI 不启动 iOS Simulator、不执行 `xcodebuild test` 或其它依赖设备安装的运行验证；相关环节由人工操作并反馈结果。AI 可执行 `xcodebuild build` 编译检查，并在交付说明中列出建议的人工验证步骤。
+
 ## 合并
 
 - 只允许 Squash merge；PR 标题即最终 commit 标题。

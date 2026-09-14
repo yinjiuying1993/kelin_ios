@@ -141,16 +141,18 @@ struct OnboardingConversationView: View {
             }
             .padding(.horizontal, KelinSpacing.pageHorizontal)
 
-            if appState.onboardingChatError != nil {
+            if let error = appState.onboardingChatError {
                 HStack(spacing: KelinSpacing.compact) {
-                    Text(String(localized: "连不上，再试一次"))
+                    Text(ErrorCopy.app(error).message)
                         .kelinTypography(KelinTypography.secondary, color: KelinColor.danger)
 
                     Button(String(localized: "再试一次")) {
-                        appState.clearOnboardingChatError()
-                        sendMessage()
+                        Task {
+                            await appState.retryOnboardingChat()
+                        }
                     }
                     .kelinTypography(KelinTypography.secondary, color: KelinColor.textPrimary)
+                    .disabled(appState.isSendingOnboardingMessage)
                 }
             }
 
@@ -180,6 +182,9 @@ struct OnboardingConversationView: View {
         draft = ""
         Task {
             await appState.sendOnboardingMessage(content: content)
+            if appState.onboardingChatError != nil, draft.isEmpty, let pending = appState.lastOnboardingDraft {
+                draft = pending
+            }
         }
     }
 

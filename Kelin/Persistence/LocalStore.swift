@@ -43,6 +43,22 @@ actor LocalStore {
         try modelContext.save()
     }
 
+    func deleteMessage(id: UUID, accountUserID: UUID) throws {
+        let targetID = id
+        let targetAccountUserID = accountUserID
+        var descriptor = FetchDescriptor<CachedMessage>(
+            predicate: #Predicate { message in
+                message.id == targetID && message.accountUserID == targetAccountUserID
+            }
+        )
+        descriptor.fetchLimit = 1
+
+        if let message = try modelContext.fetch(descriptor).first {
+            modelContext.delete(message)
+            try modelContext.save()
+        }
+    }
+
     func fetchMessages(accountUserID: UUID) throws -> [CachedMessageRecord] {
         let targetAccountUserID = accountUserID
         let descriptor = FetchDescriptor<CachedMessage>(
@@ -86,6 +102,19 @@ actor LocalStore {
             sortBy: [SortDescriptor(\.updatedAt, order: .reverse)]
         )
         return try modelContext.fetch(descriptor).map(Self.memoryRecord)
+    }
+
+    func clearMemories(accountUserID: UUID) throws {
+        let targetAccountUserID = accountUserID
+        let descriptor = FetchDescriptor<CachedMemory>(
+            predicate: #Predicate { memory in
+                memory.accountUserID == targetAccountUserID
+            }
+        )
+        for memory in try modelContext.fetch(descriptor) {
+            modelContext.delete(memory)
+        }
+        try modelContext.save()
     }
 
     func fetchTombstonedMemories(accountUserID: UUID) throws -> [CachedMemoryRecord] {

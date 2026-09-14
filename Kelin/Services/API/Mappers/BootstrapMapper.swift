@@ -32,7 +32,7 @@ enum BootstrapMapper {
             latestMemories: dto.latestMemories.map(mapMemory),
             unreadPostcards: dto.unreadPostcards.map(mapPostcard),
             activePact: dto.activePact.map(mapPact),
-            report: try mapReport(dto.report),
+            report: try ReportMapper.mapSnapshot(dto.report),
             quotas: try dto.quotas.map(mapQuota),
             featureFlags: mapFeatureFlags(dto.featureFlags),
             serverTime: serverTime
@@ -59,13 +59,17 @@ enum BootstrapMapper {
         )
     }
 
-    private static func mapMemory(_ dto: MemorySummaryDTO) -> MemorySummary {
+    static func mapMemory(_ dto: MemorySummaryDTO) -> MemorySummary {
         MemorySummary(
             id: dto.id,
             type: dto.type,
             summary: dto.summary,
             status: dto.status,
-            createdAt: dto.createdAt
+            createdAt: dto.createdAt,
+            version: dto.version,
+            tags: dto.tags,
+            salience: dto.salience,
+            confidence: dto.confidence
         )
     }
 
@@ -86,26 +90,7 @@ enum BootstrapMapper {
         )
     }
 
-    private static func mapReport(_ dto: ReportSnapshotDTO) throws -> ReportSnapshot {
-        guard let status = ReportStatus(rawValue: dto.status) else {
-            throw AppError.decoding
-        }
-
-        return ReportSnapshot(
-            status: status,
-            reportID: dto.reportID,
-            eligibility: ReportEligibility(
-                isEligible: dto.eligibility.isEligible,
-                eligibleAt: dto.eligibility.eligibleAt,
-                daysRemaining: dto.eligibility.daysRemaining,
-                requiredDialogueRounds: dto.eligibility.requiredDialogueRounds,
-                completedDialogueRounds: dto.eligibility.completedDialogueRounds,
-                dialogueRoundsRemaining: dto.eligibility.dialogueRoundsRemaining
-            )
-        )
-    }
-
-    private static func mapQuota(_ dto: QuotaEntryDTO) throws -> QuotaEntry {
+    static func mapQuota(_ dto: QuotaEntryDTO) throws -> QuotaEntry {
         guard let capability = QuotaKind(rawValue: dto.capability) else {
             throw AppError.decoding
         }

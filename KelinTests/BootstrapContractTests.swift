@@ -56,6 +56,28 @@ final class BootstrapContractTests: XCTestCase {
         )
     }
 
+    func testLiveSpiritPublicBootstrapDecodesWithoutLegacyFields() throws {
+        let snapshot = try mapEnvelope(BootstrapDraftFixtures.liveSpiritPublicEnvelope)
+
+        XCTAssertEqual(snapshot.spirit?.name, "未名")
+        XCTAssertEqual(snapshot.spirit?.egg, .warm)
+        XCTAssertEqual(snapshot.spirit?.version, 1)
+        XCTAssertEqual(snapshot.spirit?.createdAt, snapshot.spirit?.updatedAt)
+        XCTAssertEqual(snapshot.room?.weather, "cloudy")
+        XCTAssertEqual(snapshot.room?.layers, [])
+        XCTAssertEqual(snapshot.onboarding.step, 0)
+        XCTAssertEqual(snapshot.onboarding.totalSteps, 5)
+        XCTAssertEqual(snapshot.schemaVersion, 2)
+        XCTAssertNotNil(snapshot.serverTime)
+    }
+
+    func testParsesMicrosecondOffsetTimestamps() {
+        XCTAssertNotNil(APIDecoding.parseDate("2026-09-09T10:27:00.123456+00:00"))
+        XCTAssertNotNil(APIDecoding.parseDate("2026-09-09T10:27:00.123456Z"))
+        XCTAssertNotNil(APIDecoding.parseDate("2026-09-09T10:27:00+00:00"))
+        XCTAssertNotNil(APIDecoding.parseDate("2026-09-09T10:27:00Z"))
+    }
+
     func testServerTimeComesFromEnvelope() throws {
         let snapshot = try mapEnvelope(BootstrapDraftFixtures.fullUserEnvelope)
 

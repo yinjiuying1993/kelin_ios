@@ -16,18 +16,18 @@ actor SupabaseAuthService: AuthServiceProtocol {
 
     func restoreSession() async throws -> AuthSession? {
         guard client.auth.currentSession != nil else {
-            KelinLog.auth.info("restore_session result=none")
+            KelinLog.auth.debug("restore_session result=none")
             return nil
         }
 
         do {
             let session = try await client.auth.session
             let mapped = try mapSession(session)
-            KelinLog.auth.info("restore_session result=ok user=\(KelinLog.shortID(mapped.userID), privacy: .public)")
+            KelinLog.auth.debug("restore_session result=ok user=\(KelinLog.shortID(mapped.userID))")
             return mapped
         } catch {
-            KelinLog.auth.info(
-                "restore_session result=none \(SupabaseAuthErrorMapper.diagnosticDetail(error), privacy: .public)"
+            KelinLog.auth.debug(
+                "restore_session result=none \(SupabaseAuthErrorMapper.diagnosticDetail(error))"
             )
             return nil
         }
@@ -39,14 +39,14 @@ actor SupabaseAuthService: AuthServiceProtocol {
         do {
             let session = try await client.auth.signInAnonymously()
             let mapped = try mapSession(session)
-            KelinLog.auth.info("sign_in_anonymously result=ok user=\(KelinLog.shortID(mapped.userID), privacy: .public)")
+            KelinLog.auth.info("sign_in_anonymously result=ok user=\(KelinLog.shortID(mapped.userID))")
             return mapped
         } catch is CancellationError {
             throw AppError.cancelled
         } catch {
             let mapped = SupabaseAuthErrorMapper.map(error)
             KelinLog.auth.error(
-                "sign_in_anonymously result=error error_code=\(mapped.diagnosticCode, privacy: .public) \(SupabaseAuthErrorMapper.diagnosticDetail(error), privacy: .public)"
+                "sign_in_anonymously result=error error_code=\(mapped.diagnosticCode) \(SupabaseAuthErrorMapper.diagnosticDetail(error))"
             )
             throw mapped
         }
@@ -58,14 +58,14 @@ actor SupabaseAuthService: AuthServiceProtocol {
         do {
             let session = try await client.auth.refreshSession()
             let mapped = try mapSession(session)
-            KelinLog.auth.info("refresh_session result=ok user=\(KelinLog.shortID(mapped.userID), privacy: .public)")
+            KelinLog.auth.debug("refresh_session result=ok user=\(KelinLog.shortID(mapped.userID))")
             return mapped
         } catch is CancellationError {
             throw AppError.cancelled
         } catch {
             let mapped = SupabaseAuthErrorMapper.map(error)
             KelinLog.auth.error(
-                "refresh_session result=error error_code=\(mapped.diagnosticCode, privacy: .public) \(SupabaseAuthErrorMapper.diagnosticDetail(error), privacy: .public)"
+                "refresh_session result=error error_code=\(mapped.diagnosticCode) \(SupabaseAuthErrorMapper.diagnosticDetail(error))"
             )
             throw mapped
         }

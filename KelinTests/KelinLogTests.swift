@@ -32,4 +32,18 @@ final class KelinLogTests: XCTestCase {
         XCTAssertEqual(error.diagnosticCode, "UNKNOWN")
         XCTAssertEqual(error.diagnosticRequestID, "synthetic-request-id")
     }
+
+    func testConsoleOmitsDebugUnlessVerbose() {
+        XCTAssertFalse(KelinLog.shouldPrintToConsole(.debug, verbose: false))
+        XCTAssertTrue(KelinLog.shouldPrintToConsole(.info, verbose: false))
+        XCTAssertTrue(KelinLog.shouldPrintToConsole(.error, verbose: false))
+        XCTAssertTrue(KelinLog.shouldPrintToConsole(.debug, verbose: true))
+    }
+
+    func testSuccessfulGETIsDebugAndWriteIsInfo() {
+        XCTAssertEqual(KelinLog.apiSuccessLevel(method: "GET", path: "/bootstrap"), .debug)
+        XCTAssertEqual(KelinLog.apiSuccessLevel(method: "GET", path: "/messages?limit=30"), .debug)
+        XCTAssertEqual(KelinLog.apiSuccessLevel(method: "POST", path: "/chat"), .info)
+        XCTAssertEqual(KelinLog.apiSuccessLevel(method: "POST", path: "/extract"), .info)
+    }
 }

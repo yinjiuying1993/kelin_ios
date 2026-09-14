@@ -49,6 +49,26 @@ final class OnboardingConversationTests: XCTestCase {
         XCTAssertEqual(appState.onboardingMessages.count, 2)
     }
 
+    func testRetryOnboardingChatUsesPendingContentWhenDraftIsEmpty() async throws {
+        let chat = MockOnboardingChatService(configuration: .init(error: .timedOut))
+        let (appState, _) = try await makeAppStateAtConversation(chat: chat)
+
+        await appState.sendOnboardingMessage(content: "超时句")
+        XCTAssertEqual(appState.onboardingChatError, .timedOut)
+        XCTAssertEqual(appState.lastOnboardingDraft, "超时句")
+        let clientID = try XCTUnwrap(await chat.recordedRequests().first?.clientMessageID)
+
+        await chat.setConfiguration(.success)
+        await appState.retryOnboardingChat()
+
+        let allRequests = await chat.recordedRequests()
+        XCTAssertEqual(allRequests.count, 2)
+        XCTAssertEqual(allRequests[1].content, "超时句")
+        XCTAssertEqual(allRequests[1].clientMessageID, clientID)
+        XCTAssertNil(appState.onboardingChatError)
+        XCTAssertEqual(appState.onboardingMessages.count, 2)
+    }
+
     func testConcurrentSendIsSingleFlight() async throws {
         let chat = MockOnboardingChatService(configuration: .init(delay: .milliseconds(100)))
         let (appState, _) = try await makeAppStateAtConversation(chat: chat)

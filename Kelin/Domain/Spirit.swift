@@ -93,4 +93,17 @@ struct CreateSpiritResult: Equatable, Sendable {
     let spirit: Spirit
     let onboarding: OnboardingState
     let snapshotVersion: Int
+    let room: RoomSnapshot?
+
+    init(
+        spirit: Spirit,
+        onboarding: OnboardingState,
+        snapshotVersion: Int,
+        room: RoomSnapshot? = nil
+    ) {
+        self.spirit = spirit
+        self.onboarding = onboarding
+        self.snapshotVersion = snapshotVersion
+        self.room = room
+    }
 }

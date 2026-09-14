@@ -79,6 +79,66 @@ final class EggSelectionTests: XCTestCase {
         XCTAssertTrue(requests.isEmpty)
     }
 
+    func testRelaunchReusesPersistedSpiritClientID() async throws {
+        let container = try KelinModelContainerFactory.makeInMemoryContainer()
+        let localStore = LocalStore(modelContainer: container)
+        let auth = MockAuthService()
+        let hatch = MockHatchService(mode: .businessError(.networkUnavailable))
+
+        let firstLaunch = AppState(
+            auth: auth,
+            localStore: localStore,
+            bootstrapService: MockBootstrapService(mode: .newUser),
+            hatchService: hatch
+        )
+        firstLaunch.beginLaunch()
+        await waitForPhase(.needsAgreement, in: firstLaunch)
+        await firstLaunch.submitAgreement(
+            aiDisclosureAccepted: true,
+            hasViewedUserTerms: true,
+            hasViewedDataNotice: true
+        )
+        await firstLaunch.createSpirit(selectedOption: .warm)
+
+        let persistedRequests = await hatch.recordedRequests()
+        let persistedID = try XCTUnwrap(persistedRequests.first?.clientID)
+
+        let retryHatch = MockHatchService(mode: .success(.warm))
+        let relaunch = AppState(
+            auth: auth,
+            localStore: localStore,
+            bootstrapService: MockBootstrapService(mode: .newUser),
+            hatchService: retryHatch
+        )
+        relaunch.beginLaunch()
+        await waitForPhase(.needsAgreement, in: relaunch)
+        await relaunch.submitAgreement(
+            aiDisclosureAccepted: true,
+            hasViewedUserTerms: true,
+            hasViewedDataNotice: true
+        )
+        await relaunch.createSpirit(selectedOption: .warm)
+
+        let retryRequests = await retryHatch.recordedRequests()
+        XCTAssertEqual(retryRequests.count, 1)
+        XCTAssertEqual(retryRequests.first?.clientID, persistedID)
+        XCTAssertEqual(relaunch.phase, .needsFirstConversation(step: 1))
+    }
+
+    func testCreateSpiritConflictRefreshesBootstrap() async throws {
+        let hatch = MockHatchService(mode: .businessError(.conflict))
+        let bootstrap = MockBootstrapService(mode: .newUser)
+        let (appState, _) = try await makeAppStateAtEggSelection(hatch: hatch, bootstrap: bootstrap)
+
+        await bootstrap.setMode(.onboardingUser)
+        await appState.createSpirit(selectedOption: .warm)
+
+        XCTAssertNil(appState.hatchError)
+        XCTAssertEqual(appState.phase, .needsFirstConversation(step: 4))
+        XCTAssertNotNil(appState.sessionStore.snapshot?.spirit)
+        XCTAssertEqual(appState.sessionStore.snapshot?.room?.weather, "cloudy")
+    }
+
     func testReturnToAgreementRestoresPreviousPhase() async throws {
         let (appState, _) = try await makeAppStateAtEggSelection()
 
@@ -93,13 +153,14 @@ final class EggSelectionTests: XCTestCase {
     }
 
     private func makeAppStateAtEggSelection(
-        hatch: MockHatchService = MockHatchService()
+        hatch: MockHatchService = MockHatchService(),
+        bootstrap: MockBootstrapService = MockBootstrapService(mode: .newUser)
     ) async throws -> (appState: AppState, hatch: MockHatchService) {
         let container = try KelinModelContainerFactory.makeInMemoryContainer()
         let appState = AppState(
             auth: MockAuthService(),
             localStore: LocalStore(modelContainer: container),
-            bootstrapService: MockBootstrapService(mode: .newUser),
+            bootstrapService: bootstrap,
             hatchService: hatch
         )
 

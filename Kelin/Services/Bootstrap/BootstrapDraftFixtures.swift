@@ -273,16 +273,11 @@ enum BootstrapDraftFixtures {
     {
       "ok": true,
       "data": {
+        "schema_version": 2,
         "snapshot_version": 1,
         "api_version": "v1",
         "spirit": null,
         "room": null,
-        "onboarding": {
-          "required": true,
-          "step": 0,
-          "total_steps": 5,
-          "completed_at": null
-        },
         "latest_memories": [],
         "unread_postcards": [],
         "active_pact": null,
@@ -306,8 +301,81 @@ enum BootstrapDraftFixtures {
         }
       },
       "error": null,
-      "request_id": "req-bootstrap-missing-schema",
+      "request_id": "req-bootstrap-missing-onboarding",
       "server_time": "2026-09-07T03:46:00Z"
+    }
+    """
+
+    /// Live OpenAPI `SpiritPublic` + `RoomPublic` (SHA fc79081f…): no user_id /
+    /// last_interact_at / updated_at; layers are strings; timestamps may be
+    /// microseconds with +00:00.
+    static let liveSpiritPublicEnvelope = """
+    {
+      "ok": true,
+      "data": {
+        "schema_version": 2,
+        "snapshot_version": 1,
+        "api_version": "v1",
+        "spirit": {
+          "id": "00000000-0000-0000-0000-000000000101",
+          "name": "未名",
+          "egg": "warm",
+          "invite_code": "ABCD2345",
+          "closeness": 65,
+          "curiosity": 55,
+          "sharpness": 35,
+          "nocturnal": 40,
+          "stubborn": 40,
+          "hunger": 80,
+          "energy": 80,
+          "mood": 60,
+          "bond": 0,
+          "stage": "whelp",
+          "status": "home",
+          "scholar_marks": [],
+          "version": 1,
+          "onboarding_step": 0,
+          "onboarding_completed_at": null,
+          "hatched_at": null,
+          "created_at": "2026-09-09T10:27:00.123456+00:00"
+        },
+        "room": {
+          "weather": "cloudy",
+          "layers": [],
+          "letter": null,
+          "pending_sight": null,
+          "unread_footprint_count": 0,
+          "updated_at": "2026-09-09T10:27:00.123456+00:00"
+        },
+        "onboarding": {
+          "required": true,
+          "step": 0
+        },
+        "latest_memories": [],
+        "unread_postcards": [],
+        "active_pact": null,
+        "report": {
+          "status": "locked",
+          "report_id": null,
+          "eligibility": {
+            "is_eligible": false,
+            "eligible_at": "2026-09-16T00:00:00.123456+00:00",
+            "days_remaining": 7,
+            "required_dialogue_rounds": 10,
+            "completed_dialogue_rounds": 0,
+            "dialogue_rounds_remaining": 10
+          },
+          "card": null
+        },
+        "quotas": [],
+        "feature_flags": {
+          "remote_search": true,
+          "image_feed": true
+        }
+      },
+      "error": null,
+      "request_id": "req-bootstrap-live-spirit-public",
+      "server_time": "2026-09-09T10:27:00.123456+00:00"
     }
     """
 }

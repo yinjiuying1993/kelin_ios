@@ -14,13 +14,31 @@ extension View {
 
     func kelinStandardCard() -> some View {
         padding(KelinSpacing.standard)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(KelinColor.surfacePrimary.opacity(0.96))
-            .clipShape(RoundedRectangle(cornerRadius: KelinRadius.standard))
-            .overlay {
-                RoundedRectangle(cornerRadius: KelinRadius.standard)
-                    .stroke(KelinColor.borderSubtle, lineWidth: 1)
-            }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(KelinColor.surfacePrimary.opacity(0.96))
+        .clipShape(RoundedRectangle(cornerRadius: KelinRadius.standard))
+        .overlay {
+            RoundedRectangle(cornerRadius: KelinRadius.standard)
+                .stroke(KelinColor.borderSubtle, lineWidth: 1)
+        }
+    }
+
+    /// 430 pt 及以上屏幕居中限宽，避免卡片和操作坞被无限拉宽。
+    func kelinConstrainedContentWidth() -> some View {
+        modifier(KelinConstrainedContentWidthModifier())
+    }
+}
+
+private struct KelinConstrainedContentWidthModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        GeometryReader { geometry in
+            content
+                .frame(
+                    maxWidth: min(geometry.size.width, KelinLayout.referenceCanvasWidth + 24),
+                    maxHeight: .infinity
+                )
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
     }
 }
 

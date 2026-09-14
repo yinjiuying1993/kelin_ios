@@ -68,6 +68,30 @@ final class APIClientTests: XCTestCase {
         XCTAssertEqual(capturedRequest?.value(forHTTPHeaderField: "Content-Type"), "application/json")
     }
 
+    func testAccepted202EnvelopeIsSuccess() async throws {
+        StubURLProtocol.requestHandler = { request in
+            let response = HTTPURLResponse(
+                url: request.url!,
+                statusCode: 202,
+                httpVersion: nil,
+                headerFields: nil
+            )!
+            return (response, Self.successEnvelopeData())
+        }
+
+        let client = APIClient(
+            config: config,
+            auth: auth,
+            urlSession: StubURLSessionFactory.make()
+        )
+
+        let payload: PingResponse = try await client.send(
+            .delete("/account", body: Data("{}".utf8)),
+            responseType: PingResponse.self
+        )
+        XCTAssertEqual(payload.message, "pong")
+    }
+
     func testUnauthorizedRefreshesSessionOnceAndRetries() async throws {
         var attemptCount = 0
         StubURLProtocol.requestHandler = { request in
@@ -165,7 +189,52 @@ final class APIClientTests: XCTestCase {
             _ = try await client.send(.get("/ping"), responseType: PingResponse.self)
             XCTFail("Expected quota error")
         } catch let error as AppError {
-            XCTAssertEqual(error, .quotaExceeded(.tts))
+            XCTAssertEqual(error, .quotaExceeded(.tts, resetAt: nil))
+        }
+    }
+
+    func testQuotaExceededReadsResetAtFromDetails() async throws {
+        StubURLProtocol.requestHandler = { request in
+            let response = HTTPURLResponse(
+                url: request.url!,
+                statusCode: 200,
+                httpVersion: nil,
+                headerFields: nil
+            )!
+            let body = """
+            {
+              "ok": false,
+              "data": null,
+              "error": {
+                "code": "QUOTA_EXCEEDED",
+                "message": "quota exceeded",
+                "retryable": false,
+                "details": {"quota": "food", "reset_at": "2026-09-12T16:00:00Z"}
+              },
+              "request_id": "req-quota-reset",
+              "server_time": "2026-09-11T09:00:00Z"
+            }
+            """.data(using: .utf8)!
+            return (response, body)
+        }
+
+        let client = APIClient(
+            config: config,
+            auth: auth,
+            urlSession: StubURLSessionFactory.make()
+        )
+
+        do {
+            _ = try await client.send(.get("/ping"), responseType: PingResponse.self)
+            XCTFail("Expected quota error")
+        } catch let error as AppError {
+            XCTAssertEqual(
+                error,
+                .quotaExceeded(
+                    .food,
+                    resetAt: APIDecoding.parseDate("2026-09-12T16:00:00Z")
+                )
+            )
         }
     }
 
@@ -223,6 +292,32 @@ final class APIClientTests: XCTestCase {
         } catch let error as AppError {
             XCTAssertEqual(error, .timedOut)
         }
+    }
+
+    func testHealthLiveUsesRootPathWithoutJWTOrEnvelope() async throws {
+        var capturedRequest: URLRequest?
+        StubURLProtocol.requestHandler = { request in
+            capturedRequest = request
+            let response = HTTPURLResponse(
+                url: request.url!,
+                statusCode: 200,
+                httpVersion: nil,
+                headerFields: nil
+            )!
+            return (response, Data(#"{"status":"live"}"#.utf8))
+        }
+
+        let client = APIClient(
+            config: config,
+            auth: auth,
+            urlSession: StubURLSessionFactory.make()
+        )
+
+        let status = try await client.checkHealthLive()
+
+        XCTAssertEqual(status, "live")
+        XCTAssertEqual(capturedRequest?.url?.absoluteString, "https://api.example.com/health/live")
+        XCTAssertNil(capturedRequest?.value(forHTTPHeaderField: "Authorization"))
     }
 
     func testMockAPIClientReturnsConfiguredEnvelope() async throws {

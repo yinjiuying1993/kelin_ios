@@ -24,7 +24,7 @@ actor APIOnboardingChatService: OnboardingChatServiceProtocol {
         let request = ChatMapper.makeRequest(clientMessageID: clientMessageID, content: trimmed)
         let body = try APIDecoding.encodeBody(request)
         let mutation = try await client.send(
-            .post("/chat", body: body),
+            .post("/chat", body: body, timeout: APIEndpoint.chatPOSTTimeout),
             responseType: ChatMutationResultDTO.self
         )
         return try ChatMapper.mapOnboardingChatResult(mutation)

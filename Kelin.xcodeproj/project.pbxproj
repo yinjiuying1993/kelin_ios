@@ -116,6 +116,191 @@
 		A10000000000000000000074 /* OnboardingCompleteMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000077 /* OnboardingCompleteMapper.swift */; };
 		A10000000000000000000079 /* KelinLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000079 /* KelinLog.swift */; };
 		A1000000000000000000007A /* KelinLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000007A /* KelinLogTests.swift */; };
+		A1000000000000000000007B /* RoomSceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000007B /* RoomSceneModel.swift */; };
+		A1000000000000000000007C /* RoomRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000007C /* RoomRules.swift */; };
+		A1000000000000000000007D /* RoomRulesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000007D /* RoomRulesTests.swift */; };
+		A1000000000000000000007E /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000007E /* RoomView.swift */; };
+		A1000000000000000000007F /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000007F /* RoomViewModel.swift */; };
+		A10000000000000000000080 /* RoomSceneStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000080 /* RoomSceneStack.swift */; };
+		A10000000000000000000081 /* RoomDockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000081 /* RoomDockView.swift */; };
+		A10000000000000000000082 /* RoomLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000082 /* RoomLayoutTests.swift */; };
+		A10000000000000000000083 /* RoomHomeEnvironmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000083 /* RoomHomeEnvironmentView.swift */; };
+		A10000000000000000000084 /* RoomSpiritEntityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000084 /* RoomSpiritEntityView.swift */; };
+		A10000000000000000000085 /* RoomMoreMenuSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000085 /* RoomMoreMenuSheet.swift */; };
+		A10000000000000000000086 /* RoomHotspotRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000086 /* RoomHotspotRules.swift */; };
+		A10000000000000000000087 /* RoomHotspotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000087 /* RoomHotspotTests.swift */; };
+		A10000000000000000000088 /* RoomPaperNoteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000088 /* RoomPaperNoteSheet.swift */; };
+		A10000000000000000000089 /* RoomMarkOriginSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000089 /* RoomMarkOriginSheet.swift */; };
+		A1000000000000000000008A /* RoomSightMemorySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000008A /* RoomSightMemorySheet.swift */; };
+		A1000000000000000000008B /* RoomRefreshRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000008B /* RoomRefreshRules.swift */; };
+		A1000000000000000000008C /* RoomHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000008C /* RoomHostView.swift */; };
+		A1000000000000000000008D /* RoomRefreshTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000008D /* RoomRefreshTests.swift */; };
+		A1000000000000000000008E /* RoomSpiritMotionRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000008E /* RoomSpiritMotionRules.swift */; };
+		A1000000000000000000008F /* RoomSpiritMotionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000008F /* RoomSpiritMotionTests.swift */; };
+		A10000000000000000000090 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000090 /* ChatMessage.swift */; };
+		A10000000000000000000091 /* MessageCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000091 /* MessageCodec.swift */; };
+		A10000000000000000000092 /* ChatHistoryRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000092 /* ChatHistoryRules.swift */; };
+		A10000000000000000000093 /* ChatHistoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000093 /* ChatHistoryCache.swift */; };
+		A10000000000000000000094 /* MessagesDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000094 /* MessagesDTO.swift */; };
+		A10000000000000000000095 /* MessagesMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000095 /* MessagesMapper.swift */; };
+		A10000000000000000000096 /* MessagesServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000096 /* MessagesServiceProtocol.swift */; };
+		A10000000000000000000097 /* MessagesDraftFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000097 /* MessagesDraftFixtures.swift */; };
+		A10000000000000000000098 /* MockMessagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000098 /* MockMessagesService.swift */; };
+		A10000000000000000000099 /* ChatHistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000099 /* ChatHistoryTests.swift */; };
+		A1000000000000000000009A /* ChatSendContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000009A /* ChatSendContext.swift */; };
+		A1000000000000000000009B /* ChatSendPayloadCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000009B /* ChatSendPayloadCodec.swift */; };
+		A1000000000000000000009C /* ChatOutboundRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000009C /* ChatOutboundRules.swift */; };
+		A1000000000000000000009D /* ChatServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000009D /* ChatServiceProtocol.swift */; };
+		A1000000000000000000009E /* MockChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000009E /* MockChatService.swift */; };
+		A1000000000000000000009F /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000009F /* ChatViewModel.swift */; };
+		A100000000000000000000A0 /* ChatSendQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000A0 /* ChatSendQueueTests.swift */; };
+		A100000000000000000000A1 /* ChatTimelineRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000A1 /* ChatTimelineRules.swift */; };
+		A100000000000000000000A2 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000A2 /* ChatView.swift */; };
+		A100000000000000000000A3 /* ChatHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000A3 /* ChatHostView.swift */; };
+		A100000000000000000000A4 /* ChatMessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000A4 /* ChatMessageBubble.swift */; };
+		A100000000000000000000A5 /* ChatSourceRefPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000A5 /* ChatSourceRefPill.swift */; };
+		A100000000000000000000A6 /* ChatTypingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000A6 /* ChatTypingIndicatorView.swift */; };
+		A100000000000000000000A7 /* ChatComposerBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000A7 /* ChatComposerBar.swift */; };
+		A100000000000000000000F8 /* ChatVoiceRecordingHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000F8 /* ChatVoiceRecordingHUD.swift */; };
+		A100000000000000000000A8 /* ChatEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000A8 /* ChatEmptyStateView.swift */; };
+		A100000000000000000000A9 /* ChatLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000A9 /* ChatLayout.swift */; };
+		A100000000000000000000AA /* ChatUILayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000AA /* ChatUILayoutTests.swift */; };
+		A100000000000000000000AB /* APIChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000AB /* APIChatService.swift */; };
+		A100000000000000000000AC /* ChatDraftFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000AC /* ChatDraftFixtures.swift */; };
+		A100000000000000000000AD /* ChatNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000AD /* ChatNetworkTests.swift */; };
+		A100000000000000000000AE /* APIMessagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000AE /* APIMessagesService.swift */; };
+		A100000000000000000000AF /* ExtractDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000AF /* ExtractDTO.swift */; };
+		A100000000000000000000B0 /* ExtractMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000B0 /* ExtractMapper.swift */; };
+		A100000000000000000000B1 /* ExtractServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000B1 /* ExtractServiceProtocol.swift */; };
+		A100000000000000000000B2 /* APIExtractService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000B2 /* APIExtractService.swift */; };
+		A100000000000000000000B3 /* MockExtractService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000B3 /* MockExtractService.swift */; };
+		A100000000000000000000B4 /* ExtractDraftFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000B4 /* ExtractDraftFixtures.swift */; };
+		A100000000000000000000B5 /* ExtractClientIDStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000B5 /* ExtractClientIDStore.swift */; };
+		A100000000000000000000B6 /* ChatIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000B6 /* ChatIntegrationTests.swift */; };
+		A100000000000000000000B7 /* P11MemoryContractManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000B7 /* P11MemoryContractManifest.swift */; };
+		A100000000000000000000B8 /* P11MemoryContractManifestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000B8 /* P11MemoryContractManifestTests.swift */; };
+		A100000000000000000000B9 /* RoomMoreMenuRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000B9 /* RoomMoreMenuRules.swift */; };
+		A100000000000000000000BA /* RoomMoreMenuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000BA /* RoomMoreMenuTests.swift */; };
+		A100000000000000000000BB /* MemoryPresentationRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000BB /* MemoryPresentationRules.swift */; };
+		A100000000000000000000BC /* MemoryLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000BC /* MemoryLayout.swift */; };
+		A100000000000000000000BD /* MemoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000BD /* MemoryViewModel.swift */; };
+		A100000000000000000000BE /* MemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000BE /* MemoryView.swift */; };
+		A100000000000000000000BF /* MemoryHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000BF /* MemoryHostView.swift */; };
+		A100000000000000000000C0 /* MemoryEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000C0 /* MemoryEmptyStateView.swift */; };
+		A100000000000000000000C1 /* MemoryTimelineCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000C1 /* MemoryTimelineCard.swift */; };
+		A100000000000000000000C2 /* MemoryDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000C2 /* MemoryDetailSheet.swift */; };
+		A100000000000000000000C3 /* MemoryPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000C3 /* MemoryPresentationTests.swift */; };
+		A100000000000000000000C4 /* MemoryUILayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000C4 /* MemoryUILayoutTests.swift */; };
+		A100000000000000000000C5 /* MemoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000C5 /* MemoryDTO.swift */; };
+		A100000000000000000000C6 /* MemoryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000C6 /* MemoryMapper.swift */; };
+		A100000000000000000000C7 /* MemoryCacheRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000C7 /* MemoryCacheRules.swift */; };
+		A100000000000000000000C8 /* MemoryCitationRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000C8 /* MemoryCitationRules.swift */; };
+		A100000000000000000000C9 /* MemoryMutationRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000C9 /* MemoryMutationRules.swift */; };
+		A100000000000000000000CA /* MemoryCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000CA /* MemoryCodec.swift */; };
+		A100000000000000000000CB /* MemoryClientIDStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000CB /* MemoryClientIDStore.swift */; };
+		A100000000000000000000CC /* MemoryServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000CC /* MemoryServiceProtocol.swift */; };
+		A100000000000000000000CD /* APIMemoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000CD /* APIMemoryService.swift */; };
+		A100000000000000000000CE /* MockMemoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000CE /* MockMemoryService.swift */; };
+		A100000000000000000000CF /* MemoryDraftFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000CF /* MemoryDraftFixtures.swift */; };
+		A100000000000000000000D0 /* MemoryMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000D0 /* MemoryMapperTests.swift */; };
+		A100000000000000000000D1 /* MemoryCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000D1 /* MemoryCacheTests.swift */; };
+		A100000000000000000000D2 /* MemoryMutationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000D2 /* MemoryMutationTests.swift */; };
+		A100000000000000000000D3 /* P12FeedContractManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000D3 /* P12FeedContractManifest.swift */; };
+		A100000000000000000000D4 /* P12FeedContractManifestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000D4 /* P12FeedContractManifestTests.swift */; };
+		A100000000000000000000D5 /* FeedPresentationRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000D5 /* FeedPresentationRules.swift */; };
+		A100000000000000000000D6 /* FeedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000D6 /* FeedLayout.swift */; };
+		A100000000000000000000D7 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000D7 /* FeedViewModel.swift */; };
+		A100000000000000000000D8 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000D8 /* FeedView.swift */; };
+		A100000000000000000000D9 /* FeedHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000D9 /* FeedHostView.swift */; };
+		A100000000000000000000DA /* FeedLocationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000DA /* FeedLocationSheet.swift */; };
+		A100000000000000000000DB /* FeedPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000DB /* FeedPresentationTests.swift */; };
+		A100000000000000000000DC /* FeedUILayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000DC /* FeedUILayoutTests.swift */; };
+		A100000000000000000000DD /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000DD /* Feed.swift */; };
+		A100000000000000000000DE /* FeedDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000DE /* FeedDTO.swift */; };
+		A100000000000000000000DF /* FeedMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000DF /* FeedMapper.swift */; };
+		A100000000000000000000E0 /* FeedServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000E0 /* FeedServiceProtocol.swift */; };
+		A100000000000000000000E1 /* APIFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000E1 /* APIFeedService.swift */; };
+		A100000000000000000000E2 /* MockFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000E2 /* MockFeedService.swift */; };
+		A100000000000000000000E3 /* PhotoProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000E3 /* PhotoProcessor.swift */; };
+		A100000000000000000000E4 /* SightUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000E4 /* SightUploader.swift */; };
+		A100000000000000000000E5 /* FeedClientIDStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000E5 /* FeedClientIDStore.swift */; };
+		A100000000000000000000E6 /* FeedPromiseNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000E6 /* FeedPromiseNotifier.swift */; };
+		A100000000000000000000E7 /* FeedDraftFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000E7 /* FeedDraftFixtures.swift */; };
+		A100000000000000000000E8 /* FeedMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000E8 /* FeedMapperTests.swift */; };
+		A100000000000000000000E9 /* PhotoProcessorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000E9 /* PhotoProcessorTests.swift */; };
+		A100000000000000000000EA /* P13GrowthContractManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000EA /* P13GrowthContractManifest.swift */; };
+		A100000000000000000000EB /* P13GrowthContractManifestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000EB /* P13GrowthContractManifestTests.swift */; };
+		A100000000000000000000EC /* P14SpeechContractManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000EC /* P14SpeechContractManifest.swift */; };
+		A100000000000000000000ED /* P14SpeechContractManifestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000ED /* P14SpeechContractManifestTests.swift */; };
+		A100000000000000000000F9 /* P15PactContractManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000F9 /* P15PactContractManifest.swift */; };
+		A100000000000000000000FA /* P15PactContractManifestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000FA /* P15PactContractManifestTests.swift */; };
+		A10000000000000000000100 /* PactPresentationRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000100 /* PactPresentationRules.swift */; };
+		A10000000000000000000101 /* PactDraftFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000101 /* PactDraftFixtures.swift */; };
+		A10000000000000000000102 /* PactLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000102 /* PactLayout.swift */; };
+		A10000000000000000000103 /* PactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000103 /* PactViewModel.swift */; };
+		A10000000000000000000104 /* PactHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000104 /* PactHostView.swift */; };
+		A10000000000000000000105 /* PactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000105 /* PactView.swift */; };
+		A10000000000000000000107 /* PactPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000107 /* PactPresentationTests.swift */; };
+		A10000000000000000000108 /* PactUILayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000108 /* PactUILayoutTests.swift */; };
+		A10000000000000000000110 /* Pact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000110 /* Pact.swift */; };
+		A10000000000000000000111 /* PactDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000111 /* PactDTO.swift */; };
+		A10000000000000000000112 /* PactMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000112 /* PactMapper.swift */; };
+		A10000000000000000000113 /* PactCacheRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000113 /* PactCacheRules.swift */; };
+		A10000000000000000000114 /* PactServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000114 /* PactServiceProtocol.swift */; };
+		A10000000000000000000115 /* APIPactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000115 /* APIPactService.swift */; };
+		A10000000000000000000116 /* MockPactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000116 /* MockPactService.swift */; };
+		A10000000000000000000117 /* PactContractFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000117 /* PactContractFixtures.swift */; };
+		A10000000000000000000118 /* PactClientIDStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000118 /* PactClientIDStore.swift */; };
+		A10000000000000000000119 /* PactAnswerQueueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000119 /* PactAnswerQueueStore.swift */; };
+		A10000000000000000000120 /* PactMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000120 /* PactMapperTests.swift */; };
+		A10000000000000000000121 /* PactCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000121 /* PactCacheTests.swift */; };
+		A10000000000000000000122 /* PactAnswerQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000122 /* PactAnswerQueueTests.swift */; };
+		A10000000000000000000130 /* SocialPresentationRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000130 /* SocialPresentationRules.swift */; };
+		A10000000000000000000131 /* SocialDraftFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000131 /* SocialDraftFixtures.swift */; };
+		A10000000000000000000132 /* SocialLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000132 /* SocialLayout.swift */; };
+		A10000000000000000000133 /* SocialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000133 /* SocialViewModel.swift */; };
+		A10000000000000000000134 /* SocialHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000134 /* SocialHostView.swift */; };
+		A10000000000000000000135 /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000135 /* SocialView.swift */; };
+		A10000000000000000000136 /* SocialPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000136 /* SocialPresentationTests.swift */; };
+		A10000000000000000000137 /* SocialUILayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000137 /* SocialUILayoutTests.swift */; };
+		A10000000000000000000140 /* SettingsPresentationRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000140 /* SettingsPresentationRules.swift */; };
+		A10000000000000000000141 /* SettingsDraftFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000141 /* SettingsDraftFixtures.swift */; };
+		A10000000000000000000142 /* SettingsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000142 /* SettingsLayout.swift */; };
+		A10000000000000000000143 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000143 /* SettingsViewModel.swift */; };
+		A10000000000000000000144 /* SettingsHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000144 /* SettingsHostView.swift */; };
+		A10000000000000000000145 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000145 /* SettingsView.swift */; };
+		A10000000000000000000146 /* SettingsPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000146 /* SettingsPresentationTests.swift */; };
+		A10000000000000000000147 /* SettingsUILayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000147 /* SettingsUILayoutTests.swift */; };
+		A10000000000000000000150 /* P16P20ContractManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000150 /* P16P20ContractManifest.swift */; };
+		A10000000000000000000151 /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000151 /* Social.swift */; };
+		A10000000000000000000152 /* ReportCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000152 /* ReportCard.swift */; };
+		A10000000000000000000153 /* SocialDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000153 /* SocialDTO.swift */; };
+		A10000000000000000000154 /* DeviceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000154 /* DeviceDTO.swift */; };
+		A10000000000000000000155 /* SettingsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000155 /* SettingsDTO.swift */; };
+		A10000000000000000000156 /* ReportDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000156 /* ReportDTO.swift */; };
+		A10000000000000000000157 /* SocialMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000157 /* SocialMapper.swift */; };
+		A10000000000000000000158 /* ReportMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000158 /* ReportMapper.swift */; };
+		A10000000000000000000159 /* DeviceMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000159 /* DeviceMapper.swift */; };
+		A10000000000000000000160 /* SocialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000160 /* SocialService.swift */; };
+		A10000000000000000000161 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000161 /* DeviceService.swift */; };
+		A10000000000000000000162 /* ReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000162 /* ReportService.swift */; };
+		A10000000000000000000163 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000163 /* SettingsService.swift */; };
+		A10000000000000000000164 /* ReportPresentationRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000164 /* ReportPresentationRules.swift */; };
+		A10000000000000000000165 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000165 /* ReportViewModel.swift */; };
+		A10000000000000000000166 /* ReportHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000166 /* ReportHostView.swift */; };
+		A10000000000000000000167 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000167 /* ReportView.swift */; };
+		A10000000000000000000168 /* P16P20ContractManifestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000168 /* P16P20ContractManifestTests.swift */; };
+		A10000000000000000000169 /* P16P20ClientIDStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000169 /* P16P20ClientIDStore.swift */; };
+		A100000000000000000000EE /* SpeechDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000EE /* SpeechDTO.swift */; };
+		A100000000000000000000EF /* SpeechMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000EF /* SpeechMapper.swift */; };
+		A100000000000000000000F0 /* Speech.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000F0 /* Speech.swift */; };
+		A100000000000000000000F1 /* SpeechServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000F1 /* SpeechServiceProtocol.swift */; };
+		A100000000000000000000F2 /* APISpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000F2 /* APISpeechService.swift */; };
+		A100000000000000000000F3 /* MockSpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000F3 /* MockSpeechService.swift */; };
+		A100000000000000000000F4 /* VoiceRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000F4 /* VoiceRules.swift */; };
+		A100000000000000000000F5 /* VoiceAudioServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000F5 /* VoiceAudioServices.swift */; };
+		A100000000000000000000F6 /* SpeechDraftFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000F6 /* SpeechDraftFixtures.swift */; };
+		A100000000000000000000F7 /* SpeechMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000F7 /* SpeechMapperTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -235,6 +420,27 @@
 		B10000000000000000000078 /* Debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Debug-Info.plist"; sourceTree = "<group>"; };
 		B10000000000000000000079 /* KelinLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelinLog.swift; sourceTree = "<group>"; };
 		B1000000000000000000007A /* KelinLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelinLogTests.swift; sourceTree = "<group>"; };
+		B1000000000000000000007B /* RoomSceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSceneModel.swift; sourceTree = "<group>"; };
+		B1000000000000000000007C /* RoomRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomRules.swift; sourceTree = "<group>"; };
+		B1000000000000000000007D /* RoomRulesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomRulesTests.swift; sourceTree = "<group>"; };
+		B1000000000000000000007E /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
+		B1000000000000000000007F /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
+		B10000000000000000000080 /* RoomSceneStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSceneStack.swift; sourceTree = "<group>"; };
+		B10000000000000000000081 /* RoomDockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDockView.swift; sourceTree = "<group>"; };
+		B10000000000000000000082 /* RoomLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomLayoutTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000083 /* RoomHomeEnvironmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomHomeEnvironmentView.swift; sourceTree = "<group>"; };
+		B10000000000000000000084 /* RoomSpiritEntityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSpiritEntityView.swift; sourceTree = "<group>"; };
+		B10000000000000000000085 /* RoomMoreMenuSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMoreMenuSheet.swift; sourceTree = "<group>"; };
+		B10000000000000000000086 /* RoomHotspotRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomHotspotRules.swift; sourceTree = "<group>"; };
+		B10000000000000000000087 /* RoomHotspotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomHotspotTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000088 /* RoomPaperNoteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomPaperNoteSheet.swift; sourceTree = "<group>"; };
+		B10000000000000000000089 /* RoomMarkOriginSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMarkOriginSheet.swift; sourceTree = "<group>"; };
+		B1000000000000000000008A /* RoomSightMemorySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSightMemorySheet.swift; sourceTree = "<group>"; };
+		B1000000000000000000008B /* RoomRefreshRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomRefreshRules.swift; sourceTree = "<group>"; };
+		B1000000000000000000008C /* RoomHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomHostView.swift; sourceTree = "<group>"; };
+		B1000000000000000000008D /* RoomRefreshTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomRefreshTests.swift; sourceTree = "<group>"; };
+		B1000000000000000000008E /* RoomSpiritMotionRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSpiritMotionRules.swift; sourceTree = "<group>"; };
+		B1000000000000000000008F /* RoomSpiritMotionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSpiritMotionTests.swift; sourceTree = "<group>"; };
 		B1000000000000000000006F /* SupabaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseAuthService.swift; sourceTree = "<group>"; };
 		B10000000000000000000070 /* APIBootstrapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBootstrapService.swift; sourceTree = "<group>"; };
 		B10000000000000000000071 /* APIHatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHatchService.swift; sourceTree = "<group>"; };
@@ -244,6 +450,170 @@
 		B10000000000000000000075 /* OnboardingCompleteDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompleteDTO.swift; sourceTree = "<group>"; };
 		B10000000000000000000076 /* ChatMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMapper.swift; sourceTree = "<group>"; };
 		B10000000000000000000077 /* OnboardingCompleteMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompleteMapper.swift; sourceTree = "<group>"; };
+		B10000000000000000000090 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		B10000000000000000000091 /* MessageCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCodec.swift; sourceTree = "<group>"; };
+		B10000000000000000000092 /* ChatHistoryRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryRules.swift; sourceTree = "<group>"; };
+		B10000000000000000000093 /* ChatHistoryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryCache.swift; sourceTree = "<group>"; };
+		B10000000000000000000094 /* MessagesDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesDTO.swift; sourceTree = "<group>"; };
+		B10000000000000000000095 /* MessagesMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesMapper.swift; sourceTree = "<group>"; };
+		B10000000000000000000096 /* MessagesServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesServiceProtocol.swift; sourceTree = "<group>"; };
+		B10000000000000000000097 /* MessagesDraftFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesDraftFixtures.swift; sourceTree = "<group>"; };
+		B10000000000000000000098 /* MockMessagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMessagesService.swift; sourceTree = "<group>"; };
+		B10000000000000000000099 /* ChatHistoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryTests.swift; sourceTree = "<group>"; };
+		B1000000000000000000009A /* ChatSendContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSendContext.swift; sourceTree = "<group>"; };
+		B1000000000000000000009B /* ChatSendPayloadCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSendPayloadCodec.swift; sourceTree = "<group>"; };
+		B1000000000000000000009C /* ChatOutboundRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatOutboundRules.swift; sourceTree = "<group>"; };
+		B1000000000000000000009D /* ChatServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatServiceProtocol.swift; sourceTree = "<group>"; };
+		B1000000000000000000009E /* MockChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockChatService.swift; sourceTree = "<group>"; };
+		B1000000000000000000009F /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		B100000000000000000000A0 /* ChatSendQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSendQueueTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000A1 /* ChatTimelineRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTimelineRules.swift; sourceTree = "<group>"; };
+		B100000000000000000000A2 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		B100000000000000000000A3 /* ChatHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHostView.swift; sourceTree = "<group>"; };
+		B100000000000000000000A4 /* ChatMessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageBubble.swift; sourceTree = "<group>"; };
+		B100000000000000000000A5 /* ChatSourceRefPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSourceRefPill.swift; sourceTree = "<group>"; };
+		B100000000000000000000A6 /* ChatTypingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTypingIndicatorView.swift; sourceTree = "<group>"; };
+		B100000000000000000000A7 /* ChatComposerBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatComposerBar.swift; sourceTree = "<group>"; };
+		B100000000000000000000F8 /* ChatVoiceRecordingHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVoiceRecordingHUD.swift; sourceTree = "<group>"; };
+		B100000000000000000000A8 /* ChatEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEmptyStateView.swift; sourceTree = "<group>"; };
+		B100000000000000000000A9 /* ChatLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLayout.swift; sourceTree = "<group>"; };
+		B100000000000000000000AA /* ChatUILayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUILayoutTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000AB /* APIChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIChatService.swift; sourceTree = "<group>"; };
+		B100000000000000000000AC /* ChatDraftFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDraftFixtures.swift; sourceTree = "<group>"; };
+		B100000000000000000000AD /* ChatNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatNetworkTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000AE /* APIMessagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMessagesService.swift; sourceTree = "<group>"; };
+		B100000000000000000000AF /* ExtractDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractDTO.swift; sourceTree = "<group>"; };
+		B100000000000000000000B0 /* ExtractMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractMapper.swift; sourceTree = "<group>"; };
+		B100000000000000000000B1 /* ExtractServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractServiceProtocol.swift; sourceTree = "<group>"; };
+		B100000000000000000000B2 /* APIExtractService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIExtractService.swift; sourceTree = "<group>"; };
+		B100000000000000000000B3 /* MockExtractService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExtractService.swift; sourceTree = "<group>"; };
+		B100000000000000000000B4 /* ExtractDraftFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractDraftFixtures.swift; sourceTree = "<group>"; };
+		B100000000000000000000B5 /* ExtractClientIDStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractClientIDStore.swift; sourceTree = "<group>"; };
+		B100000000000000000000B6 /* ChatIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatIntegrationTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000B7 /* P11MemoryContractManifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P11MemoryContractManifest.swift; sourceTree = "<group>"; };
+		B100000000000000000000B8 /* P11MemoryContractManifestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P11MemoryContractManifestTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000B9 /* RoomMoreMenuRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMoreMenuRules.swift; sourceTree = "<group>"; };
+		B100000000000000000000BA /* RoomMoreMenuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMoreMenuTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000BB /* MemoryPresentationRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryPresentationRules.swift; sourceTree = "<group>"; };
+		B100000000000000000000BC /* MemoryLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryLayout.swift; sourceTree = "<group>"; };
+		B100000000000000000000BD /* MemoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryViewModel.swift; sourceTree = "<group>"; };
+		B100000000000000000000BE /* MemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryView.swift; sourceTree = "<group>"; };
+		B100000000000000000000BF /* MemoryHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryHostView.swift; sourceTree = "<group>"; };
+		B100000000000000000000C0 /* MemoryEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryEmptyStateView.swift; sourceTree = "<group>"; };
+		B100000000000000000000C1 /* MemoryTimelineCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryTimelineCard.swift; sourceTree = "<group>"; };
+		B100000000000000000000C2 /* MemoryDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDetailSheet.swift; sourceTree = "<group>"; };
+		B100000000000000000000C3 /* MemoryPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryPresentationTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000C4 /* MemoryUILayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryUILayoutTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000C5 /* MemoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDTO.swift; sourceTree = "<group>"; };
+		B100000000000000000000C6 /* MemoryMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryMapper.swift; sourceTree = "<group>"; };
+		B100000000000000000000C7 /* MemoryCacheRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCacheRules.swift; sourceTree = "<group>"; };
+		B100000000000000000000C8 /* MemoryCitationRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCitationRules.swift; sourceTree = "<group>"; };
+		B100000000000000000000C9 /* MemoryMutationRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryMutationRules.swift; sourceTree = "<group>"; };
+		B100000000000000000000CA /* MemoryCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCodec.swift; sourceTree = "<group>"; };
+		B100000000000000000000CB /* MemoryClientIDStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryClientIDStore.swift; sourceTree = "<group>"; };
+		B100000000000000000000CC /* MemoryServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryServiceProtocol.swift; sourceTree = "<group>"; };
+		B100000000000000000000CD /* APIMemoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMemoryService.swift; sourceTree = "<group>"; };
+		B100000000000000000000CE /* MockMemoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMemoryService.swift; sourceTree = "<group>"; };
+		B100000000000000000000CF /* MemoryDraftFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDraftFixtures.swift; sourceTree = "<group>"; };
+		B100000000000000000000D0 /* MemoryMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryMapperTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000D1 /* MemoryCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCacheTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000D2 /* MemoryMutationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryMutationTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000D3 /* P12FeedContractManifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P12FeedContractManifest.swift; sourceTree = "<group>"; };
+		B100000000000000000000D4 /* P12FeedContractManifestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P12FeedContractManifestTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000D5 /* FeedPresentationRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresentationRules.swift; sourceTree = "<group>"; };
+		B100000000000000000000D6 /* FeedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLayout.swift; sourceTree = "<group>"; };
+		B100000000000000000000D7 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		B100000000000000000000D8 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		B100000000000000000000D9 /* FeedHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHostView.swift; sourceTree = "<group>"; };
+		B100000000000000000000DA /* FeedLocationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLocationSheet.swift; sourceTree = "<group>"; };
+		B100000000000000000000DB /* FeedPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresentationTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000DC /* FeedUILayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUILayoutTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000DD /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		B100000000000000000000DE /* FeedDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDTO.swift; sourceTree = "<group>"; };
+		B100000000000000000000DF /* FeedMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMapper.swift; sourceTree = "<group>"; };
+		B100000000000000000000E0 /* FeedServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedServiceProtocol.swift; sourceTree = "<group>"; };
+		B100000000000000000000E1 /* APIFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFeedService.swift; sourceTree = "<group>"; };
+		B100000000000000000000E2 /* MockFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFeedService.swift; sourceTree = "<group>"; };
+		B100000000000000000000E3 /* PhotoProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoProcessor.swift; sourceTree = "<group>"; };
+		B100000000000000000000E4 /* SightUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightUploader.swift; sourceTree = "<group>"; };
+		B100000000000000000000E5 /* FeedClientIDStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedClientIDStore.swift; sourceTree = "<group>"; };
+		B100000000000000000000E6 /* FeedPromiseNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPromiseNotifier.swift; sourceTree = "<group>"; };
+		B100000000000000000000E7 /* FeedDraftFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDraftFixtures.swift; sourceTree = "<group>"; };
+		B100000000000000000000E8 /* FeedMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMapperTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000E9 /* PhotoProcessorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoProcessorTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000EA /* P13GrowthContractManifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P13GrowthContractManifest.swift; sourceTree = "<group>"; };
+		B100000000000000000000EB /* P13GrowthContractManifestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P13GrowthContractManifestTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000EC /* P14SpeechContractManifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P14SpeechContractManifest.swift; sourceTree = "<group>"; };
+		B100000000000000000000ED /* P14SpeechContractManifestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P14SpeechContractManifestTests.swift; sourceTree = "<group>"; };
+		B100000000000000000000F9 /* P15PactContractManifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P15PactContractManifest.swift; sourceTree = "<group>"; };
+		B100000000000000000000FA /* P15PactContractManifestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P15PactContractManifestTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000100 /* PactPresentationRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactPresentationRules.swift; sourceTree = "<group>"; };
+		B10000000000000000000101 /* PactDraftFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactDraftFixtures.swift; sourceTree = "<group>"; };
+		B10000000000000000000102 /* PactLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactLayout.swift; sourceTree = "<group>"; };
+		B10000000000000000000103 /* PactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactViewModel.swift; sourceTree = "<group>"; };
+		B10000000000000000000104 /* PactHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactHostView.swift; sourceTree = "<group>"; };
+		B10000000000000000000105 /* PactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactView.swift; sourceTree = "<group>"; };
+		B10000000000000000000107 /* PactPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactPresentationTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000108 /* PactUILayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactUILayoutTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000110 /* Pact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pact.swift; sourceTree = "<group>"; };
+		B10000000000000000000111 /* PactDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactDTO.swift; sourceTree = "<group>"; };
+		B10000000000000000000112 /* PactMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactMapper.swift; sourceTree = "<group>"; };
+		B10000000000000000000113 /* PactCacheRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactCacheRules.swift; sourceTree = "<group>"; };
+		B10000000000000000000114 /* PactServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactServiceProtocol.swift; sourceTree = "<group>"; };
+		B10000000000000000000115 /* APIPactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPactService.swift; sourceTree = "<group>"; };
+		B10000000000000000000116 /* MockPactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPactService.swift; sourceTree = "<group>"; };
+		B10000000000000000000117 /* PactContractFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactContractFixtures.swift; sourceTree = "<group>"; };
+		B10000000000000000000118 /* PactClientIDStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactClientIDStore.swift; sourceTree = "<group>"; };
+		B10000000000000000000119 /* PactAnswerQueueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactAnswerQueueStore.swift; sourceTree = "<group>"; };
+		B10000000000000000000120 /* PactMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactMapperTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000121 /* PactCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactCacheTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000122 /* PactAnswerQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactAnswerQueueTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000130 /* SocialPresentationRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialPresentationRules.swift; sourceTree = "<group>"; };
+		B10000000000000000000131 /* SocialDraftFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialDraftFixtures.swift; sourceTree = "<group>"; };
+		B10000000000000000000132 /* SocialLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLayout.swift; sourceTree = "<group>"; };
+		B10000000000000000000133 /* SocialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewModel.swift; sourceTree = "<group>"; };
+		B10000000000000000000134 /* SocialHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialHostView.swift; sourceTree = "<group>"; };
+		B10000000000000000000135 /* SocialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
+		B10000000000000000000136 /* SocialPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialPresentationTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000137 /* SocialUILayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialUILayoutTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000140 /* SettingsPresentationRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresentationRules.swift; sourceTree = "<group>"; };
+		B10000000000000000000141 /* SettingsDraftFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDraftFixtures.swift; sourceTree = "<group>"; };
+		B10000000000000000000142 /* SettingsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLayout.swift; sourceTree = "<group>"; };
+		B10000000000000000000143 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		B10000000000000000000144 /* SettingsHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHostView.swift; sourceTree = "<group>"; };
+		B10000000000000000000145 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B10000000000000000000146 /* SettingsPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresentationTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000147 /* SettingsUILayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUILayoutTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000150 /* P16P20ContractManifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P16P20ContractManifest.swift; sourceTree = "<group>"; };
+		B10000000000000000000151 /* Social.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Social.swift; sourceTree = "<group>"; };
+		B10000000000000000000152 /* ReportCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCard.swift; sourceTree = "<group>"; };
+		B10000000000000000000153 /* SocialDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialDTO.swift; sourceTree = "<group>"; };
+		B10000000000000000000154 /* DeviceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDTO.swift; sourceTree = "<group>"; };
+		B10000000000000000000155 /* SettingsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDTO.swift; sourceTree = "<group>"; };
+		B10000000000000000000156 /* ReportDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDTO.swift; sourceTree = "<group>"; };
+		B10000000000000000000157 /* SocialMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMapper.swift; sourceTree = "<group>"; };
+		B10000000000000000000158 /* ReportMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportMapper.swift; sourceTree = "<group>"; };
+		B10000000000000000000159 /* DeviceMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMapper.swift; sourceTree = "<group>"; };
+		B10000000000000000000160 /* SocialService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialService.swift; sourceTree = "<group>"; };
+		B10000000000000000000161 /* DeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceService.swift; sourceTree = "<group>"; };
+		B10000000000000000000162 /* ReportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportService.swift; sourceTree = "<group>"; };
+		B10000000000000000000163 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
+		B10000000000000000000164 /* ReportPresentationRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPresentationRules.swift; sourceTree = "<group>"; };
+		B10000000000000000000165 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
+		B10000000000000000000166 /* ReportHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportHostView.swift; sourceTree = "<group>"; };
+		B10000000000000000000167 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
+		B10000000000000000000168 /* P16P20ContractManifestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P16P20ContractManifestTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000169 /* P16P20ClientIDStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P16P20ClientIDStore.swift; sourceTree = "<group>"; };
+		B100000000000000000000EE /* SpeechDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechDTO.swift; sourceTree = "<group>"; };
+		B100000000000000000000EF /* SpeechMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechMapper.swift; sourceTree = "<group>"; };
+		B100000000000000000000F0 /* Speech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech.swift; sourceTree = "<group>"; };
+		B100000000000000000000F1 /* SpeechServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechServiceProtocol.swift; sourceTree = "<group>"; };
+		B100000000000000000000F2 /* APISpeechService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISpeechService.swift; sourceTree = "<group>"; };
+		B100000000000000000000F3 /* MockSpeechService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSpeechService.swift; sourceTree = "<group>"; };
+		B100000000000000000000F4 /* VoiceRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRules.swift; sourceTree = "<group>"; };
+		B100000000000000000000F5 /* VoiceAudioServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceAudioServices.swift; sourceTree = "<group>"; };
+		B100000000000000000000F6 /* SpeechDraftFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechDraftFixtures.swift; sourceTree = "<group>"; };
+		B100000000000000000000F7 /* SpeechMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechMapperTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +648,7 @@
 			children = (
 				G10000000000000000000003 /* App */,
 				G1000000000000000000000E /* Domain */,
+				G10000000000000000000016 /* Rules */,
 				G10000000000000000000009 /* Services */,
 				G1000000000000000000000B /* Features */,
 				G1000000000000000000000D /* Persistence */,
@@ -329,6 +700,42 @@
 				B10000000000000000000061 /* EggSelectionTests.swift */,
 				B10000000000000000000068 /* OnboardingConversationTests.swift */,
 				B1000000000000000000006D /* OnboardingResumeTests.swift */,
+				B1000000000000000000007D /* RoomRulesTests.swift */,
+				B10000000000000000000082 /* RoomLayoutTests.swift */,
+				B10000000000000000000087 /* RoomHotspotTests.swift */,
+				B1000000000000000000008D /* RoomRefreshTests.swift */,
+				B1000000000000000000008F /* RoomSpiritMotionTests.swift */,
+				B10000000000000000000099 /* ChatHistoryTests.swift */,
+				B100000000000000000000A0 /* ChatSendQueueTests.swift */,
+				B100000000000000000000AA /* ChatUILayoutTests.swift */,
+				B100000000000000000000AD /* ChatNetworkTests.swift */,
+				B100000000000000000000B6 /* ChatIntegrationTests.swift */,
+				B100000000000000000000B8 /* P11MemoryContractManifestTests.swift */,
+				B100000000000000000000BA /* RoomMoreMenuTests.swift */,
+				B100000000000000000000C3 /* MemoryPresentationTests.swift */,
+				B100000000000000000000C4 /* MemoryUILayoutTests.swift */,
+				B100000000000000000000D0 /* MemoryMapperTests.swift */,
+				B100000000000000000000D1 /* MemoryCacheTests.swift */,
+				B100000000000000000000D2 /* MemoryMutationTests.swift */,
+				B100000000000000000000D4 /* P12FeedContractManifestTests.swift */,
+				B100000000000000000000DB /* FeedPresentationTests.swift */,
+				B100000000000000000000DC /* FeedUILayoutTests.swift */,
+				B100000000000000000000E8 /* FeedMapperTests.swift */,
+				B100000000000000000000E9 /* PhotoProcessorTests.swift */,
+				B100000000000000000000EB /* P13GrowthContractManifestTests.swift */,
+				B100000000000000000000ED /* P14SpeechContractManifestTests.swift */,
+				B100000000000000000000FA /* P15PactContractManifestTests.swift */,
+				B10000000000000000000107 /* PactPresentationTests.swift */,
+				B10000000000000000000108 /* PactUILayoutTests.swift */,
+				B10000000000000000000120 /* PactMapperTests.swift */,
+				B10000000000000000000121 /* PactCacheTests.swift */,
+				B10000000000000000000122 /* PactAnswerQueueTests.swift */,
+				B10000000000000000000136 /* SocialPresentationTests.swift */,
+				B10000000000000000000137 /* SocialUILayoutTests.swift */,
+				B10000000000000000000146 /* SettingsPresentationTests.swift */,
+				B10000000000000000000147 /* SettingsUILayoutTests.swift */,
+				B10000000000000000000168 /* P16P20ContractManifestTests.swift */,
+				B100000000000000000000F7 /* SpeechMapperTests.swift */,
 			);
 			path = KelinTests;
 			sourceTree = "<group>";
@@ -387,8 +794,41 @@
 				G10000000000000000000010 /* Hatch */,
 				G10000000000000000000013 /* Bootstrap */,
 				G10000000000000000000014 /* Onboarding */,
+				G10000000000000000000019 /* Chat */,
+				G1000000000000000000001E /* Memory */,
+				G10000000000000000000021 /* Feed */,
+				G10000000000000000000023 /* Pact */,
+				G10000000000000000000025 /* Social */,
+				G10000000000000000000027 /* Settings */,
+				G10000000000000000000029 /* Device */,
+				G1000000000000000000002A /* Report */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000021 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				B100000000000000000000E0 /* FeedServiceProtocol.swift */,
+				B100000000000000000000E1 /* APIFeedService.swift */,
+				B100000000000000000000E2 /* MockFeedService.swift */,
+				B100000000000000000000E3 /* PhotoProcessor.swift */,
+				B100000000000000000000E4 /* SightUploader.swift */,
+				B100000000000000000000E6 /* FeedPromiseNotifier.swift */,
+				B100000000000000000000E7 /* FeedDraftFixtures.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		G1000000000000000000001E /* Memory */ = {
+			isa = PBXGroup;
+			children = (
+				B100000000000000000000CC /* MemoryServiceProtocol.swift */,
+				B100000000000000000000CD /* APIMemoryService.swift */,
+				B100000000000000000000CE /* MockMemoryService.swift */,
+				B100000000000000000000CF /* MemoryDraftFixtures.swift */,
+			);
+			path = Memory;
 			sourceTree = "<group>";
 		};
 		G1000000000000000000000A /* Auth */ = {
@@ -408,8 +848,16 @@
 				B10000000000000000000039 /* APIEnvelope.swift */,
 				B10000000000000000000041 /* Spirit.swift */,
 				B10000000000000000000048 /* BootstrapSnapshot.swift */,
+				B1000000000000000000007B /* RoomSceneModel.swift */,
 				B10000000000000000000062 /* OnboardingMessage.swift */,
+				B10000000000000000000090 /* ChatMessage.swift */,
+				B1000000000000000000009A /* ChatSendContext.swift */,
 				B1000000000000000000004D /* SessionPatch.swift */,
+				B100000000000000000000DD /* Feed.swift */,
+				B100000000000000000000F0 /* Speech.swift */,
+				B10000000000000000000110 /* Pact.swift */,
+				B10000000000000000000151 /* Social.swift */,
+				B10000000000000000000152 /* ReportCard.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -424,6 +872,12 @@
 				B1000000000000000000003C /* APIClientProtocol.swift */,
 				B1000000000000000000003D /* APIClient.swift */,
 				B1000000000000000000003E /* MockAPIClient.swift */,
+				B100000000000000000000B7 /* P11MemoryContractManifest.swift */,
+				B100000000000000000000D3 /* P12FeedContractManifest.swift */,
+				B100000000000000000000EA /* P13GrowthContractManifest.swift */,
+				B100000000000000000000EC /* P14SpeechContractManifest.swift */,
+				B100000000000000000000F9 /* P15PactContractManifest.swift */,
+				B10000000000000000000150 /* P16P20ContractManifest.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -471,6 +925,16 @@
 				B10000000000000000000042 /* CreateSpiritDTO.swift */,
 				B10000000000000000000049 /* BootstrapDTO.swift */,
 				B10000000000000000000074 /* ChatDTO.swift */,
+				B10000000000000000000094 /* MessagesDTO.swift */,
+				B100000000000000000000AF /* ExtractDTO.swift */,
+				B100000000000000000000C5 /* MemoryDTO.swift */,
+				B100000000000000000000DE /* FeedDTO.swift */,
+				B100000000000000000000EE /* SpeechDTO.swift */,
+				B10000000000000000000111 /* PactDTO.swift */,
+				B10000000000000000000153 /* SocialDTO.swift */,
+				B10000000000000000000154 /* DeviceDTO.swift */,
+				B10000000000000000000155 /* SettingsDTO.swift */,
+				B10000000000000000000156 /* ReportDTO.swift */,
 				B10000000000000000000075 /* OnboardingCompleteDTO.swift */,
 			);
 			path = DTO;
@@ -483,9 +947,94 @@
 				B1000000000000000000004A /* BootstrapMapper.swift */,
 				B1000000000000000000004F /* SessionPatchMapper.swift */,
 				B10000000000000000000076 /* ChatMapper.swift */,
+				B10000000000000000000095 /* MessagesMapper.swift */,
+				B100000000000000000000B0 /* ExtractMapper.swift */,
+				B100000000000000000000C6 /* MemoryMapper.swift */,
+				B100000000000000000000DF /* FeedMapper.swift */,
+				B100000000000000000000EF /* SpeechMapper.swift */,
+				B10000000000000000000112 /* PactMapper.swift */,
+				B10000000000000000000157 /* SocialMapper.swift */,
+				B10000000000000000000158 /* ReportMapper.swift */,
+				B10000000000000000000159 /* DeviceMapper.swift */,
 				B10000000000000000000077 /* OnboardingCompleteMapper.swift */,
 			);
 			path = Mappers;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000016 /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				B1000000000000000000007C /* RoomRules.swift */,
+				B10000000000000000000086 /* RoomHotspotRules.swift */,
+				B100000000000000000000B9 /* RoomMoreMenuRules.swift */,
+				B1000000000000000000008B /* RoomRefreshRules.swift */,
+				B1000000000000000000008E /* RoomSpiritMotionRules.swift */,
+				B10000000000000000000092 /* ChatHistoryRules.swift */,
+				B1000000000000000000009C /* ChatOutboundRules.swift */,
+				B100000000000000000000A1 /* ChatTimelineRules.swift */,
+				B100000000000000000000BB /* MemoryPresentationRules.swift */,
+				B100000000000000000000C7 /* MemoryCacheRules.swift */,
+				B100000000000000000000C8 /* MemoryCitationRules.swift */,
+				B100000000000000000000C9 /* MemoryMutationRules.swift */,
+				B100000000000000000000D5 /* FeedPresentationRules.swift */,
+				B100000000000000000000F4 /* VoiceRules.swift */,
+				B10000000000000000000100 /* PactPresentationRules.swift */,
+				B10000000000000000000113 /* PactCacheRules.swift */,
+				B10000000000000000000130 /* SocialPresentationRules.swift */,
+				B10000000000000000000140 /* SettingsPresentationRules.swift */,
+				B10000000000000000000164 /* ReportPresentationRules.swift */,
+			);
+			path = Rules;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000019 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000096 /* MessagesServiceProtocol.swift */,
+				B10000000000000000000098 /* MockMessagesService.swift */,
+				B10000000000000000000093 /* ChatHistoryCache.swift */,
+				B10000000000000000000097 /* MessagesDraftFixtures.swift */,
+				B1000000000000000000009D /* ChatServiceProtocol.swift */,
+				B1000000000000000000009E /* MockChatService.swift */,
+				B100000000000000000000AB /* APIChatService.swift */,
+				B100000000000000000000AE /* APIMessagesService.swift */,
+				B100000000000000000000B1 /* ExtractServiceProtocol.swift */,
+				B100000000000000000000B2 /* APIExtractService.swift */,
+				B100000000000000000000B3 /* MockExtractService.swift */,
+				B100000000000000000000B4 /* ExtractDraftFixtures.swift */,
+				B100000000000000000000AC /* ChatDraftFixtures.swift */,
+				B100000000000000000000F1 /* SpeechServiceProtocol.swift */,
+				B100000000000000000000F2 /* APISpeechService.swift */,
+				B100000000000000000000F3 /* MockSpeechService.swift */,
+				B100000000000000000000F5 /* VoiceAudioServices.swift */,
+				B100000000000000000000F6 /* SpeechDraftFixtures.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		G1000000000000000000001A /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				B100000000000000000000A3 /* ChatHostView.swift */,
+				B100000000000000000000A2 /* ChatView.swift */,
+				B100000000000000000000A9 /* ChatLayout.swift */,
+				B1000000000000000000009F /* ChatViewModel.swift */,
+				G1000000000000000000001B /* Components */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		G1000000000000000000001B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B100000000000000000000A4 /* ChatMessageBubble.swift */,
+				B100000000000000000000A5 /* ChatSourceRefPill.swift */,
+				B100000000000000000000A6 /* ChatTypingIndicatorView.swift */,
+				B100000000000000000000A7 /* ChatComposerBar.swift */,
+				B100000000000000000000F8 /* ChatVoiceRecordingHUD.swift */,
+				B100000000000000000000A8 /* ChatEmptyStateView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		G1000000000000000000000B /* Features */ = {
@@ -493,8 +1042,173 @@
 			children = (
 				G1000000000000000000000C /* Launch */,
 				G10000000000000000000015 /* Hatch */,
+				G10000000000000000000017 /* Room */,
+				G1000000000000000000001A /* Chat */,
+				G1000000000000000000001C /* Memory */,
+				G1000000000000000000001F /* Feed */,
+				G10000000000000000000022 /* Pact */,
+				G10000000000000000000024 /* Social */,
+				G10000000000000000000026 /* Settings */,
+				G10000000000000000000028 /* Report */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		G1000000000000000000001F /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				B100000000000000000000D9 /* FeedHostView.swift */,
+				B100000000000000000000D8 /* FeedView.swift */,
+				B100000000000000000000D6 /* FeedLayout.swift */,
+				B100000000000000000000D7 /* FeedViewModel.swift */,
+				G10000000000000000000020 /* Components */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000020 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B100000000000000000000DA /* FeedLocationSheet.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000022 /* Pact */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000104 /* PactHostView.swift */,
+				B10000000000000000000105 /* PactView.swift */,
+				B10000000000000000000102 /* PactLayout.swift */,
+				B10000000000000000000103 /* PactViewModel.swift */,
+			);
+			path = Pact;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000023 /* Pact */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000101 /* PactDraftFixtures.swift */,
+				B10000000000000000000114 /* PactServiceProtocol.swift */,
+				B10000000000000000000115 /* APIPactService.swift */,
+				B10000000000000000000116 /* MockPactService.swift */,
+				B10000000000000000000117 /* PactContractFixtures.swift */,
+			);
+			path = Pact;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000024 /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000134 /* SocialHostView.swift */,
+				B10000000000000000000135 /* SocialView.swift */,
+				B10000000000000000000132 /* SocialLayout.swift */,
+				B10000000000000000000133 /* SocialViewModel.swift */,
+			);
+			path = Social;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000025 /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000131 /* SocialDraftFixtures.swift */,
+				B10000000000000000000160 /* SocialService.swift */,
+			);
+			path = Social;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000026 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000144 /* SettingsHostView.swift */,
+				B10000000000000000000145 /* SettingsView.swift */,
+				B10000000000000000000142 /* SettingsLayout.swift */,
+				B10000000000000000000143 /* SettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000027 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000141 /* SettingsDraftFixtures.swift */,
+				B10000000000000000000163 /* SettingsService.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000028 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000166 /* ReportHostView.swift */,
+				B10000000000000000000167 /* ReportView.swift */,
+				B10000000000000000000165 /* ReportViewModel.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000029 /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000161 /* DeviceService.swift */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
+		G1000000000000000000002A /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000162 /* ReportService.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		G1000000000000000000001C /* Memory */ = {
+			isa = PBXGroup;
+			children = (
+				B100000000000000000000BF /* MemoryHostView.swift */,
+				B100000000000000000000BE /* MemoryView.swift */,
+				B100000000000000000000BC /* MemoryLayout.swift */,
+				B100000000000000000000BD /* MemoryViewModel.swift */,
+				G1000000000000000000001D /* Components */,
+			);
+			path = Memory;
+			sourceTree = "<group>";
+		};
+		G1000000000000000000001D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B100000000000000000000C0 /* MemoryEmptyStateView.swift */,
+				B100000000000000000000C1 /* MemoryTimelineCard.swift */,
+				B100000000000000000000C2 /* MemoryDetailSheet.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000017 /* Room */ = {
+			isa = PBXGroup;
+			children = (
+				B1000000000000000000007E /* RoomView.swift */,
+				B1000000000000000000008C /* RoomHostView.swift */,
+				B1000000000000000000007F /* RoomViewModel.swift */,
+				B10000000000000000000080 /* RoomSceneStack.swift */,
+				G10000000000000000000018 /* Components */,
+			);
+			path = Room;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000018 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000081 /* RoomDockView.swift */,
+				B10000000000000000000083 /* RoomHomeEnvironmentView.swift */,
+				B10000000000000000000084 /* RoomSpiritEntityView.swift */,
+				B10000000000000000000085 /* RoomMoreMenuSheet.swift */,
+				B10000000000000000000088 /* RoomPaperNoteSheet.swift */,
+				B10000000000000000000089 /* RoomMarkOriginSheet.swift */,
+				B1000000000000000000008A /* RoomSightMemorySheet.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		G1000000000000000000000C /* Launch */ = {
@@ -528,6 +1242,15 @@
 				B1000000000000000000002C /* KelinSchemaV1.swift */,
 				B10000000000000000000051 /* BootstrapCacheCodec.swift */,
 				B10000000000000000000069 /* OnboardingConversationCodec.swift */,
+				B100000000000000000000B5 /* ExtractClientIDStore.swift */,
+				B100000000000000000000CB /* MemoryClientIDStore.swift */,
+				B100000000000000000000E5 /* FeedClientIDStore.swift */,
+				B10000000000000000000118 /* PactClientIDStore.swift */,
+				B10000000000000000000169 /* P16P20ClientIDStore.swift */,
+				B10000000000000000000119 /* PactAnswerQueueStore.swift */,
+				B100000000000000000000CA /* MemoryCodec.swift */,
+				B10000000000000000000091 /* MessageCodec.swift */,
+				B1000000000000000000009B /* ChatSendPayloadCodec.swift */,
 				B10000000000000000000024 /* PersistenceEnums.swift */,
 				B10000000000000000000025 /* CachedBootstrap.swift */,
 				B10000000000000000000026 /* CachedMessage.swift */,
@@ -735,6 +1458,155 @@
 				A10000000000000000000068 /* OnboardingCompleteServiceProtocol.swift in Sources */,
 				A10000000000000000000069 /* MockOnboardingCompleteService.swift in Sources */,
 				A1000000000000000000006A /* HatchTransitionOverlay.swift in Sources */,
+				A1000000000000000000007B /* RoomSceneModel.swift in Sources */,
+				A1000000000000000000007C /* RoomRules.swift in Sources */,
+				A10000000000000000000086 /* RoomHotspotRules.swift in Sources */,
+				A1000000000000000000008B /* RoomRefreshRules.swift in Sources */,
+				A1000000000000000000008E /* RoomSpiritMotionRules.swift in Sources */,
+				A1000000000000000000007E /* RoomView.swift in Sources */,
+				A1000000000000000000008C /* RoomHostView.swift in Sources */,
+				A1000000000000000000007F /* RoomViewModel.swift in Sources */,
+				A10000000000000000000080 /* RoomSceneStack.swift in Sources */,
+				A10000000000000000000081 /* RoomDockView.swift in Sources */,
+				A10000000000000000000083 /* RoomHomeEnvironmentView.swift in Sources */,
+				A10000000000000000000084 /* RoomSpiritEntityView.swift in Sources */,
+				A10000000000000000000085 /* RoomMoreMenuSheet.swift in Sources */,
+				A10000000000000000000088 /* RoomPaperNoteSheet.swift in Sources */,
+				A10000000000000000000089 /* RoomMarkOriginSheet.swift in Sources */,
+				A1000000000000000000008A /* RoomSightMemorySheet.swift in Sources */,
+				A10000000000000000000090 /* ChatMessage.swift in Sources */,
+				A10000000000000000000091 /* MessageCodec.swift in Sources */,
+				A10000000000000000000092 /* ChatHistoryRules.swift in Sources */,
+				A10000000000000000000093 /* ChatHistoryCache.swift in Sources */,
+				A10000000000000000000094 /* MessagesDTO.swift in Sources */,
+				A10000000000000000000095 /* MessagesMapper.swift in Sources */,
+				A10000000000000000000096 /* MessagesServiceProtocol.swift in Sources */,
+				A10000000000000000000097 /* MessagesDraftFixtures.swift in Sources */,
+				A10000000000000000000098 /* MockMessagesService.swift in Sources */,
+				A1000000000000000000009A /* ChatSendContext.swift in Sources */,
+				A1000000000000000000009B /* ChatSendPayloadCodec.swift in Sources */,
+				A1000000000000000000009C /* ChatOutboundRules.swift in Sources */,
+				A1000000000000000000009D /* ChatServiceProtocol.swift in Sources */,
+				A1000000000000000000009E /* MockChatService.swift in Sources */,
+				A100000000000000000000AB /* APIChatService.swift in Sources */,
+				A100000000000000000000AE /* APIMessagesService.swift in Sources */,
+				A100000000000000000000AF /* ExtractDTO.swift in Sources */,
+				A100000000000000000000B0 /* ExtractMapper.swift in Sources */,
+				A100000000000000000000B1 /* ExtractServiceProtocol.swift in Sources */,
+				A100000000000000000000B2 /* APIExtractService.swift in Sources */,
+				A100000000000000000000B3 /* MockExtractService.swift in Sources */,
+				A100000000000000000000B4 /* ExtractDraftFixtures.swift in Sources */,
+				A100000000000000000000B5 /* ExtractClientIDStore.swift in Sources */,
+				A100000000000000000000AC /* ChatDraftFixtures.swift in Sources */,
+				A1000000000000000000009F /* ChatViewModel.swift in Sources */,
+				A100000000000000000000A1 /* ChatTimelineRules.swift in Sources */,
+				A100000000000000000000A2 /* ChatView.swift in Sources */,
+				A100000000000000000000A3 /* ChatHostView.swift in Sources */,
+				A100000000000000000000A4 /* ChatMessageBubble.swift in Sources */,
+				A100000000000000000000A5 /* ChatSourceRefPill.swift in Sources */,
+				A100000000000000000000A6 /* ChatTypingIndicatorView.swift in Sources */,
+				A100000000000000000000A7 /* ChatComposerBar.swift in Sources */,
+				A100000000000000000000F8 /* ChatVoiceRecordingHUD.swift in Sources */,
+				A100000000000000000000A8 /* ChatEmptyStateView.swift in Sources */,
+				A100000000000000000000A9 /* ChatLayout.swift in Sources */,
+				A100000000000000000000B7 /* P11MemoryContractManifest.swift in Sources */,
+				A100000000000000000000B9 /* RoomMoreMenuRules.swift in Sources */,
+				A100000000000000000000BB /* MemoryPresentationRules.swift in Sources */,
+				A100000000000000000000BC /* MemoryLayout.swift in Sources */,
+				A100000000000000000000BD /* MemoryViewModel.swift in Sources */,
+				A100000000000000000000BE /* MemoryView.swift in Sources */,
+				A100000000000000000000BF /* MemoryHostView.swift in Sources */,
+				A100000000000000000000C0 /* MemoryEmptyStateView.swift in Sources */,
+				A100000000000000000000C1 /* MemoryTimelineCard.swift in Sources */,
+				A100000000000000000000C2 /* MemoryDetailSheet.swift in Sources */,
+				A100000000000000000000C5 /* MemoryDTO.swift in Sources */,
+				A100000000000000000000C6 /* MemoryMapper.swift in Sources */,
+				A100000000000000000000C7 /* MemoryCacheRules.swift in Sources */,
+				A100000000000000000000C8 /* MemoryCitationRules.swift in Sources */,
+				A100000000000000000000C9 /* MemoryMutationRules.swift in Sources */,
+				A100000000000000000000CA /* MemoryCodec.swift in Sources */,
+				A100000000000000000000CB /* MemoryClientIDStore.swift in Sources */,
+				A100000000000000000000CC /* MemoryServiceProtocol.swift in Sources */,
+				A100000000000000000000CD /* APIMemoryService.swift in Sources */,
+				A100000000000000000000CE /* MockMemoryService.swift in Sources */,
+				A100000000000000000000CF /* MemoryDraftFixtures.swift in Sources */,
+				A100000000000000000000D3 /* P12FeedContractManifest.swift in Sources */,
+				A100000000000000000000D5 /* FeedPresentationRules.swift in Sources */,
+				A100000000000000000000D6 /* FeedLayout.swift in Sources */,
+				A100000000000000000000D7 /* FeedViewModel.swift in Sources */,
+				A100000000000000000000D8 /* FeedView.swift in Sources */,
+				A100000000000000000000D9 /* FeedHostView.swift in Sources */,
+				A100000000000000000000DA /* FeedLocationSheet.swift in Sources */,
+				A100000000000000000000DD /* Feed.swift in Sources */,
+				A100000000000000000000DE /* FeedDTO.swift in Sources */,
+				A100000000000000000000DF /* FeedMapper.swift in Sources */,
+				A100000000000000000000E0 /* FeedServiceProtocol.swift in Sources */,
+				A100000000000000000000E1 /* APIFeedService.swift in Sources */,
+				A100000000000000000000E2 /* MockFeedService.swift in Sources */,
+				A100000000000000000000E3 /* PhotoProcessor.swift in Sources */,
+				A100000000000000000000E4 /* SightUploader.swift in Sources */,
+				A100000000000000000000E5 /* FeedClientIDStore.swift in Sources */,
+				A100000000000000000000E6 /* FeedPromiseNotifier.swift in Sources */,
+				A100000000000000000000E7 /* FeedDraftFixtures.swift in Sources */,
+				A100000000000000000000EA /* P13GrowthContractManifest.swift in Sources */,
+				A100000000000000000000EC /* P14SpeechContractManifest.swift in Sources */,
+				A100000000000000000000F9 /* P15PactContractManifest.swift in Sources */,
+				A10000000000000000000100 /* PactPresentationRules.swift in Sources */,
+				A10000000000000000000101 /* PactDraftFixtures.swift in Sources */,
+				A10000000000000000000102 /* PactLayout.swift in Sources */,
+				A10000000000000000000103 /* PactViewModel.swift in Sources */,
+				A10000000000000000000104 /* PactHostView.swift in Sources */,
+				A10000000000000000000105 /* PactView.swift in Sources */,
+				A10000000000000000000110 /* Pact.swift in Sources */,
+				A10000000000000000000111 /* PactDTO.swift in Sources */,
+				A10000000000000000000112 /* PactMapper.swift in Sources */,
+				A10000000000000000000113 /* PactCacheRules.swift in Sources */,
+				A10000000000000000000114 /* PactServiceProtocol.swift in Sources */,
+				A10000000000000000000115 /* APIPactService.swift in Sources */,
+				A10000000000000000000116 /* MockPactService.swift in Sources */,
+				A10000000000000000000117 /* PactContractFixtures.swift in Sources */,
+				A10000000000000000000118 /* PactClientIDStore.swift in Sources */,
+				A10000000000000000000169 /* P16P20ClientIDStore.swift in Sources */,
+				A10000000000000000000119 /* PactAnswerQueueStore.swift in Sources */,
+				A10000000000000000000130 /* SocialPresentationRules.swift in Sources */,
+				A10000000000000000000131 /* SocialDraftFixtures.swift in Sources */,
+				A10000000000000000000132 /* SocialLayout.swift in Sources */,
+				A10000000000000000000133 /* SocialViewModel.swift in Sources */,
+				A10000000000000000000134 /* SocialHostView.swift in Sources */,
+				A10000000000000000000135 /* SocialView.swift in Sources */,
+				A10000000000000000000140 /* SettingsPresentationRules.swift in Sources */,
+				A10000000000000000000141 /* SettingsDraftFixtures.swift in Sources */,
+				A10000000000000000000142 /* SettingsLayout.swift in Sources */,
+				A10000000000000000000143 /* SettingsViewModel.swift in Sources */,
+				A10000000000000000000144 /* SettingsHostView.swift in Sources */,
+				A10000000000000000000145 /* SettingsView.swift in Sources */,
+				A10000000000000000000150 /* P16P20ContractManifest.swift in Sources */,
+				A10000000000000000000151 /* Social.swift in Sources */,
+				A10000000000000000000152 /* ReportCard.swift in Sources */,
+				A10000000000000000000153 /* SocialDTO.swift in Sources */,
+				A10000000000000000000154 /* DeviceDTO.swift in Sources */,
+				A10000000000000000000155 /* SettingsDTO.swift in Sources */,
+				A10000000000000000000156 /* ReportDTO.swift in Sources */,
+				A10000000000000000000157 /* SocialMapper.swift in Sources */,
+				A10000000000000000000158 /* ReportMapper.swift in Sources */,
+				A10000000000000000000159 /* DeviceMapper.swift in Sources */,
+				A10000000000000000000160 /* SocialService.swift in Sources */,
+				A10000000000000000000161 /* DeviceService.swift in Sources */,
+				A10000000000000000000162 /* ReportService.swift in Sources */,
+				A10000000000000000000163 /* SettingsService.swift in Sources */,
+				A10000000000000000000164 /* ReportPresentationRules.swift in Sources */,
+				A10000000000000000000165 /* ReportViewModel.swift in Sources */,
+				A10000000000000000000166 /* ReportHostView.swift in Sources */,
+				A10000000000000000000167 /* ReportView.swift in Sources */,
+				A100000000000000000000EE /* SpeechDTO.swift in Sources */,
+				A100000000000000000000EF /* SpeechMapper.swift in Sources */,
+				A100000000000000000000F0 /* Speech.swift in Sources */,
+				A100000000000000000000F1 /* SpeechServiceProtocol.swift in Sources */,
+				A100000000000000000000F2 /* APISpeechService.swift in Sources */,
+				A100000000000000000000F3 /* MockSpeechService.swift in Sources */,
+				A100000000000000000000F4 /* VoiceRules.swift in Sources */,
+				A100000000000000000000F5 /* VoiceAudioServices.swift in Sources */,
+				A100000000000000000000F6 /* SpeechDraftFixtures.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,6 +1637,42 @@
 				A1000000000000000000005F /* EggSelectionTests.swift in Sources */,
 				A10000000000000000000066 /* OnboardingConversationTests.swift in Sources */,
 				A1000000000000000000006B /* OnboardingResumeTests.swift in Sources */,
+				A1000000000000000000007D /* RoomRulesTests.swift in Sources */,
+				A10000000000000000000082 /* RoomLayoutTests.swift in Sources */,
+				A10000000000000000000087 /* RoomHotspotTests.swift in Sources */,
+				A1000000000000000000008D /* RoomRefreshTests.swift in Sources */,
+				A1000000000000000000008F /* RoomSpiritMotionTests.swift in Sources */,
+				A10000000000000000000099 /* ChatHistoryTests.swift in Sources */,
+				A100000000000000000000A0 /* ChatSendQueueTests.swift in Sources */,
+				A100000000000000000000AA /* ChatUILayoutTests.swift in Sources */,
+				A100000000000000000000AD /* ChatNetworkTests.swift in Sources */,
+				A100000000000000000000B6 /* ChatIntegrationTests.swift in Sources */,
+				A100000000000000000000B8 /* P11MemoryContractManifestTests.swift in Sources */,
+				A100000000000000000000BA /* RoomMoreMenuTests.swift in Sources */,
+				A100000000000000000000C3 /* MemoryPresentationTests.swift in Sources */,
+				A100000000000000000000C4 /* MemoryUILayoutTests.swift in Sources */,
+				A100000000000000000000D0 /* MemoryMapperTests.swift in Sources */,
+				A100000000000000000000D1 /* MemoryCacheTests.swift in Sources */,
+				A100000000000000000000D2 /* MemoryMutationTests.swift in Sources */,
+				A100000000000000000000D4 /* P12FeedContractManifestTests.swift in Sources */,
+				A100000000000000000000DB /* FeedPresentationTests.swift in Sources */,
+				A100000000000000000000DC /* FeedUILayoutTests.swift in Sources */,
+				A100000000000000000000E8 /* FeedMapperTests.swift in Sources */,
+				A100000000000000000000E9 /* PhotoProcessorTests.swift in Sources */,
+				A100000000000000000000EB /* P13GrowthContractManifestTests.swift in Sources */,
+				A100000000000000000000ED /* P14SpeechContractManifestTests.swift in Sources */,
+				A100000000000000000000FA /* P15PactContractManifestTests.swift in Sources */,
+				A10000000000000000000107 /* PactPresentationTests.swift in Sources */,
+				A10000000000000000000108 /* PactUILayoutTests.swift in Sources */,
+				A10000000000000000000120 /* PactMapperTests.swift in Sources */,
+				A10000000000000000000121 /* PactCacheTests.swift in Sources */,
+				A10000000000000000000122 /* PactAnswerQueueTests.swift in Sources */,
+				A10000000000000000000136 /* SocialPresentationTests.swift in Sources */,
+				A10000000000000000000137 /* SocialUILayoutTests.swift in Sources */,
+				A10000000000000000000146 /* SettingsPresentationTests.swift in Sources */,
+				A10000000000000000000147 /* SettingsUILayoutTests.swift in Sources */,
+				A10000000000000000000168 /* P16P20ContractManifestTests.swift in Sources */,
+				A100000000000000000000F7 /* SpeechMapperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

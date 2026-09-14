@@ -80,6 +80,7 @@ final class SessionStoreTests: XCTestCase {
 
         XCTAssertEqual(store.snapshot?.snapshotVersion, 12)
         XCTAssertEqual(store.snapshot?.onboarding.step, 4)
+        XCTAssertEqual(store.snapshot?.room?.weather, "cloudy")
         XCTAssertFalse(store.needsBootstrapRefresh)
     }
 
@@ -164,6 +165,119 @@ final class SessionStoreTests: XCTestCase {
         XCTAssertEqual(store.snapshot?.spirit?.preferences.ttsOn, true)
         XCTAssertEqual(store.snapshot?.spirit?.preferences.visitOn, false)
         XCTAssertEqual(store.snapshot?.snapshotVersion, 13)
+    }
+
+    func testApplyPatchMergesQuotasByCapabilityAndKeepsOmittedRows() throws {
+        let base = try makeOnboardingSnapshot(version: 12)
+        store.replace(with: base)
+        let existingChat = QuotaEntry(
+            capability: .chat,
+            used: 4,
+            limit: 100,
+            resetAt: Date(timeIntervalSince1970: 1_778_000_000)
+        )
+        store.replace(
+            with: BootstrapSnapshot(
+                schemaVersion: base.schemaVersion,
+                snapshotVersion: base.snapshotVersion,
+                apiVersion: base.apiVersion,
+                spirit: base.spirit,
+                room: base.room,
+                onboarding: base.onboarding,
+                latestMemories: base.latestMemories,
+                unreadPostcards: base.unreadPostcards,
+                activePact: base.activePact,
+                report: base.report,
+                quotas: [
+                    existingChat,
+                    QuotaEntry(
+                        capability: .food,
+                        used: 0,
+                        limit: 3,
+                        resetAt: Date(timeIntervalSince1970: 1_778_000_000)
+                    ),
+                ],
+                featureFlags: base.featureFlags,
+                serverTime: base.serverTime
+            )
+        )
+
+        let patch = SessionPatch(
+            snapshotVersion: 13,
+            spirit: nil,
+            preferences: nil,
+            room: nil,
+            onboarding: nil,
+            quotas: [
+                QuotaEntry(
+                    capability: .food,
+                    used: 1,
+                    limit: 3,
+                    resetAt: Date(timeIntervalSince1970: 1_778_000_000)
+                )
+            ],
+            serverTime: nil
+        )
+
+        try store.apply(patch)
+
+        XCTAssertEqual(store.snapshot?.quotas.first { $0.capability == .chat }?.used, 4)
+        XCTAssertEqual(store.snapshot?.quotas.first { $0.capability == .food }?.used, 1)
+        XCTAssertEqual(store.snapshot?.room?.weather, "cloudy")
+    }
+
+    func testApplyOmittedOrEmptyQuotasKeepPreviousRows() throws {
+        let base = try makeOnboardingSnapshot(version: 12)
+        let withFood = BootstrapSnapshot(
+            schemaVersion: base.schemaVersion,
+            snapshotVersion: base.snapshotVersion,
+            apiVersion: base.apiVersion,
+            spirit: base.spirit,
+            room: base.room,
+            onboarding: base.onboarding,
+            latestMemories: base.latestMemories,
+            unreadPostcards: base.unreadPostcards,
+            activePact: base.activePact,
+            report: base.report,
+            quotas: [
+                QuotaEntry(
+                    capability: .food,
+                    used: 2,
+                    limit: 3,
+                    resetAt: Date(timeIntervalSince1970: 1_778_000_000)
+                )
+            ],
+            featureFlags: base.featureFlags,
+            serverTime: base.serverTime
+        )
+        store.replace(with: withFood)
+
+        try store.apply(
+            SessionPatch(
+                snapshotVersion: 12,
+                spirit: nil,
+                preferences: nil,
+                room: nil,
+                onboarding: nil,
+                quotas: nil,
+                serverTime: nil
+            )
+        )
+        XCTAssertEqual(store.snapshot?.quotas.first?.used, 2)
+
+        try store.apply(
+            SessionPatch(
+                snapshotVersion: 12,
+                spirit: nil,
+                preferences: nil,
+                room: nil,
+                onboarding: nil,
+                quotas: [],
+                serverTime: nil
+            )
+        )
+        XCTAssertEqual(store.snapshot?.quotas.first?.used, 2)
+        XCTAssertEqual(store.snapshot?.room?.weather, "cloudy")
     }
 
     private func makeOnboardingSnapshot(version: Int) throws -> BootstrapSnapshot {

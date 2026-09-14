@@ -33,6 +33,23 @@ struct ChatRequestDTO: Codable, Sendable, Equatable {
 struct ChatMessageDTO: Decodable, Sendable, Equatable {
     let id: UUID
     let content: String
+    let clientID: UUID?
+    let sourceRefs: [MessageSourceRefDTO]
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case content
+        case clientID = "client_id"
+        case sourceRefs = "source_refs"
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        content = try container.decode(String.self, forKey: .content)
+        clientID = try container.decodeIfPresent(UUID.self, forKey: .clientID)
+        sourceRefs = try container.decodeIfPresent([MessageSourceRefDTO].self, forKey: .sourceRefs) ?? []
+    }
 }
 
 struct ChatUsageDTO: Decodable, Sendable, Equatable {
@@ -68,4 +85,5 @@ struct ChatTurnResourceDTO: Decodable, Sendable, Equatable {
 struct ChatMutationResultDTO: Decodable, Sendable, Equatable {
     let resource: ChatTurnResourceDTO
     let patch: SessionPatchDTO
+    let quotas: [QuotaEntryDTO]?
 }
